@@ -1,0 +1,8 @@
+<svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M120 24L144 48L120 72L96 48L120 24Z" stroke="#264236" stroke-width="1.4"/>
+  <path d="M48 96L72 120L48 144L24 120L48 96Z" stroke="#C98F8A" stroke-width="1.4"/>
+  <path d="M192 96L216 120L192 144L168 120L192 96Z" stroke="#264236" stroke-width="1.4"/>
+  <path d="M120 168L144 192L120 216L96 192L120 168Z" stroke="#C98F8A" stroke-width="1.4"/>
+  <path d="M120 72C146 72 168 94 168 120C168 146 146 168 120 168C94 168 72 146 72 120C72 94 94 72 120 72Z" stroke="#C8A46B" stroke-width="1.2"/>
+  <path d="M96 120H144M120 96V144" stroke="#7A8F7F" stroke-width="1.2"/>
+</svg>

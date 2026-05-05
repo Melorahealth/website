@@ -1,0 +1,46 @@
+<svg width="280" height="280" viewBox="0 0 280 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="280" height="280" fill="transparent"/>
+  <g opacity=".86" stroke="#C8A46B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 20h54v54H20z"/>
+    <path d="M32 20v54M47 20v24M47 50v24M62 20v54"/>
+    <path d="M93 20l31 31-31 31-31-31 31-31z"/>
+    <path d="M78 51h30M93 36v30"/>
+    <path d="M140 20h56v56h-56z"/>
+    <path d="M140 20l56 56M196 20l-56 56"/>
+    <path d="M155 35h26v26h-26z"/>
+    <path d="M216 20h44v72h-44z"/>
+    <path d="M226 32h24M226 44h10M242 44h8M226 56h24M226 68h14"/>
+
+    <path d="M20 108h68v68H20z"/>
+    <path d="M54 121l24 21-24 21-24-21 24-21z"/>
+    <path d="M39 142h30M54 127v30"/>
+    <path d="M107 106h62v62h-62z"/>
+    <path d="M119 118h38v38h-38z"/>
+    <path d="M107 106l62 62M169 106l-62 62"/>
+    <path d="M191 108h70v68h-70z"/>
+    <path d="M203 142c15-17 31-17 46 0-15 17-31 17-46 0z"/>
+    <circle cx="226" cy="142" r="6.5"/>
+
+    <path d="M20 202h60v60H20z"/>
+    <path d="M20 232h60M50 202v60"/>
+    <path d="M34 216h32v32H34z"/>
+    <path d="M102 204h68v54h-68z"/>
+    <path d="M114 244l44-28M114 216l44 28"/>
+    <path d="M192 202l34 34-34 34-34-34 34-34z"/>
+    <path d="M192 218l18 18-18 18-18-18 18-18z"/>
+    <path d="M232 204h28M232 218h16M232 232h28M232 246h12"/>
+  </g>
+  <g opacity=".48" stroke="#F2EDE6" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6 91c37-22 72-23 104-3s62 19 92 0 53-20 72-4"/>
+    <path d="M8 190c31-18 61-18 90 0s59 18 88 0 59-18 86 0"/>
+    <path d="M129 83c12 13 12 25 0 38-12-13-12-25 0-38z"/>
+    <path d="M150 172c13 12 25 12 38 0-13-12-25-12-38 0z"/>
+    <circle cx="140" cy="140" r="39"/>
+    <circle cx="140" cy="140" r="2.8" fill="#F2EDE6" stroke="none"/>
+  </g>
+  <g opacity=".34" stroke="#8A6538" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8 8h264v264H8z"/>
+    <path d="M92 92h96v96H92z"/>
+    <path d="M8 140h30M242 140h30M140 8v30M140 242v30"/>
+  </g>
+</svg>
