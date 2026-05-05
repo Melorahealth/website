@@ -1,3 +1,5 @@
+import { LockKeyhole } from "lucide-react";
+
 type Field = {
   label: string;
   name: string;
@@ -19,20 +21,31 @@ export function LeadForm({ title, intro, fields, submitLabel, idPrefix }: LeadFo
   const prefix = idPrefix ?? title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
   return (
-    <form action="#" className="reveal rounded-lg border border-sage/10 bg-white/70 p-6 shadow-soft sm:p-8">
-      <div className="mb-8">
-        <p className="eyebrow mb-3">Secure inquiry</p>
-        <h2 className="font-serif text-3xl leading-tight tracking-normal text-sage">{title}</h2>
-        <p className="mt-3 text-sm leading-6 text-ink/60">{intro}</p>
+    <form
+      action="#"
+      className="reveal relative overflow-hidden rounded-[30px] border border-white/[0.48] bg-white/[0.28] p-5 shadow-[0_28px_80px_rgba(38,66,54,0.1),inset_0_1px_0_rgba(255,255,255,0.44)] backdrop-blur-2xl sm:p-8"
+    >
+      <div aria-hidden className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-gold/[0.42] to-transparent" />
+      <div aria-hidden className="absolute -right-20 -top-24 h-56 w-56 rounded-full bg-gold/[0.08] blur-3xl" />
+      <div className="relative mb-8 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <p className="eyebrow mb-3">Secure inquiry</p>
+          <h2 className="font-serif text-4xl leading-tight tracking-normal text-sage">{title}</h2>
+          <p className="mt-3 max-w-2xl text-sm leading-6 text-ink/[0.62]">{intro}</p>
+        </div>
+        <span className="inline-flex w-fit shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border border-sage/10 bg-white/[0.32] px-3 py-1.5 text-xs font-bold text-sage shadow-[inset_0_1px_0_rgba(255,255,255,0.38)]">
+          <LockKeyhole aria-hidden className="h-3.5 w-3.5" strokeWidth={1.8} />
+          Routed privately
+        </span>
       </div>
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="relative grid gap-4 sm:grid-cols-2">
         {fields.map((field) => (
           <label
             className={field.textarea ? "sm:col-span-2" : ""}
             htmlFor={`${prefix}-${field.name}`}
             key={field.name}
           >
-            <span className="mb-2 block text-sm font-semibold text-ink/75">{field.label}</span>
+            <span className="mb-2 block text-xs font-bold uppercase tracking-normal text-ink/[0.58]">{field.label}</span>
             {field.options ? (
               <select className="form-field" id={`${prefix}-${field.name}`} name={field.name}>
                 <option value="">Select one</option>
@@ -60,13 +73,13 @@ export function LeadForm({ title, intro, fields, submitLabel, idPrefix }: LeadFo
         ))}
       </div>
       <button
-        className="mt-7 inline-flex min-h-11 items-center justify-center rounded-md bg-sage px-6 text-sm font-semibold text-white transition hover:bg-sage/90 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-sage/25"
+        className="relative mt-7 inline-flex min-h-12 w-full items-center justify-center rounded-full bg-sage px-6 text-sm font-bold text-white shadow-[0_18px_44px_rgba(38,66,54,0.2)] transition hover:bg-sage/90 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-sage/25 sm:w-auto"
         type="submit"
       >
         {submitLabel}
       </button>
-      <p className="mt-4 text-xs leading-5 text-ink/50">
-        This form is ready for email, CRM, or database wiring during product integration.
+      <p className="relative mt-4 max-w-xl text-xs leading-5 text-ink/[0.45]">
+        Your inquiry can be routed to care, professional onboarding, sponsorship, or partnership support.
       </p>
     </form>
   );

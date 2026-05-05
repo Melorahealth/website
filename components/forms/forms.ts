@@ -67,6 +67,43 @@ export const partnerFields = [
   }
 ];
 
+export const contactFields = [
+  { label: "Name", name: "name", placeholder: "Your full name" },
+  { label: "Email", name: "email", type: "email" as const, placeholder: "you@example.com" },
+  {
+    label: "I’m reaching out about",
+    name: "inquiry_type",
+    options: [
+      "Finding support",
+      "Joining as a professional",
+      "Partnering with MeloraHealth",
+      "Sponsoring access",
+      "Grant or access program"
+    ]
+  },
+  { label: "Location", name: "location", placeholder: "City, country" },
+  {
+    label: "Care or access area",
+    name: "care_area",
+    options: [
+      "General therapy",
+      "Women’s therapy",
+      "Postpartum therapy",
+      "Queer-affirming therapy",
+      "Psychiatry",
+      "Workforce or member access",
+      "Community sponsorship"
+    ]
+  },
+  { label: "Organization, if any", name: "organization", placeholder: "Company, fund, institution, or community" },
+  {
+    label: "Message",
+    name: "message",
+    textarea: true,
+    placeholder: "Tell us what you need, who you want to support, or the kind of access you want to build."
+  }
+];
+
 export const giftFields = [
   { label: "Sender name", name: "sender_name", placeholder: "Your full name" },
   { label: "Recipient info", name: "recipient", placeholder: "Name or email" },

@@ -1,7 +1,7 @@
 import { Mail, MapPin, MessagesSquare, Route } from "lucide-react";
 import { InfoCard } from "@/components/cards/InfoCard";
 import { LeadForm } from "@/components/forms/LeadForm";
-import { findSupportFields, partnerFields, professionalFields } from "@/components/forms/forms";
+import { contactFields } from "@/components/forms/forms";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -56,24 +56,33 @@ export default function ContactPage() {
         </Container>
       </section>
       <section className="section-space bg-cream/40">
-        <Container className="grid gap-8 lg:grid-cols-3">
+        <Container className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
+          <div className="reveal">
+            <p className="eyebrow mb-5">One form</p>
+            <h2 className="font-serif text-4xl leading-tight tracking-normal text-sage sm:text-5xl">
+              Tell us what you need. We’ll route it from there.
+            </h2>
+            <p className="mt-5 text-base leading-7 text-ink/[0.64]">
+              Whether you are looking for care, joining as a qualified
+              professional, sponsoring access, or building a partnership, one
+              inquiry is enough to start the right conversation.
+            </p>
+            <div className="mt-8 grid gap-3 text-sm font-semibold text-sage">
+              {["Care requests", "Professional onboarding", "Partner and grant inquiries"].map((item) => (
+                <div
+                  className="rounded-2xl border border-white/[0.45] bg-white/30 px-4 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.38)] backdrop-blur-2xl"
+                  key={item}
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
           <LeadForm
-            fields={findSupportFields}
-            intro="For individuals seeking care or guidance on the right service."
-            submitLabel="Submit request"
-            title="Find Support"
-          />
-          <LeadForm
-            fields={professionalFields}
-            intro="For qualified professionals who want to join the marketplace."
-            submitLabel="Submit profile"
-            title="Join as Professional"
-          />
-          <LeadForm
-            fields={partnerFields}
-            intro="For organizations building care access, sponsorship, or API partnerships."
+            fields={contactFields}
+            intro="Choose the route that best matches your request. If you are unsure, share what you can and the team can direct the next step."
             submitLabel="Send inquiry"
-            title="Partner Inquiry"
+            title="Contact MeloraHealth"
           />
         </Container>
       </section>
