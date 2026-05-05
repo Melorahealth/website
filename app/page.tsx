@@ -71,10 +71,10 @@ export default function Home() {
               Care that understands <span className="mark-highlight">context.</span>
             </h1>
             <p className="mt-7 max-w-[590px] text-lg leading-8 text-ink/70">
-              For the things you feel but cannot easily explain, MeloraHealth
-              helps you find culturally aware care, with focused support for
-              women, postpartum transitions, queer-affirming therapy, and care
-              funded through family or organizations.
+              MeloraHealth connects people to qualified therapists and
+              culturally aware mental health support, with deeper care for
+              women, postpartum transitions, queer-affirming therapy, and
+              communities often left out of access.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="/contact">Find Support</ButtonLink>
@@ -84,10 +84,10 @@ export default function Home() {
             </div>
             <div className="mt-8 flex items-center gap-3 text-sm font-semibold text-sage">
               <span className="h-px w-10 bg-gold" />
-              <span className="hero-words" aria-label="Find care, fund care, scale care">
+              <span className="hero-words" aria-label="Find care, meet therapists, widen access">
                 <span>Find care</span>
-                <span>Fund care</span>
-                <span>Scale care</span>
+                <span>Meet therapists</span>
+                <span>Widen access</span>
               </span>
             </div>
           </div>
@@ -107,10 +107,10 @@ export default function Home() {
                   From need to support, with less confusion.
                 </h2>
                 <p>
-                  MeloraHealth helps people find care, families fund support,
-                  and partners extend access through one clear system,
-                  including women’s therapy, postpartum support, and
-                  queer-affirming care.
+                  MeloraHealth helps people reach qualified therapists,
+                  psychologists, and psychiatrists through one clear system,
+                  with specialist routes for women’s therapy, postpartum
+                  support, queer-affirming care, and underserved communities.
                 </p>
               </div>
             </div>
@@ -126,7 +126,8 @@ export default function Home() {
                   </h3>
                   <p className="mt-5 max-w-sm text-base leading-7 text-white/70">
                     The first step should not feel confusing. MeloraHealth
-                    turns a personal need into a clear care route.
+                    turns a personal need into a clear route to a qualified
+                    professional.
                   </p>
                 </div>
                 <div className="grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10">
@@ -159,26 +160,26 @@ export default function Home() {
 
             <article className="bento-card md:col-span-3 lg:col-span-3">
               <div className="p-6">
-                <p className="eyebrow mb-5">Gift care</p>
+                <p className="eyebrow mb-5">Qualified care</p>
                 <h3 className="font-serif text-3xl leading-tight tracking-normal text-sage">
-                  Fund care without taking over.
+                  Therapists who understand context.
                 </h3>
                 <p className="mt-4 text-sm leading-6 text-ink/60">
-                  Sponsor sessions or care credits for family, communities, or
-                  people who need a way to begin.
+                  Vetted therapists, psychologists, and psychiatrists for
+                  culturally aware support across life changes and identity.
                 </p>
               </div>
             </article>
 
             <article className="bento-card md:col-span-3 lg:col-span-3">
               <div className="p-6">
-                <p className="eyebrow mb-5">Partners</p>
+                <p className="eyebrow mb-5">Access</p>
                 <h3 className="font-serif text-3xl leading-tight tracking-normal text-sage">
-                  Access for the people you serve.
+                  Built for people often unseen.
                 </h3>
                 <p className="mt-4 text-sm leading-6 text-ink/60">
-                  HMOs, employers, banks, telcos, institutions, and sponsors can
-                  build care into existing systems.
+                  Women, new mothers, queer people, and underserved communities
+                  can be routed into care that respects their reality.
                 </p>
               </div>
             </article>
@@ -193,18 +194,18 @@ export default function Home() {
               alt="African mother holding a newborn in calm natural light"
               className="lg:col-span-7"
               height="large"
-              label="Ubuntu-based support"
+              label="Women and community care"
               src="/assets/images/postpartum-care.png"
-              title="Sponsor a Session"
+              title="Care for women, mothers, and people too often unseen."
             />
             <div className="lg:col-span-5">
               <SectionHeader
-                body="Diaspora families, sponsors, and communities can fund professional support without making care feel transactional."
-                eyebrow="Gift care"
-                title="Care can be given without taking over."
+                body="MeloraHealth is designed to make qualified mental health care easier to reach for women, postpartum parents, queer people, and underserved communities. Sponsorships and grants can remove cost as a barrier while the person receiving care keeps privacy and agency."
+                eyebrow="Access programs"
+                title="More people deserve care that sees them clearly."
               />
               <div className="mt-8">
-                <ButtonLink href="/gift-care">Gift a Session</ButtonLink>
+                <ButtonLink href="/for-partners">Support Access</ButtonLink>
               </div>
             </div>
           </div>
@@ -290,9 +291,9 @@ export default function Home() {
           <div className="section-grid">
             <div className="lg:col-span-4">
               <SectionHeader
-                body="MeloraHealth gives organizations a care layer they can sponsor, embed, or contract, while preserving clinical trust and cultural context."
+                body="MeloraHealth gives organizations and grant partners a trusted way to expand mental health access for employees, members, women, postpartum parents, queer communities, and people priced out of care."
                 eyebrow="Partners"
-                title="For institutions that carry people."
+                title="For institutions ready to widen access."
               />
             </div>
             <div className="grid gap-5 md:grid-cols-2 lg:col-span-8">
@@ -305,12 +306,12 @@ export default function Home() {
             <div className="p-7 sm:p-10">
               <p className="eyebrow mb-5">Partner model</p>
               <h3 className="font-serif text-4xl leading-tight tracking-normal text-sage">
-                Sponsor access. Route demand. Measure support.
+                Fund access. Protect dignity. Measure support.
               </h3>
               <p className="mt-5 max-w-xl text-base leading-7 text-ink/64">
-                Organizations can fund care credits, provide employee access,
-                embed API routes, or sponsor specific communities while keeping
-                care private and professionally held.
+                Organizations can support care programs for women, postpartum
+                parents, queer communities, employees, and underserved groups
+                while keeping care private and professionally held.
               </p>
               <div className="mt-8">
                 <ButtonLink href="/for-partners">Explore Partners</ButtonLink>
