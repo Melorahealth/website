@@ -5,12 +5,16 @@ import { PageHero } from "@/components/sections/PageHero";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Gift Care",
+export const metadata: Metadata = createPageMetadata({
+  title: "Gift Therapy Sessions and Care Credits",
   description:
-    "Sponsor therapy sessions or care credits for family, communities, and people who need dignified access to mental health support."
-};
+    "Sponsor therapy sessions or send care credits so family, communities, and people who need support can begin professional mental health care with dignity.",
+  path: "/gift-care",
+  image: "/assets/images/postpartum-care.png",
+  imageAlt: "African mother holding a newborn in calm natural light"
+});
 
 const giftOptions = [
   {

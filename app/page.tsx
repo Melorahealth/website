@@ -15,12 +15,16 @@ import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
 import { LoopLine } from "@/components/ui/LoopLine";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Home",
+export const metadata: Metadata = createPageMetadata({
+  title: "Therapy That Understands Your Context",
   description:
-    "MeloraHealth connects people, professionals, sponsors, and organizations through culturally aware mental health care."
-};
+    "MeloraHealth connects people with culturally aware therapy, psychiatry, and care routes for emotional clarity, identity, postpartum, and life changes.",
+  path: "/",
+  image: "/assets/images/individual-reflection.png",
+  imageAlt: "African woman sitting calmly in reflective natural light"
+});
 
 const howItWorks = [
   {

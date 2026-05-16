@@ -5,12 +5,16 @@ import { CTASection } from "@/components/sections/CTASection";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Resources",
+export const metadata: Metadata = createPageMetadata({
+  title: "Mental Health Resources and Guides",
   description:
-    "Read grounded mental health resources on stress, postpartum adjustment, relationships, psychiatry, employers, and cross-border care."
-};
+    "Read grounded mental health guides on stress, postpartum adjustment, relationships, psychiatry, workplace care, and diaspora-supported access with clarity.",
+  path: "/resources",
+  image: "/assets/images/hero-reflection.png",
+  imageAlt: "African professional in quiet reflection near a city window"
+});
 
 const resources = [
   {

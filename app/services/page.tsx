@@ -5,12 +5,16 @@ import { CTASection } from "@/components/sections/CTASection";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Services",
+export const metadata: Metadata = createPageMetadata({
+  title: "Mental Health Services",
   description:
-    "Explore online care, offline care, individual therapy, women’s therapy, postpartum therapy, queer-affirming therapy, couples therapy, and psychiatry."
-};
+    "Explore online and offline therapy, psychiatry, couples care, postpartum support, and identity-aware mental health services routed with context in one place.",
+  path: "/services",
+  image: "/assets/images/professional-care.png",
+  imageAlt: "African therapist and client seated in a respectful care conversation"
+});
 
 const careFormats = [
   {

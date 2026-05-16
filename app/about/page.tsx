@@ -6,12 +6,16 @@ import { ImagePanel } from "@/components/sections/ImagePanel";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "About",
+export const metadata: Metadata = createPageMetadata({
+  title: "About MeloraHealth",
   description:
-    "Learn how MeloraHealth builds culturally aware mental health infrastructure for people, professionals, and organizations."
-};
+    "Learn how MeloraHealth builds culturally aware mental health access for individuals, professionals, sponsors, employers, and diaspora communities worldwide.",
+  path: "/about",
+  image: "/assets/images/hero-reflection.png",
+  imageAlt: "African professional sitting in quiet reflection by a window"
+});
 
 const beliefs = [
   {

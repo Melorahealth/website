@@ -6,12 +6,16 @@ import { PageHero } from "@/components/sections/PageHero";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "For You",
+export const metadata: Metadata = createPageMetadata({
+  title: "Find Therapy and Mental Health Support",
   description:
-    "Find culturally aware therapy, psychiatry, women’s therapy, postpartum therapy, couples therapy, and queer-affirming care."
-};
+    "Find therapy, psychiatry, women’s mental health support, postpartum care, couples therapy, and identity-aware care that respects your context online now.",
+  path: "/for-you",
+  image: "/assets/images/individual-reflection.png",
+  imageAlt: "African woman seated quietly in a calm home interior"
+});
 
 const supportTypes = [
   {

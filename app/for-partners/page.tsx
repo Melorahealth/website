@@ -7,12 +7,16 @@ import { CTASection } from "@/components/sections/CTASection";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Partners",
+export const metadata: Metadata = createPageMetadata({
+  title: "Mental Health Access for Organizations",
   description:
-    "Partner with MeloraHealth to fund, route, and embed culturally aware mental health access for employees, members, customers, and communities."
-};
+    "Partner with MeloraHealth to fund, route, and embed culturally aware mental health access for employees, members, customers, and communities at scale.",
+  path: "/for-partners",
+  image: "/assets/images/partners-meeting.png",
+  imageAlt: "African professionals in a calm partnership meeting"
+});
 
 const partners = [
   {

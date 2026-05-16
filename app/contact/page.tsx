@@ -6,12 +6,16 @@ import { contactFields } from "@/components/forms/forms";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Contact",
+export const metadata: Metadata = createPageMetadata({
+  title: "Contact MeloraHealth",
   description:
-    "Contact MeloraHealth for care requests, professional onboarding, partner inquiries, sponsorship, or grant access programs."
-};
+    "Contact MeloraHealth for therapy requests, professional onboarding, partner inquiries, sponsorships, and culturally aware mental health access programs.",
+  path: "/contact",
+  image: "/assets/images/individual-reflection.png",
+  imageAlt: "African woman in a calm reflective interior"
+});
 
 const contactRoutes = [
   {

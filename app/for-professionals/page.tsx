@@ -5,12 +5,16 @@ import { PageHero } from "@/components/sections/PageHero";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Professionals",
+export const metadata: Metadata = createPageMetadata({
+  title: "Join the MeloraHealth Care Network",
   description:
-    "Join MeloraHealth as a qualified therapist, psychologist, psychiatrist, or care provider serving African and diaspora clients."
-};
+    "Qualified therapists, psychologists, psychiatrists, and care providers can join MeloraHealth to meet structured African and diaspora care demand with trust.",
+  path: "/for-professionals",
+  image: "/assets/images/professional-care.png",
+  imageAlt: "African therapist and client in respectful conversation"
+});
 
 const benefits = [
   {
