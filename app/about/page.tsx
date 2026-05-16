@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Compass, Globe2, Layers3, ShieldCheck } from "lucide-react";
 import { InfoCard } from "@/components/cards/InfoCard";
 import { CTASection } from "@/components/sections/CTASection";
@@ -5,6 +6,12 @@ import { ImagePanel } from "@/components/sections/ImagePanel";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "Learn how MeloraHealth builds culturally aware mental health infrastructure for people, professionals, and organizations."
+};
 
 const beliefs = [
   {

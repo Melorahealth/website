@@ -1,9 +1,16 @@
+import type { Metadata } from "next";
 import { BookOpen, Clock, FileText, HeartPulse, Layers3, UserRound } from "lucide-react";
 import { InfoCard } from "@/components/cards/InfoCard";
 import { CTASection } from "@/components/sections/CTASection";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+
+export const metadata: Metadata = {
+  title: "Resources",
+  description:
+    "Read grounded mental health resources on stress, postpartum adjustment, relationships, psychiatry, employers, and cross-border care."
+};
 
 const resources = [
   {

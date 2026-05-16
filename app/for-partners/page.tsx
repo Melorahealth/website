@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Building2, Landmark, Network, RadioTower, ShieldCheck, Users } from "lucide-react";
 import { InfoCard } from "@/components/cards/InfoCard";
 import { LeadForm } from "@/components/forms/LeadForm";
@@ -6,6 +7,12 @@ import { CTASection } from "@/components/sections/CTASection";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+
+export const metadata: Metadata = {
+  title: "Partners",
+  description:
+    "Partner with MeloraHealth to fund, route, and embed culturally aware mental health access for employees, members, customers, and communities."
+};
 
 const partners = [
   {
@@ -73,9 +80,9 @@ export default function PartnersPage() {
               ["03", "Match professionals"],
               ["04", "Report without exposure"]
             ].map(([number, label]) => (
-              <div className="rounded-2xl bg-cream/55 p-5" key={label}>
+              <div className="rounded-2xl bg-cream/[0.55] p-5" key={label}>
                 <p className="font-serif text-3xl leading-none text-sage">{number}</p>
-                <p className="mt-4 text-sm font-semibold text-ink/68">{label}</p>
+                <p className="mt-4 text-sm font-semibold text-ink/[0.68]">{label}</p>
               </div>
             ))}
           </div>

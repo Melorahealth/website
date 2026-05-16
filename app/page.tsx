@@ -1,14 +1,13 @@
+import type { Metadata } from "next";
+import Image from "next/image";
 import {
-  Building2,
-  CircleDollarSign,
-  Globe2,
-  Landmark,
-  RadioTower,
-  ShieldCheck,
+  Check,
+  CircleArrowRight,
+  Gift,
+  MessageCircle,
+  Minus
 } from "lucide-react";
-import { InfoCard } from "@/components/cards/InfoCard";
 import { TestimonialCard } from "@/components/cards/TestimonialCard";
-import { CareNetwork3D } from "@/components/sections/CareNetwork3D";
 import { CTASection } from "@/components/sections/CTASection";
 import { HeroImageStack } from "@/components/sections/HeroImageStack";
 import { ImagePanel } from "@/components/sections/ImagePanel";
@@ -17,43 +16,94 @@ import { Container } from "@/components/ui/Container";
 import { LoopLine } from "@/components/ui/LoopLine";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 
-const platformCards = [
+export const metadata: Metadata = {
+  title: "Home",
+  description:
+    "MeloraHealth connects people, professionals, sponsors, and organizations through culturally aware mental health care."
+};
+
+const howItWorks = [
   {
-    title: "USD-pegged pricing",
-    body: "Internal pricing is held against USD while users pay local equivalents.",
-    icon: CircleDollarSign
+    title: "Tell us what is happening",
+    body: "Start with a simple intake that makes space for your reality, location, preferences, and care goals."
   },
   {
-    title: "Cross-border care",
-    body: "Diaspora sponsors, local users, and African professionals can meet in one system.",
-    icon: Globe2
+    title: "Get routed to the right fit",
+    body: "MeloraHealth connects you with a qualified professional or program path that matches the kind of support you need."
+  },
+  {
+    title: "Meet in the way that works",
+    body: "Use private online sessions, structured follow-up, and sponsor-backed credits where available."
   }
 ];
 
-const partnerTypes = [
+const careComparison = [
   {
-    title: "HMOs",
-    body: "Expand member care with culturally aware mental health access and clear routing.",
-    icon: ShieldCheck,
-    meta: "Coverage"
+    need: "Finding the right fit",
+    melora: "A guided intake routes you by need, care level, preference, and cultural context.",
+    offline: "You often rely on referrals, location, or trial and error."
   },
   {
-    title: "Employers",
-    body: "Give teams private support before pressure becomes absence, conflict, or burnout.",
-    icon: Building2,
-    meta: "Workforce"
+    need: "Starting care",
+    melora: "You move from intake to a recommended care path with clear next steps.",
+    offline: "You may need calls, availability checks, and repeated explanation."
   },
   {
-    title: "Banks and telcos",
-    body: "Embed sponsored care credits into products, loyalty programs, and community initiatives.",
-    icon: RadioTower,
-    meta: "Access"
+    need: "Paying for support",
+    melora: "Sponsor credits and partner programs can fund care while privacy stays with the person receiving it.",
+    offline: "Payment support is usually informal, exposed, or difficult to manage."
   },
   {
-    title: "Institutions",
-    body: "Route students, staff, and communities into professional support with dignity.",
-    icon: Landmark,
-    meta: "Public trust"
+    need: "Continuing care",
+    melora: "Care can continue across location, sponsors, organizations, and professional routes.",
+    offline: "Continuity depends mostly on one office, one schedule, and one provider."
+  }
+];
+
+const partnerLogos = [
+  {
+    name: "TAC Africa",
+    href: "https://tacafrica.org/",
+    src: "/assets/partners/tac-africa.png",
+    width: 72,
+    height: 72
+  },
+  {
+    name: "Platview Technologies",
+    href: "https://platview.com/",
+    src: "/assets/partners/platview-provided.svg",
+    width: 149,
+    height: 45
+  },
+  {
+    name: "BlazeTech",
+    href: "https://blazetch.com/",
+    src: "/assets/partners/blazetech.png",
+    width: 72,
+    height: 72
+  }
+];
+
+const faqs = [
+  {
+    question: "Who is MeloraHealth for?",
+    answer:
+      "MeloraHealth is for anyone seeking emotional clarity and professional support, with deeper expertise for women, postpartum experiences, identity, relationships, and life changes."
+  },
+  {
+    question: "Are the professionals qualified?",
+    answer:
+      "The platform is built around credentialed therapists, psychologists, and psychiatrists. Care routing is designed to match the need with the right level of professional support."
+  },
+  {
+    question: "Can someone outside Africa sponsor care?",
+    answer:
+      "Yes. Diaspora sponsors can fund care credits while the person receiving care keeps privacy, choice, and dignity."
+  },
+  {
+    question: "Is this only for individuals?",
+    answer:
+      "No. MeloraHealth also supports employers, HMOs, banks, telcos, institutions, and professional care providers."
   }
 ];
 
@@ -64,125 +114,233 @@ export default function Home() {
         <div aria-hidden className="heritage-panel right-0 top-16 hidden h-[70%] w-14 lg:block xl:w-16" />
         <div aria-hidden className="soft-pulse absolute -left-24 top-32 h-72 w-72 rounded-full border border-gold/20" />
         <LoopLine className="-bottom-8 right-0" />
-        <Container className="relative z-10 grid gap-12 py-12 sm:py-14 lg:min-h-[calc(100svh-92px)] lg:grid-cols-12 lg:items-center lg:gap-14 lg:py-12 xl:gap-16 2xl:gap-20">
-          <div className="reveal lg:col-span-5 xl:col-span-5">
-            <p className="eyebrow mb-5">African mental health infrastructure</p>
-            <h1 className="display max-w-[720px]">
-              Care that understands <span className="mark-highlight">context.</span>
-            </h1>
-            <p className="mt-7 max-w-[590px] text-lg leading-8 text-ink/70">
-              MeloraHealth connects people to qualified therapists and
-              culturally aware mental health support, with deeper care for
-              women, postpartum transitions, queer-affirming therapy, and
-              communities often left out of access.
-            </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/contact">Find Support</ButtonLink>
-              <ButtonLink href="/for-partners" variant="secondary">
-                Partner With Us
-              </ButtonLink>
+        <Container className="relative z-10 flex min-h-[calc(100svh-72px)] flex-col justify-center py-16 sm:py-18 lg:min-h-[calc(112svh-92px)] lg:py-16 xl:min-h-[calc(118svh-92px)]">
+          <div className="grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-10 xl:gap-12 2xl:gap-14">
+            <div className="reveal lg:col-span-6">
+              <h1 className="display hero-display max-w-[720px]">
+                Therapy that
+                <br />
+                understands your
+                <br />
+                <span className="mark-highlight">context.</span>
+              </h1>
+              <p className="mt-7 max-w-[590px] text-lg leading-8 text-ink/70">
+                MeloraHealth connects people to qualified therapists and
+                culturally aware mental health support, with deeper care for
+                women, postpartum transitions, queer-affirming therapy, and
+                communities often left out of access.
+              </p>
+              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+                <ButtonLink href="/contact" icon={CircleArrowRight}>
+                  Get Started
+                </ButtonLink>
+                <ButtonLink href="/gift-care" icon={Gift} variant="secondary">
+                  Gift a Session
+                </ButtonLink>
+              </div>
+              <div className="mt-8 flex items-center gap-3 text-sm font-semibold text-sage">
+                <span className="h-px w-10 bg-gold" />
+                <span className="hero-words" aria-label="Find care, meet therapists, widen access">
+                  <span>Find care</span>
+                  <span>Meet therapists</span>
+                  <span>Widen access</span>
+                </span>
+              </div>
             </div>
-            <div className="mt-8 flex items-center gap-3 text-sm font-semibold text-sage">
-              <span className="h-px w-10 bg-gold" />
-              <span className="hero-words" aria-label="Find care, meet therapists, widen access">
-                <span>Find care</span>
-                <span>Meet therapists</span>
-                <span>Widen access</span>
-              </span>
-            </div>
+            <HeroImageStack />
           </div>
-          <HeroImageStack />
         </Container>
       </section>
 
-      <section className="section-space relative overflow-hidden">
-        <div aria-hidden className="pattern-band" />
-        <div aria-hidden className="signal-grid absolute inset-0 opacity-40" />
+      <section className="border-y border-sage/10 bg-[#f7f2ea] py-12 sm:py-14">
         <Container>
-          <div className="section-grid relative mb-12 lg:items-end">
-            <div className="lg:col-span-7">
-              <div className="modern-section-header">
-                <p className="eyebrow mb-5">Care infrastructure</p>
-                <h2>
-                  From need to support, with less confusion.
-                </h2>
-                <p>
-                  MeloraHealth helps people reach qualified therapists,
-                  psychologists, and psychiatrists through one clear system,
-                  with specialist routes for women’s therapy, postpartum
-                  support, queer-affirming care, and underserved communities.
-                </p>
-              </div>
+          <div className="mx-auto max-w-5xl">
+            <p className="text-center text-xs font-semibold uppercase tracking-normal text-ink/42">
+              Trusted by leading organizations
+            </p>
+            <div className="partner-grid mt-8" aria-label="MeloraHealth partners">
+              {partnerLogos.map((logo) => (
+                <a
+                  className="partner-mark"
+                  href={logo.href}
+                  key={logo.name}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <Image
+                    alt={logo.name}
+                    className="partner-logo"
+                    height={logo.height}
+                    src={logo.src}
+                    width={logo.width}
+                  />
+                </a>
+              ))}
             </div>
           </div>
+        </Container>
+      </section>
 
-          <div className="bento-grid">
-            <article className="bento-card dark md:col-span-6 lg:col-span-5 lg:row-span-2">
-              <div className="flex h-full min-h-[470px] flex-col justify-between p-7 sm:p-9">
-                <div>
-                  <p className="eyebrow mb-5">Care routing</p>
-                  <h3 className="font-serif text-5xl leading-none tracking-normal">
-                    From feeling to fit.
+      {/* <section className="section-space relative overflow-hidden bg-cream/40">
+        <div aria-hidden className="pattern-band" />
+        <div aria-hidden className="signal-grid absolute inset-0 opacity-35" />
+        <Container>
+          <SectionHeader
+            align="center"
+            body="MeloraHealth is open to all, with specialist routes for moments that are often misunderstood or made too heavy to explain."
+            eyebrow="Care paths"
+            title="Choose the kind of support you need."
+          />
+          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            {careTypes.map((type) => (
+              <InfoCard key={type.title} {...type} />
+            ))}
+          </div>
+        </Container>
+      </section> */}
+
+      <section className="section-space">
+        <Container>
+          <div className="section-grid lg:items-center">
+            <div className="lg:col-span-5">
+              <SectionHeader
+                body="The first step should not feel like searching through noise. MeloraHealth helps translate what is happening into a care route: the right professional, the right format, and a next step that respects your context."
+                eyebrow="Professional care"
+                title="Qualified support, without losing cultural meaning."
+              />
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <ButtonLink href="/services">Explore Services</ButtonLink>
+                <ButtonLink href="/for-professionals" variant="secondary">
+                  Join as Professional
+                </ButtonLink>
+              </div>
+            </div>
+            <ImagePanel
+              alt="African therapist and client in a calm professional care conversation"
+              className="lg:col-span-7"
+              height="large"
+              label="Respectful care"
+              objectPosition="center"
+              src="/assets/images/professional-care.png"
+              title="A care conversation that feels human, not clinical and cold."
+            />
+          </div>
+        </Container>
+      </section>
+
+      <section className="section-space bg-sage text-white">
+        <Container>
+          <div className="section-grid">
+            <div className="lg:col-span-4">
+              <p className="eyebrow mb-5">How it works</p>
+              <h2 className="font-serif text-4xl leading-tight tracking-normal sm:text-5xl">
+                A clear route into care.
+              </h2>
+              <p className="mt-5 text-base leading-7 text-white/70">
+                Inspired by simple matching flows, rebuilt for African context,
+                diaspora funding, and professional care standards.
+              </p>
+            </div>
+            <div className="grid gap-5 md:grid-cols-3 lg:col-span-8">
+              {howItWorks.map((step, index) => (
+                <article
+                  className="rounded-xl border border-white/12 bg-white/[0.06] p-6"
+                  key={step.title}
+                >
+                  <span className="font-serif text-5xl leading-none text-gold">
+                    0{index + 1}
+                  </span>
+                  <h3 className="mt-8 font-serif text-3xl leading-tight tracking-normal">
+                    {step.title}
                   </h3>
-                  <p className="mt-5 max-w-sm text-base leading-7 text-white/70">
-                    The first step should not feel confusing. MeloraHealth
-                    turns a personal need into a clear route to a qualified
-                    professional.
-                  </p>
-                </div>
-                <div className="grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10">
-                  {["What is happening", "Where you are", "Who can help", "How care happens"].map((item, index) => (
-                    <div className="grid grid-cols-[52px_1fr] items-center bg-sage/[0.86] px-4 py-4" key={item}>
-                      <span className="font-serif text-2xl text-gold">0{index + 1}</span>
-                      <span className="text-sm text-white/[0.76]">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </article>
+                  <p className="mt-4 text-sm leading-6 text-white/68">{step.body}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
 
-            <article className="bento-card md:col-span-6 lg:col-span-4 lg:row-span-2">
-              <div className="flex h-full min-h-[470px] flex-col p-6 sm:p-8">
-                <div className="flex items-start justify-between gap-6">
-                  <div>
-                    <p className="eyebrow mb-4">Care network</p>
-                    <h3 className="font-serif text-4xl leading-tight tracking-normal text-sage">
-                      People, professionals, partners.
-                    </h3>
+      <section className="section-space">
+        <Container>
+          <div className="section-grid mb-10 lg:items-end">
+            <div className="lg:col-span-6">
+              <SectionHeader
+                body="Offline therapy can be valuable. MeloraHealth changes the experience around it: the matching, the access, the funding, and the continuity."
+                eyebrow="Why MeloraHealth"
+                title="Less searching. More structure."
+              />
+            </div>
+            <p className="max-w-2xl text-base leading-7 text-ink/62 lg:col-span-5 lg:col-start-8">
+              Answer a few careful questions, get routed to the right kind of
+              professional support, and keep the path clear after care begins.
+            </p>
+          </div>
+
+          <div className="overflow-hidden rounded-xl border border-sage/10 bg-white/35 shadow-[0_22px_60px_rgba(38,66,54,0.07)] backdrop-blur-2xl">
+            <div className="grid gap-px bg-sage/10 md:grid-cols-3">
+              {[
+                ["01", "Share what is happening"],
+                ["02", "Get routed with context"],
+                ["03", "Begin care with support"]
+              ].map(([number, label]) => (
+                <div className="bg-cream/55 px-5 py-4" key={number}>
+                  <span className="font-serif text-2xl leading-none text-gold">{number}</span>
+                  <span className="ml-3 text-sm font-semibold text-sage">{label}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="hidden grid-cols-[1fr_1.25fr_1.1fr] border-b border-sage/10 bg-sage px-5 py-4 text-sm font-semibold text-white md:grid">
+              <span>Need</span>
+              <span>MeloraHealth</span>
+              <span>Typical offline path</span>
+            </div>
+
+            <div>
+              {careComparison.map((row) => (
+                <div
+                  className="grid gap-0 border-b border-sage/10 last:border-b-0 md:grid-cols-[1fr_1.25fr_1.1fr]"
+                  key={row.need}
+                >
+                  <div className="bg-white/40 px-5 py-5">
+                    <p className="text-xs font-semibold uppercase tracking-normal text-gold md:hidden">
+                      Need
+                    </p>
+                    <p className="font-serif text-2xl leading-tight tracking-normal text-sage md:text-xl">
+                      {row.need}
+                    </p>
                   </div>
-                  <span className="h-3 w-3 rounded-full bg-gold soft-pulse" />
+                  <div className="border-t border-sage/10 bg-white/30 px-5 py-5 md:border-l md:border-t-0">
+                    <p className="mb-2 flex items-center gap-2 text-sm font-semibold text-sage">
+                      <Check aria-hidden className="h-4 w-4 text-gold" strokeWidth={1.8} />
+                      <span>MeloraHealth</span>
+                    </p>
+                    <p className="text-sm leading-6 text-ink/62">{row.melora}</p>
+                  </div>
+                  <div className="border-t border-sage/10 bg-cream/25 px-5 py-5 md:border-l md:border-t-0">
+                    <p className="mb-2 flex items-center gap-2 text-sm font-semibold text-ink/68">
+                      <Minus aria-hidden className="h-4 w-4 text-rose" strokeWidth={1.8} />
+                      <span>Often offline</span>
+                    </p>
+                    <p className="text-sm leading-6 text-ink/58">{row.offline}</p>
+                  </div>
                 </div>
-                <div className="mt-4 flex-1">
-                  <CareNetwork3D />
-                </div>
-              </div>
-            </article>
+              ))}
+            </div>
 
-            <article className="bento-card md:col-span-3 lg:col-span-3">
-              <div className="p-6">
-                <p className="eyebrow mb-5">Qualified care</p>
-                <h3 className="font-serif text-3xl leading-tight tracking-normal text-sage">
-                  Therapists who understand context.
-                </h3>
-                <p className="mt-4 text-sm leading-6 text-ink/60">
-                  Vetted therapists, psychologists, and psychiatrists for
-                  culturally aware support across life changes and identity.
-                </p>
+            <div className="grid gap-4 border-t border-sage/10 bg-[#fbf8f3] px-5 py-5 text-sm text-ink/62 md:grid-cols-[1fr_auto] md:items-center">
+              <p>
+                The goal is not to make therapy feel automated. It is to make
+                access calmer, clearer, and easier to trust.
+              </p>
+              <div className="flex flex-col gap-3 sm:flex-row md:justify-end">
+                <ButtonLink href="/contact">Find Support</ButtonLink>
+                <ButtonLink href="/services" variant="secondary">
+                  Explore Services
+                </ButtonLink>
               </div>
-            </article>
-
-            <article className="bento-card md:col-span-3 lg:col-span-3">
-              <div className="p-6">
-                <p className="eyebrow mb-5">Access</p>
-                <h3 className="font-serif text-3xl leading-tight tracking-normal text-sage">
-                  Built for people often unseen.
-                </h3>
-                <p className="mt-4 text-sm leading-6 text-ink/60">
-                  Women, new mothers, queer people, and underserved communities
-                  can be routed into care that respects their reality.
-                </p>
-              </div>
-            </article>
+            </div>
           </div>
         </Container>
       </section>
@@ -192,139 +350,20 @@ export default function Home() {
           <div className="section-grid lg:items-center">
             <ImagePanel
               alt="African mother holding a newborn in calm natural light"
-              className="lg:col-span-7"
+              className="lg:col-span-6"
               height="large"
-              label="Women and community care"
+              label="Sponsor a Session"
               src="/assets/images/postpartum-care.png"
-              title="Care for women, mothers, and people too often unseen."
+              title="Give care without taking over the person's story."
             />
-            <div className="lg:col-span-5">
+            <div className="lg:col-span-5 lg:col-start-8">
               <SectionHeader
-                body="MeloraHealth is designed to make qualified mental health care easier to reach for women, postpartum parents, queer people, and underserved communities. Sponsorships and grants can remove cost as a barrier while the person receiving care keeps privacy and agency."
-                eyebrow="Access programs"
-                title="More people deserve care that sees them clearly."
+                body="Gift care credits let families, diaspora sponsors, employers, and community partners fund therapy while the recipient keeps privacy and choice. It is support with dignity, shaped by Ubuntu."
+                eyebrow="Gift care credits"
+                title="A meaningful way to protect someone you love."
               />
               <div className="mt-8">
-                <ButtonLink href="/for-partners">Support Access</ButtonLink>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      <section className="section-space relative overflow-hidden bg-[#fbf8f3]">
-        <Container>
-          <div className="section-grid relative mb-12 lg:items-end">
-            <div className="lg:col-span-5">
-              <SectionHeader
-                body="Pricing, routing, credentialing, and access can work across local currencies, diaspora funding, and institutional contracts."
-                eyebrow="Platform logic"
-                title="Built to move across borders."
-              />
-            </div>
-            <p className="max-w-2xl text-base leading-7 text-ink/62 lg:col-span-5 lg:col-start-8">
-              MeloraHealth is structured for people in Nigeria, diaspora
-              sponsors in the UK or US, African professionals, and institutions
-              that need dependable mental health access.
-            </p>
-          </div>
-
-          <div className="bento-grid relative">
-            <article className="bento-card dark md:col-span-6 lg:col-span-5 lg:row-span-2">
-              <div className="flex h-full min-h-[430px] flex-col justify-between p-7 sm:p-9">
-                <div>
-                  <p className="eyebrow mb-5">Cross-border engine</p>
-                  <h3 className="font-serif text-5xl leading-none tracking-normal">
-                    Local access. Stable logic.
-                  </h3>
-                  <p className="mt-5 max-w-sm text-base leading-7 text-white/70">
-                    Users pay local equivalents while internal pricing stays
-                    anchored for sponsors, partners, and professional payouts.
-                  </p>
-                </div>
-                <div className="grid grid-cols-3 gap-2 text-center text-xs font-semibold text-white">
-                  {["Nigeria", "UK diaspora", "US diaspora"].map((item) => (
-                    <span className="rounded-full border border-white/15 bg-white/10 px-3 py-2" key={item}>
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </article>
-
-            <article className="bento-card md:col-span-6 lg:col-span-4 lg:row-span-2">
-              <div className="relative h-full min-h-[430px] overflow-hidden rounded-[28px]">
-                <ImagePanel
-                  alt="African professionals in a calm modern partnership meeting"
-                  className="h-full !min-h-[430px] !rounded-none !shadow-none"
-                  height="medium"
-                  label="B2B infrastructure"
-                  src="/assets/images/partners-meeting.png"
-                  title="For employers, HMOs, banks, telcos, and institutions."
-                />
-              </div>
-            </article>
-
-            {platformCards.map((card) => {
-              const Icon = card.icon;
-
-              return (
-                <article className="bento-card md:col-span-3 lg:col-span-3" key={card.title}>
-                  <div className="p-6">
-                    <div className="mb-8 flex h-11 w-11 items-center justify-center rounded-full border border-sage/15 bg-cream/50 text-sage">
-                      <Icon aria-hidden className="h-5 w-5" strokeWidth={1.6} />
-                    </div>
-                    <h3 className="font-serif text-3xl leading-tight tracking-normal text-sage">
-                      {card.title}
-                    </h3>
-                    <p className="mt-4 text-sm leading-6 text-ink/60">{card.body}</p>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-        </Container>
-      </section>
-
-      <section className="section-space relative overflow-hidden bg-cream/40">
-        <Container>
-          <div className="section-grid">
-            <div className="lg:col-span-4">
-              <SectionHeader
-                body="MeloraHealth gives organizations and grant partners a trusted way to expand mental health access for employees, members, women, postpartum parents, queer communities, and people priced out of care."
-                eyebrow="Partners"
-                title="For institutions ready to widen access."
-              />
-            </div>
-            <div className="grid gap-5 md:grid-cols-2 lg:col-span-8">
-              {partnerTypes.map((partner) => (
-                <InfoCard key={partner.title} {...partner} />
-              ))}
-            </div>
-          </div>
-          <div className="mt-12 grid overflow-hidden rounded-[28px] border border-white/[0.45] bg-white/30 shadow-[0_26px_74px_rgba(38,66,54,0.08),inset_0_1px_0_rgba(255,255,255,0.42)] backdrop-blur-2xl lg:grid-cols-[0.9fr_1.1fr]">
-            <div className="p-7 sm:p-10">
-              <p className="eyebrow mb-5">Partner model</p>
-              <h3 className="font-serif text-4xl leading-tight tracking-normal text-sage">
-                Fund access. Protect dignity. Measure support.
-              </h3>
-              <p className="mt-5 max-w-xl text-base leading-7 text-ink/64">
-                Organizations can support care programs for women, postpartum
-                parents, queer communities, employees, and underserved groups
-                while keeping care private and professionally held.
-              </p>
-              <div className="mt-8">
-                <ButtonLink href="/for-partners">Explore Partners</ButtonLink>
-              </div>
-            </div>
-            <div className="relative min-h-[320px] overflow-hidden bg-sage">
-              <div aria-hidden className="absolute right-0 top-0 h-full w-24 opacity-[0.18] heritage-pattern" />
-              <div className="relative grid h-full min-h-[320px] grid-cols-2 gap-px p-px text-white">
-                {["HMOs", "Employers", "Banks", "Telcos"].map((item) => (
-                  <div className="flex items-end bg-sage/[0.78] p-6" key={item}>
-                    <span className="font-serif text-3xl">{item}</span>
-                  </div>
-                ))}
+                <ButtonLink href="/gift-care">Gift a Session</ButtonLink>
               </div>
             </div>
           </div>
@@ -340,7 +379,7 @@ export default function Home() {
                 Clear support. Real structure.
               </h2>
             </div>
-            <div className="grid gap-5 md:grid-cols-2 lg:col-span-8">
+            <div className="grid gap-5 md:grid-cols-3 lg:col-span-8">
               <TestimonialCard
                 context="Individual client"
                 quote="I needed language for what was happening, not a speech."
@@ -351,6 +390,45 @@ export default function Home() {
                 quote="Our teams need access that respects privacy and culture."
                 source="Partner discovery"
               />
+              <TestimonialCard
+                context="Diaspora sponsor"
+                quote="I wanted to help without making it feel like charity."
+                source="Sponsor interview"
+              />
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="section-space bg-[#fbf8f3]">
+        <Container>
+          <div className="section-grid">
+            <div className="lg:col-span-4">
+              <SectionHeader
+                body="Simple answers for the questions people ask before they trust a care platform."
+                eyebrow="FAQ"
+                title="Before you begin."
+              />
+            </div>
+            <div className="grid gap-3 lg:col-span-8">
+              {faqs.map((faq) => (
+                <details
+                  className="group rounded-xl border border-sage/10 bg-white/45 p-6 shadow-[0_14px_38px_rgba(38,66,54,0.04)]"
+                  key={faq.question}
+                >
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-6 font-serif text-2xl leading-tight tracking-normal text-sage">
+                    {faq.question}
+                    <MessageCircle
+                      aria-hidden
+                      className="h-5 w-5 shrink-0 text-gold transition group-open:rotate-6"
+                      strokeWidth={1.6}
+                    />
+                  </summary>
+                  <p className="mt-4 max-w-3xl text-sm leading-6 text-ink/64">
+                    {faq.answer}
+                  </p>
+                </details>
+              ))}
             </div>
           </div>
         </Container>

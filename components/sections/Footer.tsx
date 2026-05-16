@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 
@@ -16,10 +17,25 @@ export function Footer() {
       <Container className="py-14">
         <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-end">
           <div>
-            <p className="mb-5 font-serif text-4xl tracking-normal text-sage">
-              melora<span className="text-rose">health</span>
-            </p>
-            <p className="eyebrow mb-4">Understand. Heal. Become.</p>
+            <div className="mb-5 flex items-center gap-3">
+              <span className="relative block h-12 w-12 overflow-hidden rounded-md">
+                <Image
+                  alt=""
+                  className="object-contain"
+                  fill
+                  sizes="48px"
+                  src="/assets/logo/melora-logo-icon.png"
+                />
+              </span>
+              <div>
+                <p className="font-serif text-4xl leading-none tracking-normal text-sage">
+                  melora<span className="text-rose">health</span>
+                </p>
+                <p className="mt-2 text-[0.62rem] font-semibold uppercase leading-none tracking-[0.32em] text-gold">
+                  Understand. Heal. Become.
+                </p>
+              </div>
+            </div>
             <p className="max-w-xl text-sm leading-6 text-ink/60">
               Mental health infrastructure for people, professionals, and
               organizations across African and diaspora contexts.

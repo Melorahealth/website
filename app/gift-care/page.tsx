@@ -1,10 +1,16 @@
+import type { Metadata } from "next";
 import { Gift, HandHeart, HeartHandshake, WalletCards } from "lucide-react";
 import { InfoCard } from "@/components/cards/InfoCard";
-import { LeadForm } from "@/components/forms/LeadForm";
-import { giftFields } from "@/components/forms/forms";
 import { PageHero } from "@/components/sections/PageHero";
+import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+
+export const metadata: Metadata = {
+  title: "Gift Care",
+  description:
+    "Sponsor therapy sessions or care credits for family, communities, and people who need dignified access to mental health support."
+};
 
 const giftOptions = [
   {
@@ -58,18 +64,32 @@ export default function GiftCarePage() {
         </Container>
       </section>
       <section className="section-space bg-cream/40" id="gift">
-        <Container className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+        <Container className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
           <SectionHeader
-            body="The recipient can be named now, routed later, or supported through a community pool."
+            body="The recipient can be named now, routed later, or supported through a community pool. MeloraHealth can guide the credit setup through a private conversation."
             eyebrow="Gift session"
             title="Send care credits."
           />
-          <LeadForm
-            fields={giftFields}
-            intro="Choose a gift type and amount. Payment wiring can be connected during product buildout."
-            submitLabel="Create gift request"
-            title="Gift Session"
-          />
+          <div className="rounded-2xl border border-sage/10 bg-white/45 p-6 shadow-[0_22px_70px_rgba(38,66,54,0.07)] sm:p-8">
+            <div className="grid gap-4 sm:grid-cols-3">
+              {["Choose the support", "Fund care credits", "Keep care private"].map((step, index) => (
+                <div className="border-l border-gold/50 pl-4" key={step}>
+                  <p className="text-xs font-semibold uppercase tracking-normal text-gold">
+                    Step {index + 1}
+                  </p>
+                  <p className="mt-2 font-serif text-2xl leading-tight tracking-normal text-sage">
+                    {step}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <ButtonLink href="/contact">Contact MeloraHealth</ButtonLink>
+              <ButtonLink href="/services" variant="secondary">
+                View Care Options
+              </ButtonLink>
+            </div>
+          </div>
         </Container>
       </section>
     </main>

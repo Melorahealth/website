@@ -1,8 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { ArrowUpRight, CircleArrowRight, Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
 
@@ -17,31 +19,74 @@ const navItems = [
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+  const isTransparent = isHome && !hasScrolled && !isOpen;
+
+  useEffect(() => {
+    const updateScrolled = () => setHasScrolled(window.scrollY > 16);
+
+    updateScrolled();
+    window.addEventListener("scroll", updateScrolled, { passive: true });
+
+    return () => window.removeEventListener("scroll", updateScrolled);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/60 bg-[#fbf8f3]/[0.72] backdrop-blur-2xl">
+    <header
+      className={`top-0 z-50 transition duration-300 ${
+        isHome ? "fixed inset-x-0" : "sticky"
+      } ${
+        isTransparent
+          ? "border-b border-transparent bg-transparent"
+          : "border-b border-sage/10 bg-[#fbf8f3] shadow-[0_18px_60px_rgba(38,66,54,0.1)]"
+      }`}
+      style={{ backgroundColor: isTransparent ? "transparent" : "#fbf8f3" }}
+    >
       <Container>
         <div className="flex min-h-20 items-center justify-between gap-4 lg:gap-6">
           <Link
             aria-label="melorahealth home"
-            className="group flex min-w-0 items-center gap-3"
+            className="group flex min-w-0 shrink-0 items-center gap-2.5"
             href="/"
             onClick={() => setIsOpen(false)}
           >
-            <span className="flex h-8 w-8 items-center justify-center rounded-full border border-sage/15 bg-white/70">
-              <span className="h-2.5 w-2.5 rounded-full bg-gold shadow-[0_0_0_6px_rgba(200,164,107,0.12)]" />
+            <span className="relative block h-10 w-10 overflow-hidden rounded-md">
+              <Image
+                alt=""
+                className="object-contain"
+                fill
+                priority
+                sizes="40px"
+                src="/assets/logo/melora-logo-icon.png"
+              />
             </span>
-            <span className="truncate font-serif text-[1.55rem] leading-none tracking-normal text-sage sm:text-[1.7rem]">
-              melora<span className="text-rose">health</span>
+            <span className="min-w-0">
+              <span className="block truncate font-serif text-[1.55rem] leading-none tracking-normal text-sage sm:text-[1.7rem]">
+                melora<span className="text-rose">health</span>
+              </span>
+              <span className="mt-1 hidden text-[0.54rem] font-semibold uppercase leading-none tracking-[0.28em] text-gold sm:block">
+                Understand. Heal. Become.
+              </span>
             </span>
           </Link>
           <nav
             aria-label="Main navigation"
-            className="hidden items-center gap-1 rounded-full border border-sage/10 bg-white/[0.55] p-1.5 shadow-[0_18px_48px_rgba(38,66,54,0.08)] lg:flex"
+            className={`hidden items-center gap-1 rounded-full border p-1.5 transition lg:flex ${
+              isTransparent
+                ? "border-sage/10 bg-white/[0.55] text-ink shadow-[0_18px_48px_rgba(38,66,54,0.06)] backdrop-blur-xl"
+                : "border-sage/10 bg-white/75 shadow-[0_18px_48px_rgba(38,66,54,0.08)]"
+            }`}
           >
             {navItems.map((item) => (
               <Link
-                className="rounded-full px-4 py-2 text-sm font-medium text-ink/[0.68] transition hover:bg-cream hover:text-sage"
+                aria-current={pathname === item.href ? "page" : undefined}
+                className={`rounded-full px-4 py-2 text-sm font-medium transition ${
+                  pathname === item.href
+                    ? "bg-cream text-sage shadow-[inset_0_1px_0_rgba(255,255,255,0.58)]"
+                    : "text-ink/[0.68] hover:bg-cream hover:text-sage"
+                }`}
                 href={item.href}
                 key={item.href}
               >
@@ -50,13 +95,19 @@ export function Navbar() {
             ))}
           </nav>
           <div className="hidden sm:block">
-            <ButtonLink href="/contact">Find Support</ButtonLink>
+            <ButtonLink href="/contact" icon={CircleArrowRight}>
+              Get Started
+            </ButtonLink>
           </div>
           <button
             aria-controls="mobile-menu"
             aria-expanded={isOpen}
             aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/60 bg-white/[0.35] text-sage shadow-[0_16px_44px_rgba(38,66,54,0.08),inset_0_1px_0_rgba(255,255,255,0.54)] backdrop-blur-2xl transition hover:bg-white/50 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-sage/15 lg:hidden"
+            className={`inline-flex h-11 w-11 items-center justify-center rounded-full border shadow-[0_16px_44px_rgba(38,66,54,0.08),inset_0_1px_0_rgba(255,255,255,0.54)] backdrop-blur-2xl transition hover:bg-white/50 focus-visible:outline-none focus-visible:ring-4 lg:hidden ${
+              isTransparent
+                ? "border-white/60 bg-white/[0.45] text-sage focus-visible:ring-sage/15"
+                : "border-sage/10 bg-white/75 text-sage focus-visible:ring-sage/15"
+            }`}
             onClick={() => setIsOpen((value) => !value)}
             type="button"
           >
@@ -74,7 +125,12 @@ export function Navbar() {
               <div className="grid gap-1">
                 {navItems.map((item) => (
                   <Link
-                    className="group flex min-h-12 items-center justify-between rounded-[18px] px-4 text-sm font-semibold text-ink/[0.72] transition hover:bg-white/[0.45] hover:text-sage"
+                    aria-current={pathname === item.href ? "page" : undefined}
+                    className={`group flex min-h-12 items-center justify-between rounded-[18px] px-4 text-sm font-semibold transition ${
+                      pathname === item.href
+                        ? "bg-white/[0.5] text-sage shadow-[inset_0_1px_0_rgba(255,255,255,0.48)]"
+                        : "text-ink/[0.72] hover:bg-white/[0.45] hover:text-sage"
+                    }`}
                     href={item.href}
                     key={item.href}
                     onClick={() => setIsOpen(false)}
@@ -97,11 +153,12 @@ export function Navbar() {
                   Join
                 </Link>
                 <Link
-                  className="flex min-h-12 items-center justify-center rounded-full bg-sage px-4 text-sm font-bold text-white shadow-[0_16px_38px_rgba(38,66,54,0.18)] transition hover:bg-sage/90"
+                  className="flex min-h-12 items-center justify-center gap-2 rounded-full bg-sage px-4 text-sm font-bold text-white shadow-[0_16px_38px_rgba(38,66,54,0.18)] transition hover:bg-sage/90"
                   href="/contact"
                   onClick={() => setIsOpen(false)}
                 >
-                  Find Support
+                  Get Started
+                  <CircleArrowRight aria-hidden className="h-4 w-4" strokeWidth={1.8} />
                 </Link>
               </div>
             </div>

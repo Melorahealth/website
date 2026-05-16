@@ -5,7 +5,10 @@ import { Footer } from "@/components/sections/Footer";
 import { Navbar } from "@/components/sections/Navbar";
 
 export const metadata: Metadata = {
-  title: "melorahealth | Understand. Heal. Become.",
+  title: {
+    default: "melorahealth | Understand. Heal. Become.",
+    template: "%s | melorahealth"
+  },
   description:
     "An African mental health infrastructure platform connecting people, professionals, and organizations through culturally aware care.",
   openGraph: {

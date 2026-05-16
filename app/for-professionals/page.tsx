@@ -1,10 +1,16 @@
+import type { Metadata } from "next";
 import { BadgeCheck, CalendarDays, Globe2, LockKeyhole, Users } from "lucide-react";
 import { InfoCard } from "@/components/cards/InfoCard";
-import { LeadForm } from "@/components/forms/LeadForm";
-import { professionalFields } from "@/components/forms/forms";
 import { PageHero } from "@/components/sections/PageHero";
+import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+
+export const metadata: Metadata = {
+  title: "Professionals",
+  description:
+    "Join MeloraHealth as a qualified therapist, psychologist, psychiatrist, or care provider serving African and diaspora clients."
+};
 
 const benefits = [
   {
@@ -63,18 +69,32 @@ export default function ProfessionalsPage() {
         </Container>
       </section>
       <section className="section-space bg-cream/40" id="join">
-        <Container className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+        <Container className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
           <SectionHeader
-            body="Submit your details for review. Credential upload is included as a product placeholder."
+            body="Professional onboarding is handled through a review conversation so credentials, specialty, location, and availability can be understood with care."
             eyebrow="Professional sign-up"
             title="Join as a professional."
           />
-          <LeadForm
-            fields={professionalFields}
-            intro="Tell us about your practice, license, country, and availability."
-            submitLabel="Submit profile"
-            title="Professional Sign-Up"
-          />
+          <div className="rounded-2xl border border-sage/10 bg-white/45 p-6 shadow-[0_22px_70px_rgba(38,66,54,0.07)] sm:p-8">
+            <div className="grid gap-4 sm:grid-cols-3">
+              {["Share your practice", "Complete review", "Receive routed clients"].map((step, index) => (
+                <div className="border-l border-gold/50 pl-4" key={step}>
+                  <p className="text-xs font-semibold uppercase tracking-normal text-gold">
+                    Step {index + 1}
+                  </p>
+                  <p className="mt-2 font-serif text-2xl leading-tight tracking-normal text-sage">
+                    {step}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <ButtonLink href="/contact">Contact Onboarding</ButtonLink>
+              <ButtonLink href="/services" variant="secondary">
+                View Care Areas
+              </ButtonLink>
+            </div>
+          </div>
         </Container>
       </section>
     </main>

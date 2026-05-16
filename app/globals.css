@@ -106,6 +106,10 @@ textarea {
   @apply font-serif text-5xl leading-[1] tracking-normal text-sage sm:text-6xl lg:text-7xl xl:text-[5.6rem] 2xl:text-8xl;
 }
 
+.hero-display {
+  @apply lg:text-[4rem] xl:text-[4.55rem] 2xl:text-[5rem];
+}
+
 .section-space {
   @apply py-20 sm:py-24 lg:py-28;
 }
@@ -351,6 +355,63 @@ textarea {
   color: rgba(17, 27, 23, 0.68);
   font-size: 0.9rem;
   line-height: 1.55;
+}
+
+.partner-grid {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  gap: 1.75rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.partner-mark {
+  display: inline-flex;
+  height: 4rem;
+  width: 100%;
+  max-width: 13rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0;
+  background: transparent;
+  transition:
+    opacity 240ms ease,
+    transform 240ms ease;
+}
+
+.partner-mark:hover,
+.partner-mark:focus-visible {
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.partner-logo {
+  max-height: 3rem;
+  width: auto;
+  max-width: 9.5rem;
+  object-fit: contain;
+  filter: grayscale(1) sepia(0.16) hue-rotate(82deg) saturate(0.42) contrast(0.92);
+  opacity: 0.58;
+  transition:
+    filter 240ms ease,
+    opacity 240ms ease;
+}
+
+.partner-mark:hover .partner-logo,
+.partner-mark:focus-visible .partner-logo {
+  filter: none;
+  opacity: 1;
+}
+
+@media (max-width: 767px) {
+  .partner-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .partner-mark {
+    max-width: 11rem;
+  }
 }
 
 .glass-panel {

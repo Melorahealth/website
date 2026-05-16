@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Mail, MapPin, MessagesSquare, Route } from "lucide-react";
 import { InfoCard } from "@/components/cards/InfoCard";
 import { LeadForm } from "@/components/forms/LeadForm";
@@ -5,6 +6,12 @@ import { contactFields } from "@/components/forms/forms";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description:
+    "Contact MeloraHealth for care requests, professional onboarding, partner inquiries, sponsorship, or grant access programs."
+};
 
 const contactRoutes = [
   {

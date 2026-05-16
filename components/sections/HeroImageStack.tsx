@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export function HeroImageStack() {
   return (
-    <div className="hero-stack reveal reveal-delay lg:col-span-7">
+    <div className="hero-stack reveal reveal-delay lg:col-span-6">
       <div className="hero-stack-card hero-stack-card-main">
         <Image
           alt="African woman sitting calmly in reflective natural light"

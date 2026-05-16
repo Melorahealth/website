@@ -1,11 +1,17 @@
+import type { Metadata } from "next";
 import { Baby, Heart, MessageCircle, Shield, Stethoscope, UserRound } from "lucide-react";
 import { InfoCard } from "@/components/cards/InfoCard";
-import { LeadForm } from "@/components/forms/LeadForm";
-import { findSupportFields } from "@/components/forms/forms";
 import { CTASection } from "@/components/sections/CTASection";
 import { PageHero } from "@/components/sections/PageHero";
+import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+
+export const metadata: Metadata = {
+  title: "For You",
+  description:
+    "Find culturally aware therapy, psychiatry, women’s therapy, postpartum therapy, couples therapy, and queer-affirming care."
+};
 
 const supportTypes = [
   {
@@ -70,18 +76,32 @@ export default function ForYouPage() {
         </Container>
       </section>
       <section className="section-space bg-cream/40" id="find-support">
-        <Container className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+        <Container className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
           <SectionHeader
-            body="Share the basics. The next layer can route you toward online or offline care with an appropriate professional."
+            body="Begin with a private conversation. MeloraHealth can route you toward online or offline care with an appropriate professional."
             eyebrow="Find support"
-            title="Tell us what you are carrying."
+            title="Take the next step without filling a form."
           />
-          <LeadForm
-            fields={findSupportFields}
-            intro="A calm first step for matching your request to the right care path."
-            submitLabel="Submit request"
-            title="Find Support"
-          />
+          <div className="rounded-2xl border border-sage/10 bg-white/45 p-6 shadow-[0_22px_70px_rgba(38,66,54,0.07)] sm:p-8">
+            <div className="grid gap-4 sm:grid-cols-3">
+              {["Share what is happening", "Get matched with care", "Begin privately"].map((step, index) => (
+                <div className="border-l border-gold/50 pl-4" key={step}>
+                  <p className="text-xs font-semibold uppercase tracking-normal text-gold">
+                    Step {index + 1}
+                  </p>
+                  <p className="mt-2 font-serif text-2xl leading-tight tracking-normal text-sage">
+                    {step}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <ButtonLink href="/contact">Contact MeloraHealth</ButtonLink>
+              <ButtonLink href="/services" variant="secondary">
+                View Services
+              </ButtonLink>
+            </div>
+          </div>
         </Container>
       </section>
       <CTASection

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import type { ReactNode } from "react";
 
 type ButtonLinkProps = {
@@ -7,13 +8,15 @@ type ButtonLinkProps = {
   children: ReactNode;
   variant?: "primary" | "secondary" | "text";
   className?: string;
+  icon?: LucideIcon;
 };
 
 export function ButtonLink({
   href,
   children,
   variant = "primary",
-  className = ""
+  className = "",
+  icon: Icon = ArrowRight
 }: ButtonLinkProps) {
   const variants = {
     primary:
@@ -29,7 +32,7 @@ export function ButtonLink({
       href={href}
     >
       <span>{children}</span>
-      <ArrowRight aria-hidden className="h-4 w-4 transition duration-300 group-hover:translate-x-0.5" />
+      <Icon aria-hidden className="h-4 w-4 transition duration-300 group-hover:translate-x-0.5" />
     </Link>
   );
 }
