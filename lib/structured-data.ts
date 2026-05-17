@@ -64,3 +64,65 @@ export function createBreadcrumbJsonLd(path: string, name: string) {
     ]
   };
 }
+
+type ServiceJsonLdInput = {
+  path: string;
+  name: string;
+  description: string;
+  image: string;
+};
+
+export function createServiceJsonLd({
+  path,
+  name,
+  description,
+  image
+}: ServiceJsonLdInput) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name,
+    description,
+    serviceType: "Mental health care",
+    url: absoluteUrl(path),
+    image: absoluteUrl(image),
+    areaServed: ["Nigeria", "Africa", "African diaspora"],
+    provider: {
+      "@id": `${absoluteUrl("/")}#organization`,
+      name: siteName,
+      url: absoluteUrl("/")
+    }
+  };
+}
+
+type ArticleJsonLdInput = {
+  path: string;
+  headline: string;
+  description: string;
+  image: string;
+};
+
+export function createArticleJsonLd({
+  path,
+  headline,
+  description,
+  image
+}: ArticleJsonLdInput) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline,
+    description,
+    url: absoluteUrl(path),
+    image: absoluteUrl(image),
+    author: {
+      "@id": `${absoluteUrl("/")}#organization`,
+      name: siteName
+    },
+    publisher: {
+      "@id": `${absoluteUrl("/")}#organization`,
+      name: siteName
+    },
+    inLanguage: "en"
+  };
+}

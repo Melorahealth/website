@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { BookOpen, Clock, FileText, HeartPulse, Layers3, UserRound } from "lucide-react";
 import { InfoCard } from "@/components/cards/InfoCard";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -6,6 +7,7 @@ import { CTASection } from "@/components/sections/CTASection";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { resourceArticles } from "@/lib/resource-articles";
 import { createPageMetadata } from "@/lib/seo";
 import { createBreadcrumbJsonLd } from "@/lib/structured-data";
 
@@ -76,10 +78,29 @@ export default function ResourcesPage() {
       <section className="section-space">
         <Container>
           <SectionHeader
-            body="These are editorial placeholders ready for a content system, CMS, or published article pages."
+            body="Grounded guides for the questions people ask before they are ready to begin care."
             eyebrow="Insights"
             title="Mental health without noise."
           />
+          <div className="mt-10 grid gap-4">
+            {resourceArticles.map((article) => (
+              <Link
+                className="group block rounded-2xl border border-sage/10 bg-white/45 p-6 shadow-[0_22px_70px_rgba(38,66,54,0.07)] transition hover:border-gold/40 hover:bg-white"
+                href={`/resources/${article.slug}`}
+                key={article.slug}
+              >
+                <p className="text-xs font-semibold uppercase tracking-normal text-gold">
+                  {article.category}
+                </p>
+                <h2 className="mt-3 font-serif text-3xl leading-tight tracking-normal text-sage">
+                  {article.title}
+                </h2>
+                <p className="mt-4 max-w-3xl text-sm leading-6 text-ink/60">
+                  {article.summary}
+                </p>
+              </Link>
+            ))}
+          </div>
           <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {resources.map((item) => (
               <InfoCard key={item.title} {...item} />
