@@ -1,13 +1,5 @@
-type JsonLdValue =
-  | string
-  | number
-  | boolean
-  | null
-  | JsonLdValue[]
-  | { [key: string]: JsonLdValue };
-
 type JsonLdProps = {
-  data: JsonLdValue;
+  data: unknown;
   id: string;
 };
 
