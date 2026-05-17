@@ -9,7 +9,9 @@ const footerLinks = [
   { href: "/for-partners", label: "Partner Inquiry" },
   { href: "/gift-care", label: "Gift Session" },
   { href: "/resources", label: "Resources" },
-  { href: "/contact", label: "Contact" }
+  { href: "/contact", label: "Contact" },
+  { href: "/privacy-policy", label: "Privacy Policy" },
+  { href: "/refund-policy", label: "Refund Policy" }
 ];
 
 export function Footer() {

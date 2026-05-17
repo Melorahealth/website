@@ -63,6 +63,18 @@ export const siteRoutes = [
     label: "Contact MeloraHealth",
     description: "Send care requests, professional onboarding requests, partner inquiries, and sponsorship messages.",
     priority: 0.76
+  },
+  {
+    path: "/privacy-policy",
+    label: "Privacy Policy",
+    description: "Read how MeloraHealth handles personal information, care inquiries, cookies, analytics, and privacy choices.",
+    priority: 0.35
+  },
+  {
+    path: "/refund-policy",
+    label: "Refund Policy",
+    description: "Read MeloraHealth's no-refund policy for payments, sessions, care credits, sponsorships, and partner services.",
+    priority: 0.32
   }
 ] as const;
 
