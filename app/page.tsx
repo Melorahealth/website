@@ -24,8 +24,10 @@ export const metadata: Metadata = createPageMetadata({
   description:
     "MeloraHealth connects people with culturally aware therapy, psychiatry, and care routes for emotional clarity, identity, postpartum, and life changes.",
   path: "/",
-  image: "/assets/images/individual-reflection.jpg",
-  imageAlt: "African woman sitting calmly in reflective natural light"
+  image: "/assets/og/melorahealth-home-og.jpg",
+  imageAlt: "MeloraHealth care platform showing culturally aware therapy and connected support routes",
+  imageHeight: 630,
+  imageWidth: 1200
 });
 
 const howItWorks = [

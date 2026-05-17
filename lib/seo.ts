@@ -88,6 +88,8 @@ type PageMetadata = {
   path: string;
   image: string;
   imageAlt: string;
+  imageHeight?: number;
+  imageWidth?: number;
 };
 
 export function createPageMetadata({
@@ -95,7 +97,9 @@ export function createPageMetadata({
   description,
   path,
   image,
-  imageAlt
+  imageAlt,
+  imageHeight,
+  imageWidth
 }: PageMetadata): Metadata {
   return {
     title,
@@ -123,7 +127,9 @@ export function createPageMetadata({
       images: [
         {
           url: image,
-          alt: imageAlt
+          alt: imageAlt,
+          ...(imageHeight ? { height: imageHeight } : {}),
+          ...(imageWidth ? { width: imageWidth } : {})
         }
       ]
     },
