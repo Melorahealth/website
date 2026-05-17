@@ -1,4 +1,10 @@
-import { absoluteUrl, siteDescription, siteName, siteRoutes } from "@/lib/seo";
+import {
+  absoluteUrl,
+  siteAlternateNames,
+  siteDescription,
+  siteName,
+  siteRoutes
+} from "@/lib/seo";
 
 export function createHomeJsonLd() {
   const keyPages = siteRoutes.filter((route) => route.path !== "/");
@@ -10,7 +16,7 @@ export function createHomeJsonLd() {
         "@type": "WebSite",
         "@id": `${absoluteUrl("/")}#website`,
         name: siteName,
-        alternateName: ["MeloraHealth", "melorahealth.io"],
+        alternateName: siteAlternateNames,
         url: absoluteUrl("/"),
         description: siteDescription,
         publisher: {
@@ -22,7 +28,7 @@ export function createHomeJsonLd() {
         "@type": "Organization",
         "@id": `${absoluteUrl("/")}#organization`,
         name: siteName,
-        alternateName: "MeloraHealth",
+        alternateName: siteAlternateNames,
         url: absoluteUrl("/"),
         logo: absoluteUrl("/assets/logo/melora-logo.png"),
         description: siteDescription,

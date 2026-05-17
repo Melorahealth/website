@@ -4,6 +4,8 @@ export const siteUrl = new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.
 
 export const siteName = "melorahealth";
 
+export const siteAlternateNames = ["MeloraHealth", "Melora Health", "melorahealth.io"];
+
 export const siteDescription =
   "MeloraHealth connects people, professionals, sponsors, and organizations through culturally aware mental health care across African and diaspora contexts.";
 

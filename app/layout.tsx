@@ -5,11 +5,12 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import { Footer } from "@/components/sections/Footer";
 import { Navbar } from "@/components/sections/Navbar";
-import { siteDescription, siteName, siteUrl } from "@/lib/seo";
+import { siteAlternateNames, siteDescription, siteName, siteUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
   metadataBase: siteUrl,
   applicationName: siteName,
+  keywords: siteAlternateNames,
   title: {
     default: "melorahealth | Understand. Heal. Become.",
     template: "%s | melorahealth"
