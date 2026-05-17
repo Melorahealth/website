@@ -10,7 +10,7 @@ export function createHomeJsonLd() {
         "@type": "WebSite",
         "@id": `${absoluteUrl("/")}#website`,
         name: siteName,
-        alternateName: ["MeloraHealth", "melorahealth.com"],
+        alternateName: ["MeloraHealth", "melorahealth.io"],
         url: absoluteUrl("/"),
         description: siteDescription,
         publisher: {

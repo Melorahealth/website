@@ -15,7 +15,7 @@ export const metadata: Metadata = createPageMetadata({
   description:
     "Learn how MeloraHealth builds culturally aware mental health access for individuals, professionals, sponsors, employers, and diaspora communities worldwide.",
   path: "/about",
-  image: "/assets/images/hero-reflection.png",
+  image: "/assets/images/hero-reflection.jpg",
   imageAlt: "African professional sitting in quiet reflection by a window"
 });
 
@@ -53,7 +53,7 @@ export default function AboutPage() {
         body="MeloraHealth is a mental health infrastructure platform for people, professionals, and organizations."
         eyebrow="About"
         imageAlt="African professional sitting in quiet reflection by a window"
-        imageSrc="/assets/images/hero-reflection.png"
+        imageSrc="/assets/images/hero-reflection.jpg"
         title="A platform for everyone that deeply understands specific people."
         visualBody="Global in language. African in grounding. Specialized where it matters."
         visualTitle="Understand. Heal. Become."
@@ -72,7 +72,7 @@ export default function AboutPage() {
               alt="African professionals in a calm modern care infrastructure meeting"
               height="medium"
               label="Care system"
-              src="/assets/images/partners-meeting.png"
+              src="/assets/images/partners-meeting.jpg"
               title="Global in language. African in grounding."
             />
           </div>

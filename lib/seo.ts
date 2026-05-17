@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-export const siteUrl = new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://melorahealth.com");
+export const siteUrl = new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.melorahealth.io");
 
 export const siteName = "melorahealth";
 

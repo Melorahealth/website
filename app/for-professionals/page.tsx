@@ -14,7 +14,7 @@ export const metadata: Metadata = createPageMetadata({
   description:
     "Qualified therapists, psychologists, psychiatrists, and care providers can join MeloraHealth to meet structured African and diaspora care demand with trust.",
   path: "/for-professionals",
-  image: "/assets/images/professional-care.png",
+  image: "/assets/images/professional-care.jpg",
   imageAlt: "African therapist and client in respectful conversation"
 });
 
@@ -57,7 +57,7 @@ export default function ProfessionalsPage() {
         body="MeloraHealth gives qualified therapists, psychologists, and psychiatrists a trusted place to meet structured care demand."
         eyebrow="For professionals"
         imageAlt="African therapist and client in respectful conversation"
-        imageSrc="/assets/images/professional-care.png"
+        imageSrc="/assets/images/professional-care.jpg"
         primaryHref="#join"
         primaryLabel="Join the Network"
         title="A marketplace for serious care work."

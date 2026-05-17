@@ -57,7 +57,6 @@ export function Navbar() {
                 alt=""
                 className="object-contain"
                 fill
-                priority
                 sizes="40px"
                 src="/assets/logo/melora-logo-icon.png"
               />

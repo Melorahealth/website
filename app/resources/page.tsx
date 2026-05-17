@@ -16,7 +16,7 @@ export const metadata: Metadata = createPageMetadata({
   description:
     "Read grounded mental health guides on stress, postpartum adjustment, relationships, psychiatry, workplace care, and diaspora-supported access with clarity.",
   path: "/resources",
-  image: "/assets/images/hero-reflection.png",
+  image: "/assets/images/hero-reflection.jpg",
   imageAlt: "African professional in quiet reflection near a city window"
 });
 
@@ -70,7 +70,7 @@ export default function ResourcesPage() {
         body="Short, grounded insights for people, families, professionals, and organizations thinking about mental health care."
         eyebrow="Resources"
         imageAlt="African professional in quiet reflection near a city window"
-        imageSrc="/assets/images/hero-reflection.png"
+        imageSrc="/assets/images/hero-reflection.jpg"
         title="Clear language for complex feelings."
         visualBody="Resources should make care easier to approach, not turn pain into content."
         visualTitle="Read with steadiness."

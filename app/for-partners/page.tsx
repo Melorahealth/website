@@ -16,7 +16,7 @@ export const metadata: Metadata = createPageMetadata({
   description:
     "Partner with MeloraHealth to fund, route, and embed culturally aware mental health access for employees, members, customers, and communities at scale.",
   path: "/for-partners",
-  image: "/assets/images/partners-meeting.png",
+  image: "/assets/images/partners-meeting.jpg",
   imageAlt: "African professionals in a calm partnership meeting"
 });
 
@@ -64,7 +64,7 @@ export default function PartnersPage() {
         body="MeloraHealth helps organizations fund, route, and embed mental health support for employees, members, customers, and communities."
         eyebrow="For partners"
         imageAlt="African professionals in a calm partnership meeting"
-        imageSrc="/assets/images/partners-meeting.png"
+        imageSrc="/assets/images/partners-meeting.jpg"
         primaryHref="#partner-inquiry"
         primaryLabel="Send Partner Inquiry"
         title="Care access for the people you serve."

@@ -15,7 +15,7 @@ export const metadata: Metadata = createPageMetadata({
   description:
     "Contact MeloraHealth for therapy requests, professional onboarding, partner inquiries, sponsorships, and culturally aware mental health access programs.",
   path: "/contact",
-  image: "/assets/images/individual-reflection.png",
+  image: "/assets/images/individual-reflection.jpg",
   imageAlt: "African woman in a calm reflective interior"
 });
 
@@ -53,7 +53,7 @@ export default function ContactPage() {
         body="Use the route that matches your need. Each inquiry is structured so it can be sent to the right care or partnership path."
         eyebrow="Contact"
         imageAlt="African woman in a calm reflective interior"
-        imageSrc="/assets/images/individual-reflection.png"
+        imageSrc="/assets/images/individual-reflection.jpg"
         title="Start in the right place."
         visualBody="The first message should make the next step clearer, not heavier."
         visualTitle="Inquiry routing."

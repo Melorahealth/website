@@ -27,7 +27,7 @@ export const resourceArticles: ResourceArticle[] = [
     summary:
       "Therapy pricing in Nigeria can vary by professional qualification, session format, location, specialty, and whether care is private, sponsored, or part of an organization program.",
     category: "Cost guide",
-    imageSrc: "/assets/images/professional-care.png",
+    imageSrc: "/assets/images/professional-care.jpg",
     imageAlt: "African therapist and client seated in a respectful care conversation",
     sections: [
       {

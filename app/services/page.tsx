@@ -16,7 +16,7 @@ export const metadata: Metadata = createPageMetadata({
   description:
     "Explore online and offline therapy, psychiatry, couples care, postpartum support, and identity-aware mental health services routed with context in one place.",
   path: "/services",
-  image: "/assets/images/professional-care.png",
+  image: "/assets/images/professional-care.jpg",
   imageAlt: "African therapist and client seated in a respectful care conversation"
 });
 
@@ -74,7 +74,7 @@ export default function ServicesPage() {
         body="MeloraHealth brings online and offline care into one calm routing system, including women's therapy, postpartum therapy, queer-affirming therapy, couples care, and psychiatry."
         eyebrow="Services"
         imageAlt="African therapist and client seated in a respectful care conversation"
-        imageSrc="/assets/images/professional-care.png"
+        imageSrc="/assets/images/professional-care.jpg"
         primaryHref="/contact"
         primaryLabel="Find Support"
         title="Care that fits the moment."

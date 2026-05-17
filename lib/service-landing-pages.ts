@@ -30,7 +30,7 @@ export const serviceLandingPages: ServiceLandingPage[] = [
     title: "Online therapy across Africa.",
     body:
       "MeloraHealth helps people across African contexts begin care through private online sessions, with routing that considers need, location, preference, and cultural context.",
-    imageSrc: "/assets/images/individual-reflection.png",
+    imageSrc: "/assets/images/individual-reflection.jpg",
     imageAlt: "African woman seated quietly in a calm home interior",
     visualTitle: "Private care, wherever support begins.",
     introTitle: "A calmer route into online support.",
@@ -69,7 +69,7 @@ export const serviceLandingPages: ServiceLandingPage[] = [
     title: "Find therapists across Africa.",
     body:
       "MeloraHealth connects people with qualified therapists and care professionals who understand that mental health support has to respect context, not only symptoms.",
-    imageSrc: "/assets/images/professional-care.png",
+    imageSrc: "/assets/images/professional-care.jpg",
     imageAlt: "African therapist and client seated in a respectful care conversation",
     visualTitle: "Professional care with cultural meaning.",
     introTitle: "The right therapist should feel possible to find.",
@@ -108,7 +108,7 @@ export const serviceLandingPages: ServiceLandingPage[] = [
     title: "Therapy in Africa, with context.",
     body:
       "Therapy should make room for real life: family systems, work pressure, faith, identity, money, distance, and silence around mental health.",
-    imageSrc: "/assets/images/hero-reflection.png",
+    imageSrc: "/assets/images/hero-reflection.jpg",
     imageAlt: "African professional sitting in quiet reflection by a window",
     visualTitle: "Care that understands where people live.",
     introTitle: "Support that does not flatten your reality.",
@@ -147,7 +147,7 @@ export const serviceLandingPages: ServiceLandingPage[] = [
     title: "Mental health support for African realities.",
     body:
       "MeloraHealth brings people, professionals, sponsors, and organizations into one care access system for support that is practical, private, and culturally aware.",
-    imageSrc: "/assets/images/partners-meeting.png",
+    imageSrc: "/assets/images/partners-meeting.jpg",
     imageAlt: "African professionals in a calm partnership meeting",
     visualTitle: "Access, routing, and care in one system.",
     introTitle: "Mental health support should be easier to reach.",
@@ -186,7 +186,7 @@ export const serviceLandingPages: ServiceLandingPage[] = [
     title: "Therapy in Kenya.",
     body:
       "MeloraHealth supports people in Kenya seeking therapy and mental health care that respects context, privacy, and the realities of modern African life.",
-    imageSrc: "/assets/images/individual-reflection.png",
+    imageSrc: "/assets/images/individual-reflection.jpg",
     imageAlt: "African woman seated quietly in a calm home interior",
     visualTitle: "A private route into support.",
     introTitle: "Care that can begin with what is actually happening.",
@@ -225,7 +225,7 @@ export const serviceLandingPages: ServiceLandingPage[] = [
     title: "Therapy in Rwanda.",
     body:
       "MeloraHealth helps people in Rwanda find a clearer route into therapy and mental health support, with care that is private, structured, and culturally aware.",
-    imageSrc: "/assets/images/hero-reflection.png",
+    imageSrc: "/assets/images/hero-reflection.jpg",
     imageAlt: "African professional sitting in quiet reflection by a window",
     visualTitle: "Support with steadiness and discretion.",
     introTitle: "A calmer way to begin care.",
@@ -264,7 +264,7 @@ export const serviceLandingPages: ServiceLandingPage[] = [
     title: "Online therapy in Nigeria.",
     body:
       "Access private online therapy in Nigeria with a care route that respects your context, schedule, location, and the kind of support you need.",
-    imageSrc: "/assets/images/individual-reflection.png",
+    imageSrc: "/assets/images/individual-reflection.jpg",
     imageAlt: "African woman seated quietly in a calm home interior",
     visualTitle: "A private way to begin.",
     introTitle: "Start therapy without searching through noise.",
@@ -303,7 +303,7 @@ export const serviceLandingPages: ServiceLandingPage[] = [
     title: "Find therapists in Nigeria.",
     body:
       "MeloraHealth helps people find qualified mental health support in Nigeria without turning the first step into guesswork.",
-    imageSrc: "/assets/images/professional-care.png",
+    imageSrc: "/assets/images/professional-care.jpg",
     imageAlt: "African therapist and client seated in a respectful care conversation",
     visualTitle: "The right professional matters.",
     introTitle: "A more structured way to find support.",
@@ -342,7 +342,7 @@ export const serviceLandingPages: ServiceLandingPage[] = [
     title: "Therapy in Nigeria, without guesswork.",
     body:
       "MeloraHealth helps people in Nigeria access professional therapy and mental health support with privacy, structure, and cultural understanding.",
-    imageSrc: "/assets/images/hero-thoughtful-woman.png",
+    imageSrc: "/assets/images/hero-thoughtful-woman.jpg",
     imageAlt: "African professional sitting calmly in thoughtful natural light",
     visualTitle: "Make sense of what you feel.",
     introTitle: "Care for real life, not a perfect version of it.",
@@ -381,7 +381,7 @@ export const serviceLandingPages: ServiceLandingPage[] = [
     title: "Couples therapy in Nigeria.",
     body:
       "A steadier space for couples navigating distance, silence, conflict, trust, family pressure, or decisions that have become hard to make alone.",
-    imageSrc: "/assets/images/hero-reflection.png",
+    imageSrc: "/assets/images/hero-reflection.jpg",
     imageAlt: "African professional sitting in quiet reflection by a window",
     visualTitle: "A careful space for difficult conversations.",
     introTitle: "Support for what sits between two people.",
@@ -420,7 +420,7 @@ export const serviceLandingPages: ServiceLandingPage[] = [
     title: "Postpartum therapy in Nigeria.",
     body:
       "Support for the emotional adjustment after birth: the identity shift, mental load, exhaustion, anxiety, and private feelings many parents carry quietly.",
-    imageSrc: "/assets/images/postpartum-care.png",
+    imageSrc: "/assets/images/postpartum-care.jpg",
     imageAlt: "African mother holding a newborn in calm natural light",
     visualTitle: "Care for the person who gave care.",
     introTitle: "After birth, the parent changes too.",
@@ -459,7 +459,7 @@ export const serviceLandingPages: ServiceLandingPage[] = [
     title: "Psychiatry support in Nigeria.",
     body:
       "Some mental health needs require medical assessment, medication review, or psychiatric support. MeloraHealth helps route those requests with clarity.",
-    imageSrc: "/assets/images/professional-care.png",
+    imageSrc: "/assets/images/professional-care.jpg",
     imageAlt: "African therapist and client seated in a respectful care conversation",
     visualTitle: "Medical support, handled with care.",
     introTitle: "Know when medical mental health support may help.",
@@ -498,7 +498,7 @@ export const serviceLandingPages: ServiceLandingPage[] = [
     title: "Therapy for the African diaspora.",
     body:
       "Support for people living between cultures, families, expectations, countries, and versions of themselves that can be difficult to explain.",
-    imageSrc: "/assets/images/hero-reflection.png",
+    imageSrc: "/assets/images/hero-reflection.jpg",
     imageAlt: "African professional sitting in quiet reflection by a window",
     visualTitle: "Care across distance and identity.",
     introTitle: "Some experiences need more context, not more explanation.",
@@ -537,7 +537,7 @@ export const serviceLandingPages: ServiceLandingPage[] = [
     title: "Gift therapy sessions in Africa.",
     body:
       "Fund care for someone you know, or support a community care pool, without taking over the recipient's privacy or choices.",
-    imageSrc: "/assets/images/postpartum-care.png",
+    imageSrc: "/assets/images/postpartum-care.jpg",
     imageAlt: "African mother holding a newborn in calm natural light",
     visualTitle: "Support can be practical and private.",
     introTitle: "A gift that protects dignity.",
@@ -576,7 +576,7 @@ export const serviceLandingPages: ServiceLandingPage[] = [
     title: "Sponsor therapy in Nigeria.",
     body:
       "Diaspora families, sponsors, employers, and community partners can fund therapy access in Nigeria while allowing the person receiving care to keep privacy and agency.",
-    imageSrc: "/assets/images/partners-meeting.png",
+    imageSrc: "/assets/images/partners-meeting.jpg",
     imageAlt: "African professionals in a calm partnership meeting",
     visualTitle: "Funding care without taking over.",
     introTitle: "Support can become access.",
@@ -615,7 +615,7 @@ export const serviceLandingPages: ServiceLandingPage[] = [
     title: "Counselling in Nigeria.",
     body:
       "For many people, counselling is the word that feels closest to the help they are looking for. MeloraHealth routes counselling requests into professional support that fits the need.",
-    imageSrc: "/assets/images/professional-care.png",
+    imageSrc: "/assets/images/professional-care.jpg",
     imageAlt: "African therapist and client seated in a respectful care conversation",
     visualTitle: "A clear conversation can become care.",
     introTitle: "Counselling without losing context.",
@@ -654,7 +654,7 @@ export const serviceLandingPages: ServiceLandingPage[] = [
     title: "Find a psychologist in Nigeria.",
     body:
       "MeloraHealth helps people looking for a psychologist in Nigeria move toward the right professional care route, whether the need is assessment, therapy, or specialist support.",
-    imageSrc: "/assets/images/professional-care.png",
+    imageSrc: "/assets/images/professional-care.jpg",
     imageAlt: "African therapist and client seated in a respectful care conversation",
     visualTitle: "Professional support, matched to need.",
     introTitle: "Know what kind of professional support fits.",
@@ -693,7 +693,7 @@ export const serviceLandingPages: ServiceLandingPage[] = [
     title: "Find a therapist in Lagos.",
     body:
       "Lagos can make pressure feel normal until it becomes too much. MeloraHealth helps people in Lagos find a clearer route into therapy and mental health support.",
-    imageSrc: "/assets/images/individual-reflection.png",
+    imageSrc: "/assets/images/individual-reflection.jpg",
     imageAlt: "African woman seated quietly in a calm home interior",
     visualTitle: "Support that respects the pace of Lagos life.",
     introTitle: "Therapy for people carrying more than they say.",
@@ -732,7 +732,7 @@ export const serviceLandingPages: ServiceLandingPage[] = [
     title: "Therapy in Lagos.",
     body:
       "MeloraHealth supports people in Lagos seeking therapy for stress, relationships, grief, identity, postpartum adjustment, anxiety, burnout, and difficult life changes.",
-    imageSrc: "/assets/images/hero-thoughtful-woman.png",
+    imageSrc: "/assets/images/hero-thoughtful-woman.jpg",
     imageAlt: "African professional sitting calmly in thoughtful natural light",
     visualTitle: "A steadier route into care.",
     introTitle: "When Lagos keeps moving, care still matters.",
@@ -771,7 +771,7 @@ export const serviceLandingPages: ServiceLandingPage[] = [
     title: "Therapy in Abuja.",
     body:
       "MeloraHealth supports people in Abuja seeking therapy for stress, relationships, grief, anxiety, postpartum adjustment, identity, and difficult life changes.",
-    imageSrc: "/assets/images/hero-reflection.png",
+    imageSrc: "/assets/images/hero-reflection.jpg",
     imageAlt: "African professional sitting in quiet reflection by a window",
     visualTitle: "Private support in a city that carries responsibility.",
     introTitle: "Care for the pressure people often manage quietly.",

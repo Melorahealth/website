@@ -23,13 +23,13 @@ export const metadata: Metadata = {
     url: "/",
     siteName,
     type: "website",
-    images: ["/assets/images/hero-thoughtful-woman.png"]
+    images: ["/assets/images/hero-thoughtful-woman.jpg"]
   },
   twitter: {
     card: "summary_large_image",
     title: "melorahealth",
     description: siteDescription,
-    images: ["/assets/images/hero-thoughtful-woman.png"]
+    images: ["/assets/images/hero-thoughtful-woman.jpg"]
   }
 };
 
@@ -43,14 +43,14 @@ export default function RootLayout({
       <Script
         id="secureprivacy"
         src="https://app.secureprivacy.ai/script/6a095b468a3ce9234365d3db.js"
-        strategy="beforeInteractive"
+        strategy="afterInteractive"
       />
       <Script
         id="google-analytics-src"
         src="https://www.googletagmanager.com/gtag/js?id=G-1LCTFSKLD0"
-        strategy="afterInteractive"
+        strategy="lazyOnload"
       />
-      <Script id="google-analytics" strategy="afterInteractive">
+      <Script id="google-analytics" strategy="lazyOnload">
         {`window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());

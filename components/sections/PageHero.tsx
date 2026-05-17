@@ -23,7 +23,7 @@ export function PageHero({
   primaryLabel,
   visualTitle,
   visualBody,
-  imageSrc = "/assets/images/hero-thoughtful-woman.png",
+  imageSrc = "/assets/images/hero-thoughtful-woman.jpg",
   imageAlt = "African woman sitting in quiet reflection"
 }: PageHeroProps) {
   return (

@@ -15,7 +15,7 @@ export const metadata: Metadata = createPageMetadata({
   description:
     "Find therapy, psychiatry, women’s mental health support, postpartum care, couples therapy, and identity-aware care that respects your context online now.",
   path: "/for-you",
-  image: "/assets/images/individual-reflection.png",
+  image: "/assets/images/individual-reflection.jpg",
   imageAlt: "African woman seated quietly in a calm home interior"
 });
 
@@ -63,7 +63,7 @@ export default function ForYouPage() {
         body="For anyone seeking emotional clarity, with deeper expertise in women’s therapy, postpartum therapy, relationships, and queer-affirming care."
         eyebrow="For you"
         imageAlt="African woman seated quietly in a calm home interior"
-        imageSrc="/assets/images/individual-reflection.png"
+        imageSrc="/assets/images/individual-reflection.jpg"
         primaryHref="#find-support"
         primaryLabel="Find Support"
         title="Support that respects your context."

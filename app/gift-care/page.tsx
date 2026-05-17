@@ -14,7 +14,7 @@ export const metadata: Metadata = createPageMetadata({
   description:
     "Sponsor therapy sessions or send care credits so family, communities, and people who need support can begin professional mental health care with dignity.",
   path: "/gift-care",
-  image: "/assets/images/postpartum-care.png",
+  image: "/assets/images/postpartum-care.jpg",
   imageAlt: "African mother holding a newborn in calm natural light"
 });
 
@@ -52,7 +52,7 @@ export default function GiftCarePage() {
         body="Sponsor a Session lets people fund care for family, communities, and people who need support but may not be able to begin alone."
         eyebrow="Gift care"
         imageAlt="African mother holding a newborn in calm natural light"
-        imageSrc="/assets/images/postpartum-care.png"
+        imageSrc="/assets/images/postpartum-care.jpg"
         primaryHref="#gift"
         primaryLabel="Gift a Session"
         title="Care can be carried together."
