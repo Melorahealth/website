@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { BookOpen, Clock, FileText, HeartPulse, Layers3, UserRound } from "lucide-react";
 import { InfoCard } from "@/components/cards/InfoCard";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { CTASection } from "@/components/sections/CTASection";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { createPageMetadata } from "@/lib/seo";
+import { createBreadcrumbJsonLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Mental Health Resources and Guides",
@@ -58,6 +60,10 @@ const resources = [
 export default function ResourcesPage() {
   return (
     <main>
+      <JsonLd
+        data={createBreadcrumbJsonLd("/resources", "Mental Health Resources")}
+        id="resources-breadcrumb-jsonld"
+      />
       <PageHero
         body="Short, grounded insights for people, families, professionals, and organizations thinking about mental health care."
         eyebrow="Resources"

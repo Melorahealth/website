@@ -8,6 +8,7 @@ import {
   Minus
 } from "lucide-react";
 import { TestimonialCard } from "@/components/cards/TestimonialCard";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { CTASection } from "@/components/sections/CTASection";
 import { HeroImageStack } from "@/components/sections/HeroImageStack";
 import { ImagePanel } from "@/components/sections/ImagePanel";
@@ -16,6 +17,7 @@ import { Container } from "@/components/ui/Container";
 import { LoopLine } from "@/components/ui/LoopLine";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { createPageMetadata } from "@/lib/seo";
+import { createHomeJsonLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Therapy That Understands Your Context",
@@ -114,6 +116,7 @@ const faqs = [
 export default function Home() {
   return (
     <main>
+      <JsonLd data={createHomeJsonLd()} id="melorahealth-home-jsonld" />
       <section className="relative overflow-hidden border-b border-sage/10 bg-[#fbf8f3]">
         <div aria-hidden className="heritage-panel right-0 top-16 hidden h-[70%] w-14 lg:block xl:w-16" />
         <div aria-hidden className="soft-pulse absolute -left-24 top-32 h-72 w-72 rounded-full border border-gold/20" />

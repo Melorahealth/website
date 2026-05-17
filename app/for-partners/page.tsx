@@ -3,11 +3,13 @@ import { Building2, Landmark, Network, RadioTower, ShieldCheck, Users } from "lu
 import { InfoCard } from "@/components/cards/InfoCard";
 import { LeadForm } from "@/components/forms/LeadForm";
 import { partnerFields } from "@/components/forms/forms";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { CTASection } from "@/components/sections/CTASection";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { createPageMetadata } from "@/lib/seo";
+import { createBreadcrumbJsonLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Mental Health Access for Organizations",
@@ -54,6 +56,10 @@ const partners = [
 export default function PartnersPage() {
   return (
     <main>
+      <JsonLd
+        data={createBreadcrumbJsonLd("/for-partners", "Partner Inquiry")}
+        id="partners-breadcrumb-jsonld"
+      />
       <PageHero
         body="MeloraHealth helps organizations fund, route, and embed mental health support for employees, members, customers, and communities."
         eyebrow="For partners"

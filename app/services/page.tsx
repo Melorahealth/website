@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { Baby, Heart, Laptop, MapPin, MessageCircle, Shield, Stethoscope, Users } from "lucide-react";
 import { InfoCard } from "@/components/cards/InfoCard";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { CTASection } from "@/components/sections/CTASection";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { createPageMetadata } from "@/lib/seo";
+import { createBreadcrumbJsonLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Mental Health Services",
@@ -62,6 +64,10 @@ const careFormats = [
 export default function ServicesPage() {
   return (
     <main>
+      <JsonLd
+        data={createBreadcrumbJsonLd("/services", "Mental Health Services")}
+        id="services-breadcrumb-jsonld"
+      />
       <PageHero
         body="MeloraHealth brings online and offline care into one calm routing system, including women’s therapy, postpartum therapy, queer-affirming therapy, couples care, and psychiatry."
         eyebrow="Services"

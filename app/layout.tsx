@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import "./globals.css";
 import { Footer } from "@/components/sections/Footer";
 import { Navbar } from "@/components/sections/Navbar";
-import { siteName, siteUrl } from "@/lib/seo";
+import { siteDescription, siteName, siteUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
   metadataBase: siteUrl,
@@ -13,15 +13,13 @@ export const metadata: Metadata = {
     default: "melorahealth | Understand. Heal. Become.",
     template: "%s | melorahealth"
   },
-  description:
-    "MeloraHealth connects people, professionals, sponsors, and organizations through culturally aware mental health care across African and diaspora contexts.",
+  description: siteDescription,
   alternates: {
     canonical: "/"
   },
   openGraph: {
     title: "melorahealth",
-    description:
-      "MeloraHealth connects people, professionals, sponsors, and organizations through culturally aware mental health care across African and diaspora contexts.",
+    description: siteDescription,
     url: "/",
     siteName,
     type: "website",
@@ -30,8 +28,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "melorahealth",
-    description:
-      "MeloraHealth connects people, professionals, sponsors, and organizations through culturally aware mental health care across African and diaspora contexts.",
+    description: siteDescription,
     images: ["/assets/images/hero-thoughtful-woman.png"]
   }
 };

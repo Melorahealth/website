@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { Compass, Globe2, Layers3, ShieldCheck } from "lucide-react";
 import { InfoCard } from "@/components/cards/InfoCard";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { CTASection } from "@/components/sections/CTASection";
 import { ImagePanel } from "@/components/sections/ImagePanel";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { createPageMetadata } from "@/lib/seo";
+import { createBreadcrumbJsonLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = createPageMetadata({
   title: "About MeloraHealth",
@@ -43,6 +45,10 @@ const beliefs = [
 export default function AboutPage() {
   return (
     <main>
+      <JsonLd
+        data={createBreadcrumbJsonLd("/about", "About MeloraHealth")}
+        id="about-breadcrumb-jsonld"
+      />
       <PageHero
         body="MeloraHealth is a mental health infrastructure platform for people, professionals, and organizations."
         eyebrow="About"

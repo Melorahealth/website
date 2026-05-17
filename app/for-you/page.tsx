@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { Baby, Heart, MessageCircle, Shield, Stethoscope, UserRound } from "lucide-react";
 import { InfoCard } from "@/components/cards/InfoCard";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { CTASection } from "@/components/sections/CTASection";
 import { PageHero } from "@/components/sections/PageHero";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { createPageMetadata } from "@/lib/seo";
+import { createBreadcrumbJsonLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Find Therapy and Mental Health Support",
@@ -53,6 +55,10 @@ const supportTypes = [
 export default function ForYouPage() {
   return (
     <main>
+      <JsonLd
+        data={createBreadcrumbJsonLd("/for-you", "Find Support")}
+        id="for-you-breadcrumb-jsonld"
+      />
       <PageHero
         body="For anyone seeking emotional clarity, with deeper expertise in women’s therapy, postpartum therapy, relationships, and queer-affirming care."
         eyebrow="For you"

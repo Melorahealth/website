@@ -3,10 +3,12 @@ import { Mail, MapPin, MessagesSquare, Route } from "lucide-react";
 import { InfoCard } from "@/components/cards/InfoCard";
 import { LeadForm } from "@/components/forms/LeadForm";
 import { contactFields } from "@/components/forms/forms";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { createPageMetadata } from "@/lib/seo";
+import { createBreadcrumbJsonLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Contact MeloraHealth",
@@ -43,6 +45,10 @@ const contactRoutes = [
 export default function ContactPage() {
   return (
     <main>
+      <JsonLd
+        data={createBreadcrumbJsonLd("/contact", "Contact MeloraHealth")}
+        id="contact-breadcrumb-jsonld"
+      />
       <PageHero
         body="Use the route that matches your need. Each inquiry is structured so it can be sent to the right care or partnership path."
         eyebrow="Contact"

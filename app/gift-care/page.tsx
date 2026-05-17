@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { Gift, HandHeart, HeartHandshake, WalletCards } from "lucide-react";
 import { InfoCard } from "@/components/cards/InfoCard";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { PageHero } from "@/components/sections/PageHero";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { createPageMetadata } from "@/lib/seo";
+import { createBreadcrumbJsonLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Gift Therapy Sessions and Care Credits",
@@ -42,6 +44,10 @@ const giftOptions = [
 export default function GiftCarePage() {
   return (
     <main>
+      <JsonLd
+        data={createBreadcrumbJsonLd("/gift-care", "Gift a Session")}
+        id="gift-care-breadcrumb-jsonld"
+      />
       <PageHero
         body="Sponsor a Session lets people fund care for family, communities, and people who need support but may not be able to begin alone."
         eyebrow="Gift care"
