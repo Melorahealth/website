@@ -44,6 +44,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Script
+        id="secureprivacy"
+        src="https://app.secureprivacy.ai/script/6a095b468a3ce9234365d3db.js"
+        strategy="beforeInteractive"
+      />
+      <Script
         id="google-analytics-src"
         src="https://www.googletagmanager.com/gtag/js?id=G-1LCTFSKLD0"
         strategy="afterInteractive"
