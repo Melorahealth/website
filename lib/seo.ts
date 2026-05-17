@@ -6,6 +6,21 @@ export const siteName = "melorahealth";
 
 export const siteAlternateNames = ["MeloraHealth", "Melora Health", "melorahealth.io"];
 
+export const socialLinks = [
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/122164443"
+  },
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/profile.php?id=61589667252883"
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/melorahealth"
+  }
+] as const;
+
 export const siteDescription =
   "MeloraHealth connects people, professionals, sponsors, and organizations through culturally aware mental health care across African and diaspora contexts.";
 

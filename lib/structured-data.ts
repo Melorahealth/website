@@ -3,7 +3,8 @@ import {
   siteAlternateNames,
   siteDescription,
   siteName,
-  siteRoutes
+  siteRoutes,
+  socialLinks
 } from "@/lib/seo";
 
 export function createHomeJsonLd() {
@@ -32,7 +33,7 @@ export function createHomeJsonLd() {
         url: absoluteUrl("/"),
         logo: absoluteUrl("/assets/logo/melora-logo.png"),
         description: siteDescription,
-        sameAs: []
+        sameAs: socialLinks.map((link) => link.href)
       },
       {
         "@type": "ItemList",

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
+import { socialLinks } from "@/lib/seo";
 
 const footerLinks = [
   { href: "/for-you", label: "Find Support" },
@@ -43,6 +44,19 @@ export function Footer() {
               Mental health infrastructure for people, professionals, and
               organizations across African and diaspora contexts.
             </p>
+            <div className="mt-6 flex flex-wrap gap-4 text-sm font-semibold">
+              {socialLinks.map((link) => (
+                <a
+                  className="text-sage transition hover:text-rose"
+                  href={link.href}
+                  key={link.href}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
           </div>
           <div className="grid grid-cols-2 gap-4 text-sm sm:grid-cols-3">
             {footerLinks.map((link) => (
