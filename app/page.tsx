@@ -167,24 +167,35 @@ export default function Home() {
             <p className="text-center text-xs font-semibold uppercase tracking-normal text-ink/42">
               Trusted by leading organizations
             </p>
-            <div className="partner-grid mt-8" aria-label="MeloraHealth partners">
-              {partnerLogos.map((logo) => (
-                <a
-                  className="partner-mark"
-                  href={logo.href}
-                  key={logo.name}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  <Image
-                    alt={logo.name}
-                    className="partner-logo"
-                    height={logo.height}
-                    src={logo.src}
-                    width={logo.width}
-                  />
-                </a>
-              ))}
+            <div className="partner-marquee mt-8" aria-label="MeloraHealth partners">
+              <div className="partner-track">
+                {[0, 1, 2, 3].map((setIndex) => (
+                  <div
+                    aria-hidden={setIndex > 0}
+                    className="partner-set"
+                    key={setIndex}
+                  >
+                    {partnerLogos.map((logo) => (
+                      <a
+                        className="partner-mark"
+                        href={logo.href}
+                        key={`${setIndex}-${logo.name}`}
+                        rel="noopener noreferrer"
+                        tabIndex={setIndex > 0 ? -1 : undefined}
+                        target="_blank"
+                      >
+                        <Image
+                          alt={setIndex > 0 ? "" : logo.name}
+                          className="partner-logo"
+                          height={logo.height}
+                          src={logo.src}
+                          width={logo.width}
+                        />
+                      </a>
+                    ))}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </Container>

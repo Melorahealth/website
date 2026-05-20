@@ -1,6 +1,7 @@
 import { Check, Compass, Globe2, MessageCircle, Route, ShieldCheck } from "lucide-react";
 import { InfoCard } from "@/components/cards/InfoCard";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { CareNotice } from "@/components/sections/CareNotice";
 import { CTASection } from "@/components/sections/CTASection";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
@@ -64,6 +65,7 @@ export function ServiceLandingPage({ page }: ServiceLandingPageProps) {
               ))}
             </div>
           </div>
+          <CareNotice className="mt-8" />
         </Container>
       </section>
 

@@ -113,13 +113,17 @@ type ArticleJsonLdInput = {
   headline: string;
   description: string;
   image: string;
+  datePublished?: string;
+  dateModified?: string;
 };
 
 export function createArticleJsonLd({
   path,
   headline,
   description,
-  image
+  image,
+  datePublished,
+  dateModified
 }: ArticleJsonLdInput) {
   return {
     "@context": "https://schema.org",
@@ -128,6 +132,8 @@ export function createArticleJsonLd({
     description,
     url: absoluteUrl(path),
     image: absoluteUrl(image),
+    ...(datePublished ? { datePublished } : {}),
+    ...(dateModified ? { dateModified } : {}),
     author: {
       "@id": `${absoluteUrl("/")}#organization`,
       name: siteName

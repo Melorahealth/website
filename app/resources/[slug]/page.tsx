@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { CareNotice } from "@/components/sections/CareNotice";
 import { CTASection } from "@/components/sections/CTASection";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
@@ -92,7 +93,9 @@ export default function ResourceArticlePage({ params }: ResourceArticlePageProps
           path,
           headline: article.title,
           description: article.metaDescription,
-          image: article.imageSrc
+          image: article.imageSrc,
+          datePublished: article.publishedAt,
+          dateModified: article.updatedAt
         })}
         id={`${article.slug}-article-jsonld`}
       />
@@ -110,7 +113,7 @@ export default function ResourceArticlePage({ params }: ResourceArticlePageProps
       <section className="section-space">
         <Container className="grid gap-12 lg:grid-cols-[0.76fr_1.24fr] lg:items-start">
           <SectionHeader
-            body="This guide is general information, not medical advice. A care request can help route the next step more precisely."
+            body={`This guide is general information, not medical advice. Published ${article.publishedAt}; last updated ${article.updatedAt}.`}
             eyebrow="Guide"
             title="What to know before you begin."
           />
@@ -146,6 +149,7 @@ export default function ResourceArticlePage({ params }: ResourceArticlePageProps
                 ))}
               </div>
             </div>
+            <CareNotice className="mt-8" />
           </article>
         </Container>
       </section>

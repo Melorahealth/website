@@ -3,6 +3,8 @@ export type ResourceArticle = {
   title: string;
   metaTitle: string;
   metaDescription: string;
+  publishedAt: string;
+  updatedAt: string;
   summary: string;
   category: string;
   imageSrc: string;
@@ -24,6 +26,8 @@ export const resourceArticles: ResourceArticle[] = [
     metaTitle: "Cost of Therapy in Nigeria",
     metaDescription:
       "A grounded guide to the cost of therapy in Nigeria, what affects session pricing, and how MeloraHealth helps people find the right care route.",
+    publishedAt: "2026-05-20",
+    updatedAt: "2026-05-20",
     summary:
       "Therapy pricing in Nigeria can vary by professional qualification, session format, location, specialty, and whether care is private, sponsored, or part of an organization program.",
     category: "Cost guide",

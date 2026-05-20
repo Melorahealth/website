@@ -4,6 +4,7 @@ import { InfoCard } from "@/components/cards/InfoCard";
 import { LeadForm } from "@/components/forms/LeadForm";
 import { contactFields } from "@/components/forms/forms";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { CareNotice } from "@/components/sections/CareNotice";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -94,6 +95,7 @@ export default function ContactPage() {
                 </div>
               ))}
             </div>
+            <CareNotice className="mt-6" />
           </div>
           <LeadForm
             fields={contactFields}
