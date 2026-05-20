@@ -5,7 +5,13 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import { Footer } from "@/components/sections/Footer";
 import { Navbar } from "@/components/sections/Navbar";
-import { siteAlternateNames, siteDescription, siteName, siteUrl } from "@/lib/seo";
+import {
+  absoluteUrl,
+  siteAlternateNames,
+  siteDescription,
+  siteName,
+  siteUrl
+} from "@/lib/seo";
 
 export const metadata: Metadata = {
   metadataBase: siteUrl,
@@ -42,6 +48,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link href={absoluteUrl("/amp")} rel="amphtml" />
+      </head>
       <Script
         id="secureprivacy"
         src="https://app.secureprivacy.ai/script/6a095b468a3ce9234365d3db.js"
