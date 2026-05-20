@@ -59,6 +59,13 @@ function renderJsonLd() {
     name: siteName,
     url: absoluteUrl("/"),
     description: siteDescription,
+    logo: {
+      "@type": "ImageObject",
+      url: absoluteUrl("/assets/logo/melora-logo.png"),
+      contentUrl: absoluteUrl("/assets/logo/melora-logo.png"),
+      width: 1254,
+      height: 1254
+    },
     image: absoluteUrl("/assets/og/melorahealth-home-og.jpg"),
     areaServed: ["Nigeria", "United Kingdom", "United States", "African diaspora"],
     medicalSpecialty: ["MentalHealth", "Psychiatry", "Psychology"],

@@ -31,7 +31,13 @@ export function createHomeJsonLd() {
         name: siteName,
         alternateName: siteAlternateNames,
         url: absoluteUrl("/"),
-        logo: absoluteUrl("/assets/logo/melora-logo.png"),
+        logo: {
+          "@type": "ImageObject",
+          url: absoluteUrl("/assets/logo/melora-logo.png"),
+          contentUrl: absoluteUrl("/assets/logo/melora-logo.png"),
+          width: 1254,
+          height: 1254
+        },
         description: siteDescription,
         sameAs: socialLinks.map((link) => link.href)
       },
