@@ -7,6 +7,7 @@ import { ArrowUpRight, CircleArrowRight, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
+import { MELORA_APP_URL } from "@/lib/app-links";
 
 const navItems = [
   { href: "/for-you", label: "For You" },
@@ -94,7 +95,7 @@ export function Navbar() {
             ))}
           </nav>
           <div className="hidden sm:block">
-            <ButtonLink href="/contact" icon={CircleArrowRight}>
+            <ButtonLink href={MELORA_APP_URL} icon={CircleArrowRight}>
               Get Started
             </ButtonLink>
           </div>
@@ -153,7 +154,7 @@ export function Navbar() {
                 </Link>
                 <Link
                   className="flex min-h-12 items-center justify-center gap-2 rounded-full bg-sage px-4 text-sm font-bold text-white shadow-[0_16px_38px_rgba(38,66,54,0.18)] transition hover:bg-sage/90"
-                  href="/contact"
+                  href={MELORA_APP_URL}
                   onClick={() => setIsOpen(false)}
                 >
                   Get Started

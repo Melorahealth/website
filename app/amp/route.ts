@@ -1,3 +1,4 @@
+import { MELORA_APP_URL, MELORA_GIFT_URL } from "@/lib/app-links";
 import { absoluteUrl, siteDescription, siteName } from "@/lib/seo";
 
 export const dynamic = "force-static";
@@ -21,7 +22,7 @@ const carePaths = [
   {
     title: "Gift a session",
     body: "Sponsor care credits for someone else while protecting privacy, choice, and dignity.",
-    href: "/gift-care"
+    href: MELORA_GIFT_URL
   }
 ] as const;
 
@@ -88,7 +89,7 @@ function renderJsonLd() {
       {
         "@type": "DonateAction",
         name: "Gift a Session",
-        target: absoluteUrl("/gift-care")
+        target: MELORA_GIFT_URL
       }
     ]
   });
@@ -103,7 +104,7 @@ function renderCarePaths() {
           <h3>${path.title}</h3>
           <p>${path.body}</p>
         </div>
-        <a class="text-link" href="${absoluteUrl(path.href)}">Continue</a>
+        <a class="text-link" href="${path.href.startsWith("http") ? path.href : absoluteUrl(path.href)}">Continue</a>
       </article>`
     )
     .join("");
@@ -236,7 +237,7 @@ function renderAmpHtml() {
           <a href="${absoluteUrl("/for-partners")}">Partners</a>
           <a href="${absoluteUrl("/gift-care")}">Gift Care</a>
         </nav>
-        <a class="button" href="${absoluteUrl("/contact")}">Get Started</a>
+        <a class="button" href="${MELORA_APP_URL}">Get Started</a>
       </div>
     </header>
     <main>
@@ -248,7 +249,7 @@ function renderAmpHtml() {
             <p class="lead">MeloraHealth connects people to qualified therapists and culturally aware mental health support, with deeper care for women, postpartum transitions, identity, relationships, and life changes.</p>
             <div class="actions">
               <a class="button" href="${absoluteUrl("/contact")}">Find Support</a>
-              <a class="button secondary" href="${absoluteUrl("/gift-care")}">Gift a Session</a>
+              <a class="button secondary" href="${MELORA_GIFT_URL}">Gift a Session</a>
             </div>
           </div>
           <div class="hero-media">
@@ -303,7 +304,7 @@ function renderAmpHtml() {
             <h2>A meaningful way to protect someone you love.</h2>
             <p>Gift care credits let families, diaspora sponsors, employers, and community partners fund therapy while the recipient keeps privacy and choice.</p>
             <div class="actions">
-              <a class="button" href="${absoluteUrl("/gift-care")}">Gift a Session</a>
+              <a class="button" href="${MELORA_GIFT_URL}">Gift a Session</a>
             </div>
           </div>
           <div class="image-frame">

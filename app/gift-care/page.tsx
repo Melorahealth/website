@@ -6,6 +6,7 @@ import { PageHero } from "@/components/sections/PageHero";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { MELORA_GIFT_URL } from "@/lib/app-links";
 import { createPageMetadata } from "@/lib/seo";
 import { createBreadcrumbJsonLd } from "@/lib/structured-data";
 
@@ -53,7 +54,7 @@ export default function GiftCarePage() {
         eyebrow="Gift care"
         imageAlt="African mother holding a newborn in calm natural light"
         imageSrc="/assets/images/postpartum-care.jpg"
-        primaryHref="#gift"
+        primaryHref={MELORA_GIFT_URL}
         primaryLabel="Gift a Session"
         title="Care can be carried together."
         visualBody="Based on Ubuntu: support can be practical, private, and deeply human."
@@ -94,7 +95,7 @@ export default function GiftCarePage() {
               ))}
             </div>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/contact">Contact MeloraHealth</ButtonLink>
+              <ButtonLink href={MELORA_GIFT_URL}>Gift a Session</ButtonLink>
               <ButtonLink href="/services" variant="secondary">
                 View Care Options
               </ButtonLink>

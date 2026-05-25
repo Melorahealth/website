@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
+import { MELORA_GIFT_URL } from "@/lib/app-links";
 import { socialLinks } from "@/lib/seo";
 
 const footerLinks = [
@@ -8,7 +9,7 @@ const footerLinks = [
   { href: "/services", label: "Services" },
   { href: "/for-professionals", label: "Join as Professional" },
   { href: "/for-partners", label: "Partner Inquiry" },
-  { href: "/gift-care", label: "Gift Session" },
+  { href: MELORA_GIFT_URL, label: "Gift Session" },
   { href: "/resources", label: "Resources" },
   { href: "/contact", label: "Contact" },
   { href: "/privacy-policy", label: "Privacy Policy" },

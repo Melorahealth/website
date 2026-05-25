@@ -8,6 +8,7 @@ import { CTASection } from "@/components/sections/CTASection";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { MELORA_GIFT_URL } from "@/lib/app-links";
 import { getResourceArticle, resourceArticles } from "@/lib/resource-articles";
 import { createArticleJsonLd, createBreadcrumbJsonLd } from "@/lib/structured-data";
 
@@ -158,7 +159,7 @@ export default function ResourceArticlePage({ params }: ResourceArticlePageProps
         body="If cost is the barrier, share what kind of care is needed. MeloraHealth can discuss direct care, gift credits, or partner-supported routes where available."
         primaryHref="/contact"
         primaryLabel="Start a Request"
-        secondaryHref="/gift-care"
+        secondaryHref={MELORA_GIFT_URL}
         secondaryLabel="Gift Care"
         title="Care should have a clear route."
       />

@@ -7,6 +7,7 @@ import { CTASection } from "@/components/sections/CTASection";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { MELORA_GIFT_URL } from "@/lib/app-links";
 import { resourceArticles } from "@/lib/resource-articles";
 import { createPageMetadata } from "@/lib/seo";
 import { createBreadcrumbJsonLd } from "@/lib/structured-data";
@@ -112,7 +113,7 @@ export default function ResourcesPage() {
         body="If what you are reading feels close to your life, you can move from insight into support."
         primaryHref="/contact"
         primaryLabel="Find Support"
-        secondaryHref="/gift-care"
+        secondaryHref={MELORA_GIFT_URL}
         secondaryLabel="Gift Care"
         title="Understanding can lead to care."
       />

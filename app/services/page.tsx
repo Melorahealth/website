@@ -7,6 +7,7 @@ import { CTASection } from "@/components/sections/CTASection";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { MELORA_GIFT_URL } from "@/lib/app-links";
 import { createPageMetadata } from "@/lib/seo";
 import { serviceLandingPageGroups, serviceLandingPages } from "@/lib/service-landing-pages";
 import { createBreadcrumbJsonLd } from "@/lib/structured-data";
@@ -138,7 +139,7 @@ export default function ServicesPage() {
         body="Tell us your location, preferred format, and the kind of support you need."
         primaryHref="/contact"
         primaryLabel="Find Support"
-        secondaryHref="/gift-care"
+        secondaryHref={MELORA_GIFT_URL}
         secondaryLabel="Sponsor a Session"
         title="Start with one clear request."
       />

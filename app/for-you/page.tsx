@@ -7,6 +7,7 @@ import { PageHero } from "@/components/sections/PageHero";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { MELORA_GIFT_URL } from "@/lib/app-links";
 import { createPageMetadata } from "@/lib/seo";
 import { createBreadcrumbJsonLd } from "@/lib/structured-data";
 
@@ -116,7 +117,7 @@ export default function ForYouPage() {
       </section>
       <CTASection
         body="A gifted session can help someone begin without carrying the cost alone."
-        primaryHref="/gift-care"
+        primaryHref={MELORA_GIFT_URL}
         primaryLabel="Sponsor a Session"
         secondaryHref="/services"
         secondaryLabel="View Services"

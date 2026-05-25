@@ -16,6 +16,7 @@ import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
 import { LoopLine } from "@/components/ui/LoopLine";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { MELORA_APP_URL, MELORA_GIFT_URL } from "@/lib/app-links";
 import { createPageMetadata } from "@/lib/seo";
 import { createHomeJsonLd } from "@/lib/structured-data";
 
@@ -140,10 +141,10 @@ export default function Home() {
                 communities often left out of access.
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <ButtonLink href="/contact" icon={CircleArrowRight}>
+                <ButtonLink href={MELORA_APP_URL} icon={CircleArrowRight}>
                   Get Started
                 </ButtonLink>
-                <ButtonLink href="/gift-care" icon={Gift} variant="secondary">
+                <ButtonLink href={MELORA_GIFT_URL} icon={Gift} variant="secondary">
                   Gift a Session
                 </ButtonLink>
               </div>
@@ -383,7 +384,7 @@ export default function Home() {
                 title="A meaningful way to protect someone you love."
               />
               <div className="mt-8">
-                <ButtonLink href="/gift-care">Gift a Session</ButtonLink>
+                <ButtonLink href={MELORA_GIFT_URL}>Gift a Session</ButtonLink>
               </div>
             </div>
           </div>

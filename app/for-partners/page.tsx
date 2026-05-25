@@ -8,6 +8,7 @@ import { CTASection } from "@/components/sections/CTASection";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { MELORA_GIFT_URL } from "@/lib/app-links";
 import { createPageMetadata } from "@/lib/seo";
 import { createBreadcrumbJsonLd } from "@/lib/structured-data";
 
@@ -115,7 +116,7 @@ export default function PartnersPage() {
       </section>
       <CTASection
         body="Gift care credits can sit inside partner programs, diaspora sponsorships, or community support models."
-        primaryHref="/gift-care"
+        primaryHref={MELORA_GIFT_URL}
         primaryLabel="Explore Gift Care"
         secondaryHref="/services"
         secondaryLabel="View Services"
