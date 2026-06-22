@@ -36,24 +36,27 @@ export function Navbar() {
 
   return (
     <header
-      className={`top-0 z-50 transition duration-300 ${
+      className={`top-0 z-50 transition-all duration-300 ${
         isHome ? "fixed inset-x-0" : "sticky"
       } ${
         isTransparent
           ? "border-b border-transparent bg-transparent"
-          : "border-b border-sage/10 bg-[#fbf8f3] shadow-[0_18px_60px_rgba(38,66,54,0.1)]"
+          : "border-b border-sage/10 bg-[#fbf8f3]/80 shadow-[0_8px_30px_rgba(38,66,54,0.07)] backdrop-blur-xl supports-[backdrop-filter]:bg-[#fbf8f3]/70"
       }`}
-      style={{ backgroundColor: isTransparent ? "transparent" : "#fbf8f3" }}
     >
       <Container>
-        <div className="flex min-h-20 items-center justify-between gap-4 lg:gap-6">
+        <div
+          className={`flex items-center justify-between gap-4 transition-all duration-300 lg:gap-6 ${
+            isTransparent ? "min-h-[5rem]" : "min-h-[4.25rem]"
+          }`}
+        >
           <Link
             aria-label="melorahealth home"
             className="group flex min-w-0 shrink-0 items-center gap-2.5"
             href="/"
             onClick={() => setIsOpen(false)}
           >
-            <span className="relative block h-10 w-10 overflow-hidden rounded-md">
+            <span className="relative block h-10 w-10 shrink-0 overflow-hidden rounded-xl ring-1 ring-sage/10 transition-transform duration-300 group-hover:scale-105">
               <Image
                 alt=""
                 className="object-contain"
@@ -73,19 +76,19 @@ export function Navbar() {
           </Link>
           <nav
             aria-label="Main navigation"
-            className={`hidden items-center gap-1 rounded-full border p-1.5 transition lg:flex ${
+            className={`hidden items-center gap-0.5 rounded-full border border-sage/10 p-1 backdrop-blur-xl transition-all duration-300 lg:flex ${
               isTransparent
-                ? "border-sage/10 bg-white/[0.55] text-ink shadow-[0_18px_48px_rgba(38,66,54,0.06)] backdrop-blur-xl"
-                : "border-sage/10 bg-white/75 shadow-[0_18px_48px_rgba(38,66,54,0.08)]"
+                ? "bg-white/55 shadow-[0_10px_30px_rgba(38,66,54,0.05)]"
+                : "bg-white/70 shadow-[0_10px_30px_rgba(38,66,54,0.06)]"
             }`}
           >
             {navItems.map((item) => (
               <Link
                 aria-current={pathname === item.href ? "page" : undefined}
-                className={`rounded-full px-4 py-2 text-sm font-medium transition ${
+                className={`rounded-full px-3.5 py-2 text-sm font-medium transition-all duration-200 ${
                   pathname === item.href
-                    ? "bg-cream text-sage shadow-[inset_0_1px_0_rgba(255,255,255,0.58)]"
-                    : "text-ink/[0.68] hover:bg-cream hover:text-sage"
+                    ? "bg-sage text-white shadow-[0_6px_16px_rgba(38,66,54,0.18)]"
+                    : "text-ink/70 hover:bg-cream hover:text-sage"
                 }`}
                 href={item.href}
                 key={item.href}

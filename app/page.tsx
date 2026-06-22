@@ -10,20 +10,19 @@ import {
 import { TestimonialCard } from "@/components/cards/TestimonialCard";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { CTASection } from "@/components/sections/CTASection";
-import { HeroImageStack } from "@/components/sections/HeroImageStack";
 import { ImagePanel } from "@/components/sections/ImagePanel";
+import { PartnerCarousel } from "@/components/sections/PartnerCarousel";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
-import { LoopLine } from "@/components/ui/LoopLine";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { MELORA_APP_URL, MELORA_GIFT_URL } from "@/lib/app-links";
 import { createPageMetadata } from "@/lib/seo";
 import { createHomeJsonLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Therapy That Understands Your Context",
+  title: "Culturally Aware Therapy, Online",
   description:
-    "MeloraHealth connects people with culturally aware therapy, psychiatry, and care routes for emotional clarity, identity, postpartum, and life changes.",
+    "Mental healthcare matched to you. Private, online, and built for real life, with specialized care for women, maternal mental health, and communities standard care too often overlooks.",
   path: "/",
   image: "/assets/og/melorahealth-home-og.jpg",
   imageAlt: "MeloraHealth care platform showing culturally aware therapy and connected support routes",
@@ -33,38 +32,38 @@ export const metadata: Metadata = createPageMetadata({
 
 const howItWorks = [
   {
-    title: "Tell us what is happening",
-    body: "Start with a simple intake that makes space for your reality, location, preferences, and care goals."
+    title: "Tell us what you're going through",
+    body: "A short, private intake that makes room for your story. Your life, your location, and what you actually need right now."
   },
   {
-    title: "Get routed to the right fit",
-    body: "MeloraHealth connects you with a qualified professional or program path that matches the kind of support you need."
+    title: "Get matched to the right therapist",
+    body: "We connect you with a qualified professional who fits your needs, your preferences, and your cultural background."
   },
   {
-    title: "Meet in the way that works",
-    body: "Use private online sessions, structured follow-up, and sponsor-backed credits where available."
+    title: "Start talking, your way",
+    body: "Private online sessions and steady follow-up, with sponsor-backed credits where available."
   }
 ];
 
 const careComparison = [
   {
     need: "Finding the right fit",
-    melora: "A guided intake routes you by need, care level, preference, and cultural context.",
+    melora: "A guided intake matches you by need, care level, preference, and culture. No guesswork.",
     offline: "You often rely on referrals, location, or trial and error."
   },
   {
     need: "Starting care",
-    melora: "You move from intake to a recommended care path with clear next steps.",
+    melora: "You go straight from intake to a clear care plan with real next steps.",
     offline: "You may need calls, availability checks, and repeated explanation."
   },
   {
     need: "Paying for support",
-    melora: "Sponsor credits and partner programs can fund care while privacy stays with the person receiving it.",
+    melora: "Sponsor credits and partner programs can fund your care, while your privacy stays yours.",
     offline: "Payment support is usually informal, exposed, or difficult to manage."
   },
   {
     need: "Continuing care",
-    melora: "Care can continue across location, sponsors, organizations, and professional routes.",
+    melora: "Your care follows you across cities, sponsors, organizations, and providers.",
     offline: "Continuity depends mostly on one office, one schedule, and one provider."
   }
 ];
@@ -97,12 +96,17 @@ const faqs = [
   {
     question: "Who is MeloraHealth for?",
     answer:
-      "MeloraHealth is for anyone seeking emotional clarity and professional support, with deeper expertise for women, postpartum experiences, identity, relationships, and life changes."
+      "Anyone who wants to feel understood and get real professional support, with deeper expertise for women, postpartum experiences, identity, relationships, and big life changes."
+  },
+  {
+    question: "How do sessions work?",
+    answer:
+      "Sessions are private and online, with structured follow-up in between. You can start from anywhere you have a connection, in a way that fits your schedule."
   },
   {
     question: "Are the professionals qualified?",
     answer:
-      "The platform is built around credentialed therapists, psychologists, and psychiatrists. Care routing is designed to match the need with the right level of professional support."
+      "Yes. The platform is built around credentialed therapists, psychologists, and psychiatrists, and we match you with the right level of professional support for what you're facing."
   },
   {
     question: "Can someone outside Africa sponsor care?",
@@ -120,87 +124,65 @@ export default function Home() {
   return (
     <main>
       <JsonLd data={createHomeJsonLd()} id="melorahealth-home-jsonld" />
-      <section className="relative overflow-hidden border-b border-sage/10 bg-[#fbf8f3]">
-        <div aria-hidden className="heritage-panel right-0 top-16 hidden h-[70%] w-14 lg:block xl:w-16" />
-        <div aria-hidden className="soft-pulse absolute -left-24 top-32 h-72 w-72 rounded-full border border-gold/20" />
-        <LoopLine className="-bottom-8 right-0" />
-        <Container className="relative z-10 flex min-h-[calc(100svh-72px)] flex-col justify-center py-16 sm:py-18 lg:min-h-[calc(112svh-92px)] lg:py-16 xl:min-h-[calc(118svh-92px)]">
-          <div className="grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-10 xl:gap-12 2xl:gap-14">
-            <div className="reveal lg:col-span-6">
-              <h1 className="display hero-display max-w-[720px]">
-                Therapy that
-                <br />
-                understands your
-                <br />
-                <span className="mark-highlight">context.</span>
-              </h1>
-              <p className="mt-7 max-w-[590px] text-lg leading-8 text-ink/70">
-                MeloraHealth connects people to qualified therapists and
-                culturally aware mental health support, with deeper care for
-                women, postpartum transitions, queer-affirming therapy, and
-                communities often left out of access.
-              </p>
-              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <ButtonLink href={MELORA_APP_URL} icon={CircleArrowRight}>
-                  Get Started
-                </ButtonLink>
-                <ButtonLink href={MELORA_GIFT_URL} icon={Gift} variant="secondary">
-                  Gift a Session
-                </ButtonLink>
-              </div>
-              <div className="mt-8 flex items-center gap-3 text-sm font-semibold text-sage">
-                <span className="h-px w-10 bg-gold" />
-                <span className="hero-words" aria-label="Find care, meet therapists, widen access">
-                  <span>Find care</span>
-                  <span>Meet therapists</span>
-                  <span>Widen access</span>
-                </span>
-              </div>
+      <section className="relative isolate overflow-hidden border-b border-sage/10">
+        <Image
+          alt="Two pairs of friends in warm, relaxed conversation in a sunlit, plant-filled living room"
+          className="object-cover object-center"
+          fill
+          priority
+          sizes="100vw"
+          src="/assets/images/hero-.png"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-[radial-gradient(85%_85%_at_50%_50%,rgba(251,248,243,0.62)_0%,rgba(251,248,243,0.58)_45%,rgba(251,248,243,0.42)_70%,rgba(251,248,243,0.22)_100%)]"
+        />
+        <Container className="relative z-10 flex min-h-[100svh] flex-col items-center justify-center py-28 text-center">
+          <div className="reveal flex max-w-3xl flex-col items-center">
+            <h1 className="display hero-display [text-shadow:0_1px_3px_rgba(251,248,243,0.7)]">
+              Find a culturally
+              <br />
+              aware <span className="mark-highlight">therapist.</span>
+            </h1>
+            <p className="mt-7 max-w-[600px] text-lg leading-8 text-ink/80">
+              Mental healthcare matched to you. Private, online, and built for
+              real life, with specialized care for women, maternal mental
+              health, and communities standard care too often overlooks.
+            </p>
+            <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row">
+              <ButtonLink href={MELORA_APP_URL} icon={CircleArrowRight}>
+                Get Matched
+              </ButtonLink>
+              <ButtonLink href={MELORA_GIFT_URL} icon={Gift} variant="secondary">
+                Gift a Session
+              </ButtonLink>
             </div>
-            <HeroImageStack />
+            <ul
+              aria-label="Why people trust MeloraHealth"
+              className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm font-semibold text-sage"
+            >
+              <li className="flex items-center gap-2">
+                <Check aria-hidden className="h-4 w-4 text-gold" strokeWidth={1.8} />
+                Credentialed therapists
+              </li>
+              <li className="flex items-center gap-2">
+                <Check aria-hidden className="h-4 w-4 text-gold" strokeWidth={1.8} />
+                100% private &amp; online
+              </li>
+              <li className="flex items-center gap-2">
+                <Check aria-hidden className="h-4 w-4 text-gold" strokeWidth={1.8} />
+                Culturally aware care
+              </li>
+            </ul>
           </div>
         </Container>
       </section>
 
-      <section className="border-y border-sage/10 bg-[#f7f2ea] py-12 sm:py-14">
+      {/* <section className="py-9">
         <Container>
-          <div className="mx-auto max-w-5xl">
-            <p className="text-center text-xs font-semibold uppercase tracking-normal text-ink/42">
-              Trusted by leading organizations
-            </p>
-            <div className="partner-marquee mt-8" aria-label="MeloraHealth partners">
-              <div className="partner-track">
-                {[0, 1, 2, 3].map((setIndex) => (
-                  <div
-                    aria-hidden={setIndex > 0}
-                    className="partner-set"
-                    key={setIndex}
-                  >
-                    {partnerLogos.map((logo) => (
-                      <a
-                        className="partner-mark"
-                        href={logo.href}
-                        key={`${setIndex}-${logo.name}`}
-                        rel="noopener noreferrer"
-                        tabIndex={setIndex > 0 ? -1 : undefined}
-                        target="_blank"
-                      >
-                        <Image
-                          alt={setIndex > 0 ? "" : logo.name}
-                          className="partner-logo"
-                          height={logo.height}
-                          src={logo.src}
-                          width={logo.width}
-                        />
-                      </a>
-                    ))}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+          <PartnerCarousel logos={partnerLogos} />
         </Container>
-      </section>
+      </section> */}
 
       {/* <section className="section-space relative overflow-hidden bg-cream/40">
         <div aria-hidden className="pattern-band" />
@@ -225,9 +207,9 @@ export default function Home() {
           <div className="section-grid lg:items-center">
             <div className="lg:col-span-5">
               <SectionHeader
-                body="The first step should not feel like searching through noise. MeloraHealth helps translate what is happening into a care route: the right professional, the right format, and a next step that respects your context."
+                body="The first step shouldn't feel like searching through noise. We help you go from 'I don't even know where to start' to talking with the right professional. Someone who respects your story instead of flattening it."
                 eyebrow="Professional care"
-                title="Qualified support, without losing cultural meaning."
+                title="Real therapists who understand where you come from."
               />
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <ButtonLink href="/services">Explore Services</ButtonLink>
@@ -255,11 +237,12 @@ export default function Home() {
             <div className="lg:col-span-4">
               <p className="eyebrow mb-5">How it works</p>
               <h2 className="font-serif text-4xl leading-tight tracking-normal sm:text-5xl">
-                A clear route into care.
+                From struggling to supported, in three steps.
               </h2>
               <p className="mt-5 text-base leading-7 text-white/70">
-                Inspired by simple matching flows, rebuilt for African context,
-                diaspora funding, and professional care standards.
+                Built for African realities, diaspora funding, and real
+                professional care standards, so help is easy to reach and easy
+                to trust.
               </p>
             </div>
             <div className="grid gap-5 md:grid-cols-3 lg:col-span-8">
@@ -287,23 +270,24 @@ export default function Home() {
           <div className="section-grid mb-10 lg:items-end">
             <div className="lg:col-span-6">
               <SectionHeader
-                body="Offline therapy can be valuable. MeloraHealth changes the experience around it: the matching, the access, the funding, and the continuity."
+                body="Offline therapy can be valuable. We change everything around it: how you get matched, how you reach care, how it's funded, and how it stays with you."
                 eyebrow="Why MeloraHealth"
-                title="Less searching. More structure."
+                title="Stop searching. Start healing."
               />
             </div>
             <p className="max-w-2xl text-base leading-7 text-ink/62 lg:col-span-5 lg:col-start-8">
-              Answer a few careful questions, get routed to the right kind of
-              professional support, and keep the path clear after care begins.
+              Answer a few careful questions, get matched with the right
+              professional, and keep your path clear long after the first
+              session.
             </p>
           </div>
 
           <div className="overflow-hidden rounded-xl border border-sage/10 bg-white/35 shadow-[0_22px_60px_rgba(38,66,54,0.07)] backdrop-blur-2xl">
             <div className="grid gap-px bg-sage/10 md:grid-cols-3">
               {[
-                ["01", "Share what is happening"],
-                ["02", "Get routed with context"],
-                ["03", "Begin care with support"]
+                ["01", "Share what you're going through"],
+                ["02", "Get matched to the right fit"],
+                ["03", "Start care with real support"]
               ].map(([number, label]) => (
                 <div className="bg-cream/55 px-5 py-4" key={number}>
                   <span className="font-serif text-2xl leading-none text-gold">{number}</span>
@@ -352,11 +336,11 @@ export default function Home() {
 
             <div className="grid gap-4 border-t border-sage/10 bg-[#fbf8f3] px-5 py-5 text-sm text-ink/62 md:grid-cols-[1fr_auto] md:items-center">
               <p>
-                The goal is not to make therapy feel automated. It is to make
-                access calmer, clearer, and easier to trust.
+                We&apos;re not here to automate therapy. We&apos;re here to make
+                getting help calmer, clearer, and easier to trust.
               </p>
               <div className="flex flex-col gap-3 sm:flex-row md:justify-end">
-                <ButtonLink href="/contact">Find Support</ButtonLink>
+                <ButtonLink href="/contact">Get Matched</ButtonLink>
                 <ButtonLink href="/services" variant="secondary">
                   Explore Services
                 </ButtonLink>
@@ -395,9 +379,9 @@ export default function Home() {
         <Container>
           <div className="section-grid">
             <div className="lg:col-span-4">
-              <p className="eyebrow mb-5">What people need</p>
+              <p className="eyebrow mb-5">What people told us</p>
               <h2 className="font-serif text-4xl leading-tight tracking-normal sm:text-5xl">
-                Clear support. Real structure.
+                Built from real conversations.
               </h2>
             </div>
             <div className="grid gap-5 md:grid-cols-3 lg:col-span-8">
@@ -426,7 +410,7 @@ export default function Home() {
           <div className="section-grid">
             <div className="lg:col-span-4">
               <SectionHeader
-                body="Simple answers for the questions people ask before they trust a care platform."
+                body="Straight answers to the questions people ask before they trust someone with their mental health."
                 eyebrow="FAQ"
                 title="Before you begin."
               />
@@ -456,12 +440,12 @@ export default function Home() {
       </section>
 
       <CTASection
-        body="Choose the path that matches what you need now. MeloraHealth can route the next step."
+        body="Take the first step today. We'll match you with the right support, for you or someone you love."
         primaryHref="/contact"
-        primaryLabel="Find Support"
+        primaryLabel="Get Matched"
         secondaryHref="/for-professionals"
         secondaryLabel="Join as Professional"
-        title="Begin with clarity."
+        title="Ready to talk to someone who gets it?"
       />
     </main>
   );
