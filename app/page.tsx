@@ -137,23 +137,32 @@ export default function Home() {
           className="absolute inset-0 bg-[radial-gradient(85%_85%_at_50%_50%,rgba(251,248,243,0.62)_0%,rgba(251,248,243,0.58)_45%,rgba(251,248,243,0.42)_70%,rgba(251,248,243,0.22)_100%)]"
         />
         <Container className="relative z-10 flex min-h-[100svh] flex-col items-center justify-center py-28 text-center">
-          <div className="reveal flex max-w-3xl flex-col items-center">
-            <p className="mb-5 flex items-center gap-3 text-sm font-semibold tracking-wide text-sage/90">
-              <span aria-hidden className="h-px w-6 bg-gold" />
+          <div className="flex max-w-3xl flex-col items-center">
+            <p className="reveal mb-5 flex items-center gap-3 text-sm font-semibold tracking-wide text-sage/90">
+              <span aria-hidden className="kicker-rule is-left h-px w-6 bg-gold" />
               You don&apos;t have to figure this out alone
-              <span aria-hidden className="h-px w-6 bg-gold" />
+              <span aria-hidden className="kicker-rule is-right h-px w-6 bg-gold" />
             </p>
-            <h1 className="display hero-display [text-shadow:0_1px_3px_rgba(251,248,243,0.7)]">
+            <h1
+              className="reveal display hero-display [text-shadow:0_1px_3px_rgba(251,248,243,0.7)]"
+              style={{ animationDelay: "90ms" }}
+            >
               Find a culturally
               <br />
               aware <span className="mark-highlight">therapist.</span>
             </h1>
-            <p className="mt-7 max-w-[600px] text-lg leading-8 text-ink/80">
+            <p
+              className="reveal mt-7 max-w-[600px] text-lg leading-8 text-ink/80"
+              style={{ animationDelay: "180ms" }}
+            >
               Mental healthcare matched to you. Private, online, and built for
               real life, with specialized care for women, maternal mental
               health, and communities standard care too often overlooks.
             </p>
-            <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row">
+            <div
+              className="reveal mt-9 flex flex-col items-center gap-3 sm:flex-row"
+              style={{ animationDelay: "260ms" }}
+            >
               <ButtonLink href={MELORA_APP_URL} icon={CircleArrowRight}>
                 Get Matched
               </ButtonLink>
@@ -163,7 +172,8 @@ export default function Home() {
             </div>
             <ul
               aria-label="Why people trust MeloraHealth"
-              className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm font-semibold text-sage"
+              className="reveal mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm font-semibold text-sage"
+              style={{ animationDelay: "340ms" }}
             >
               <li className="flex items-center gap-2">
                 <Check aria-hidden className="h-4 w-4 text-gold" strokeWidth={1.8} />

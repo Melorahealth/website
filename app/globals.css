@@ -690,6 +690,19 @@ textarea {
   animation-delay: 140ms;
 }
 
+.kicker-rule {
+  transform: scaleX(0);
+  animation: highlight-sweep 720ms 260ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.kicker-rule.is-left {
+  transform-origin: right center;
+}
+
+.kicker-rule.is-right {
+  transform-origin: left center;
+}
+
 .float-slow {
   animation: float-slow 9s ease-in-out infinite;
 }

@@ -61,7 +61,7 @@ export default function ForYouPage() {
         id="for-you-breadcrumb-jsonld"
       />
       <PageHero
-        body="For anyone carrying something, with real depth in women’s therapy, postpartum care, relationships, and queer-affirming support."
+        body="Whatever you’re going through, you’ll find real expertise in women’s mental health, postpartum care, relationships, and queer-affirming therapy."
         eyebrow="For you"
         imageAlt="African woman seated quietly in a calm home interior"
         imageSrc="/assets/images/individual-reflection.jpg"
