@@ -11,7 +11,6 @@ import { TestimonialCard } from "@/components/cards/TestimonialCard";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { CTASection } from "@/components/sections/CTASection";
 import { ImagePanel } from "@/components/sections/ImagePanel";
-import { PartnerCarousel } from "@/components/sections/PartnerCarousel";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -139,6 +138,11 @@ export default function Home() {
         />
         <Container className="relative z-10 flex min-h-[100svh] flex-col items-center justify-center py-28 text-center">
           <div className="reveal flex max-w-3xl flex-col items-center">
+            <p className="mb-5 flex items-center gap-3 text-sm font-semibold tracking-wide text-sage/90">
+              <span aria-hidden className="h-px w-6 bg-gold" />
+              You don&apos;t have to figure this out alone
+              <span aria-hidden className="h-px w-6 bg-gold" />
+            </p>
             <h1 className="display hero-display [text-shadow:0_1px_3px_rgba(251,248,243,0.7)]">
               Find a culturally
               <br />
@@ -270,7 +274,7 @@ export default function Home() {
           <div className="section-grid mb-10 lg:items-end">
             <div className="lg:col-span-6">
               <SectionHeader
-                body="Offline therapy can be valuable. We change everything around it: how you get matched, how you reach care, how it's funded, and how it stays with you."
+                body="In-person therapy can be valuable. We change everything around it: how you get matched, how you reach care, how it's funded, and how it stays with you."
                 eyebrow="Why MeloraHealth"
                 title="Stop searching. Start healing."
               />
@@ -299,7 +303,7 @@ export default function Home() {
             <div className="hidden grid-cols-[1fr_1.25fr_1.1fr] border-b border-sage/10 bg-sage px-5 py-4 text-sm font-semibold text-white md:grid">
               <span>Need</span>
               <span>MeloraHealth</span>
-              <span>Typical offline path</span>
+              <span>Typical in-person path</span>
             </div>
 
             <div>
@@ -326,7 +330,7 @@ export default function Home() {
                   <div className="border-t border-sage/10 bg-cream/25 px-5 py-5 md:border-l md:border-t-0">
                     <p className="mb-2 flex items-center gap-2 text-sm font-semibold text-ink/68">
                       <Minus aria-hidden className="h-4 w-4 text-rose" strokeWidth={1.8} />
-                      <span>Often offline</span>
+                      <span>Often in-person</span>
                     </p>
                     <p className="text-sm leading-6 text-ink/58">{row.offline}</p>
                   </div>

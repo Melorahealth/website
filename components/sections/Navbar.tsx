@@ -56,7 +56,7 @@ export function Navbar() {
             href="/"
             onClick={() => setIsOpen(false)}
           >
-            <span className="relative block h-10 w-10 shrink-0 overflow-hidden rounded-xl ring-1 ring-sage/10 transition-transform duration-300 group-hover:scale-105">
+            <span className="relative block h-10 w-10 shrink-0 overflow-hidden transition-transform duration-300 group-hover:scale-105">
               <Image
                 alt=""
                 className="object-contain"
@@ -69,7 +69,7 @@ export function Navbar() {
               <span className="block truncate font-serif text-[1.55rem] leading-none tracking-normal text-sage sm:text-[1.7rem]">
                 melora<span className="text-rose">health</span>
               </span>
-              <span className="mt-1 hidden text-[0.54rem] font-semibold uppercase leading-none tracking-[0.28em] text-gold sm:block">
+              <span className="mt-1 hidden text-[0.54rem] font-semibold uppercase leading-none tracking-[0.28em] text-gold">
                 Understand. Heal. Become.
               </span>
             </span>

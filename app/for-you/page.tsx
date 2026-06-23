@@ -14,7 +14,7 @@ import { createBreadcrumbJsonLd } from "@/lib/structured-data";
 export const metadata: Metadata = createPageMetadata({
   title: "Find Therapy and Mental Health Support",
   description:
-    "Find therapy, psychiatry, women’s mental health support, postpartum care, couples therapy, and identity-aware care that respects your context online now.",
+    "Find therapy, psychiatry, women’s mental health support, postpartum care, couples therapy, and identity-affirming care that meets you where you are — online, private, and ready when you are.",
   path: "/for-you",
   image: "/assets/images/individual-reflection.jpg",
   imageAlt: "African woman seated quietly in a calm home interior"
@@ -23,32 +23,32 @@ export const metadata: Metadata = createPageMetadata({
 const supportTypes = [
   {
     title: "Therapy",
-    body: "Talk with a trained professional about what is heavy, confusing, or hard to name.",
+    body: "Talk things through with someone trained to listen — even the parts that are hard to put into words.",
     icon: MessageCircle
   },
   {
     title: "Psychiatry",
-    body: "Assessment and medication support when symptoms need medical attention.",
+    body: "When what you're feeling needs medical care, a doctor can help with assessment and medication.",
     icon: Stethoscope
   },
   {
     title: "Women’s therapy",
-    body: "Support for emotional load, relationships, identity shifts, and life changes.",
+    body: "A place for the weight you carry — relationships, change, and the parts of life that ask a lot of you.",
     icon: UserRound
   },
   {
     title: "Postpartum therapy",
-    body: "Support for identity shift, mental load, and emotional adjustment after birth.",
+    body: "Gentle support for the exhaustion, the mental load, and the quiet shift in who you are after birth.",
     icon: Baby
   },
   {
     title: "Couples therapy",
-    body: "A steadier space for communication, distance, repair, and decision-making.",
+    body: "A steadier space to talk, close the distance, and decide what comes next — together.",
     icon: Heart
   },
   {
     title: "Queer-affirming therapy",
-    body: "Respectful support for queer people navigating belonging, family, faith, and personal truth.",
+    body: "Affirming support for queer people working through belonging, family, faith, and being yourself.",
     icon: Shield
   }
 ];
@@ -61,23 +61,23 @@ export default function ForYouPage() {
         id="for-you-breadcrumb-jsonld"
       />
       <PageHero
-        body="For anyone seeking emotional clarity, with deeper expertise in women’s therapy, postpartum therapy, relationships, and queer-affirming care."
+        body="For anyone carrying something, with real depth in women’s therapy, postpartum care, relationships, and queer-affirming support."
         eyebrow="For you"
         imageAlt="African woman seated quietly in a calm home interior"
         imageSrc="/assets/images/individual-reflection.jpg"
         primaryHref="#find-support"
         primaryLabel="Find Support"
-        title="Support that respects your context."
-        visualBody="You can come with what is clear, or with what still has no name."
-        visualTitle="A private route into care."
+        title="Support that meets you where you are."
+        visualBody="Come with what you understand, or with what you can’t yet put into words."
+        visualTitle="A private way in."
       />
       <section className="section-space relative overflow-hidden">
         <div aria-hidden className="pattern-band" />
         <Container>
           <SectionHeader
-            body="Care is routed by need, format, location, and the kind of professional support that fits."
+            body="We match you by what you need, how you'd like to meet, where you are, and the kind of professional who'll feel right."
             eyebrow="Available care"
-            title="Choose the support you need."
+            title="Find the kind of support that fits."
           />
           <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {supportTypes.map((item) => (
@@ -89,13 +89,13 @@ export default function ForYouPage() {
       <section className="section-space bg-cream/40" id="find-support">
         <Container className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
           <SectionHeader
-            body="Begin with a private conversation. MeloraHealth can route you toward online or offline care with an appropriate professional."
+            body="Start with a private conversation. From there, we'll point you toward the right professional — online or in person."
             eyebrow="Find support"
-            title="Take the next step without filling a form."
+            title="Take the next step — no long forms."
           />
           <div className="rounded-2xl border border-sage/10 bg-white/45 p-6 shadow-[0_22px_70px_rgba(38,66,54,0.07)] sm:p-8">
             <div className="grid gap-4 sm:grid-cols-3">
-              {["Share what is happening", "Get matched with care", "Begin privately"].map((step, index) => (
+              {["Tell us what's going on", "Get matched to the right person", "Start, privately"].map((step, index) => (
                 <div className="border-l border-gold/50 pl-4" key={step}>
                   <p className="text-xs font-semibold uppercase tracking-normal text-gold">
                     Step {index + 1}
@@ -121,7 +121,7 @@ export default function ForYouPage() {
         primaryLabel="Sponsor a Session"
         secondaryHref="/services"
         secondaryLabel="View Services"
-        title="Care can be funded with dignity."
+        title="Help someone begin, with dignity."
       />
     </main>
   );

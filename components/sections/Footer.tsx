@@ -23,7 +23,7 @@ export function Footer() {
         <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-end">
           <div>
             <div className="mb-5 flex items-center gap-3">
-              <span className="relative block h-12 w-12 overflow-hidden rounded-md">
+              <span className="relative block h-12 w-12 overflow-hidden">
                 <Image
                   alt=""
                   className="object-contain"
