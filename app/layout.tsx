@@ -50,6 +50,13 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link href={absoluteUrl("/amp")} rel="amphtml" />
+        {/* Mark motion support before first paint so GSAP-revealed elements
+            start hidden (no flash). No-JS users keep content visible. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('has-motion')"
+          }}
+        />
       </head>
       <Script
         id="secureprivacy"
