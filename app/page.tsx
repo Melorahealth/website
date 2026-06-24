@@ -170,7 +170,7 @@ export default function Home() {
                 Gift a Session
               </ButtonLink>
             </div>
-            <ul
+            {/* <ul
               aria-label="Why people trust MeloraHealth"
               className="reveal mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm font-semibold text-sage"
               style={{ animationDelay: "340ms" }}
@@ -187,7 +187,7 @@ export default function Home() {
                 <Check aria-hidden className="h-4 w-4 text-gold" strokeWidth={1.8} />
                 Culturally aware care
               </li>
-            </ul>
+            </ul> */}
           </div>
         </Container>
       </section>
