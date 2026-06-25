@@ -8,6 +8,7 @@ import {
   MessageCircle,
   Minus,
   Sparkles,
+  Star,
   Video
 } from "lucide-react";
 import { ScrollMotion } from "@/components/motion/ScrollMotion";
@@ -179,26 +180,22 @@ export default function Home() {
       <JsonLd data={createHomeJsonLd()} id="melorahealth-home-jsonld" />
       <ScrollMotion />
       <section
-        className="relative isolate overflow-hidden border-b border-sage/10"
+        className="relative isolate overflow-hidden border-b border-sage/10 bg-[radial-gradient(90%_80%_at_50%_40%,#2a4a39_0%,#1c3128_58%,#142219_100%)]"
         data-hero
       >
         <Image
-          alt="Two pairs of friends in warm, relaxed conversation in a sunlit, plant-filled living room"
-          className="object-cover object-center"
+          alt="Illustrated collage of calming mental-health motifs — plants, hands, and warm light"
+          className="object-cover object-center lg:object-contain"
           data-hero-bg
           fill
           priority
           sizes="100vw"
           src="/assets/images/hero-.png"
         />
-        <div
-          aria-hidden
-          className="absolute inset-0 bg-[radial-gradient(85%_85%_at_50%_50%,rgba(251,248,243,0.62)_0%,rgba(251,248,243,0.58)_45%,rgba(251,248,243,0.42)_70%,rgba(251,248,243,0.22)_100%)]"
-        />
-        <Container className="relative z-10 flex min-h-[100svh] flex-col items-center justify-center py-28 text-center">
+        <Container className="relative z-10 flex min-h-[100svh] flex-col items-center justify-center py-24 text-center sm:py-28">
           <div className="flex max-w-3xl flex-col items-center">
             <p
-              className="mb-5 flex items-center gap-3 text-sm font-semibold tracking-wide text-sage/90"
+              className="mb-5 flex items-center gap-3 text-sm font-semibold tracking-wide text-white"
               data-hero-item
             >
               <span aria-hidden className="kicker-rule is-left h-px w-6 bg-gold" />
@@ -206,31 +203,62 @@ export default function Home() {
               <span aria-hidden className="kicker-rule is-right h-px w-6 bg-gold" />
             </p>
             <h1
-              className="display hero-display [text-shadow:0_1px_3px_rgba(251,248,243,0.7)]"
+              className="display hero-display !text-white"
               data-hero-item
             >
               Find a culturally
               <br />
-              aware <span className="mark-highlight">therapist.</span>
+              aware <span className="mark-highlight mark-cool !text-white">therapist.</span>
             </h1>
-            <p
-              className="mt-7 max-w-[600px] text-lg leading-8 text-ink/80"
+            {/* <p
+              className="mt-7 max-w-[600px] text-lg leading-8 text-white"
               data-hero-item
             >
               Mental healthcare matched to you. Private, online, and built for
               real life, with specialized care for women, maternal mental
               health, and communities standard care too often overlooks.
-            </p>
+            </p> */}
             <div
               className="mt-9 flex flex-col items-center gap-3 sm:flex-row"
               data-hero-item
             >
-              <ButtonLink href={MELORA_APP_URL} icon={CircleArrowRight}>
-                Get Matched
+              <ButtonLink href={MELORA_APP_URL} icon={CircleArrowRight} className="!bg-white !text-sage hover:!bg-cream border-white/20 hover:!border-white/50">
+                Get Matched with a Therapist
               </ButtonLink>
-              <ButtonLink href={MELORA_GIFT_URL} icon={Gift} variant="secondary">
+              {/* <ButtonLink href={MELORA_GIFT_URL} icon={Gift} variant="secondary">
                 Gift a Session
-              </ButtonLink>
+              </ButtonLink> */}
+            </div>
+            <div
+              className="mt-6 flex items-center gap-2.5"
+              data-hero-item
+            >
+              <div className="flex -space-x-2">
+                {[
+                  "/assets/avatars/avatar-1.jpg",
+                  "/assets/avatars/avatar-2.jpg",
+                  "/assets/avatars/avatar-3.jpg"
+                ].map((src) => (
+                  <span
+                    className="relative inline-block h-7 w-7 overflow-hidden rounded-full ring-2 ring-white/80"
+                    key={src}
+                  >
+                    <Image
+                      alt=""
+                      className="object-cover"
+                      fill
+                      sizes="28px"
+                      src={src}
+                    />
+                  </span>
+                ))}
+              </div>
+              <p className="flex items-center gap-1 text-xs font-medium text-white">
+                <Star aria-hidden className="h-3.5 w-3.5 fill-gold text-gold" />
+                <span>
+                  <span className="font-bold">4.9</span> rating
+                </span>
+              </p>
             </div>
             {/* <ul
               aria-label="Why people trust MeloraHealth"
@@ -458,52 +486,51 @@ export default function Home() {
             </p> */}
           </div>
 
-          <div className="mt-12 [perspective:1800px]" data-reveal>
-            <div
-              className="group/panel overflow-hidden rounded-2xl border border-white/60 bg-white/55 shadow-[0_2px_0_rgba(255,255,255,0.7)_inset,0_50px_90px_-30px_rgba(38,66,54,0.4),0_18px_40px_-18px_rgba(38,66,54,0.28)] backdrop-blur-xl transition-transform duration-500 ease-out [transform-origin:50%_100%] will-change-transform lg:[transform:rotateX(4deg)] lg:hover:[transform:rotateX(0deg)_translateY(-8px)]"
-            >
-              {/* Column headers (md and up) */}
-              <div className="hidden md:grid md:grid-cols-[1.1fr_1fr_1fr]">
-                <div aria-hidden />
-                <div className="flex items-center gap-2 border-l border-t-2 border-sage/10 border-t-gold/45 bg-gold/[0.07] px-6 py-4">
-                  <Check aria-hidden className="h-4 w-4 text-gold" strokeWidth={2.4} />
-                  <span className="text-sm font-semibold text-sage">MeloraHealth</span>
+          <div
+            className="mt-12 overflow-hidden rounded-2xl border border-sage/12 bg-white/45 shadow-[0_22px_55px_rgba(38,66,54,0.07)] backdrop-blur-xl"
+            data-reveal
+          >
+            {/* Column headers (md and up) */}
+            <div className="hidden md:grid md:grid-cols-[1.1fr_1fr_1fr]">
+              <div aria-hidden />
+              <div className="flex items-center gap-2 border-l border-t-2 border-sage/10 border-t-gold/45 bg-gold/[0.07] px-6 py-4">
+                <Check aria-hidden className="h-4 w-4 text-gold" strokeWidth={2.4} />
+                <span className="text-sm font-semibold text-sage">MeloraHealth</span>
+              </div>
+              <div className="flex items-center gap-2 border-l border-sage/10 px-6 py-4">
+                <Minus aria-hidden className="h-4 w-4 text-rose" strokeWidth={2.4} />
+                <span className="text-sm font-semibold text-sage-soft">
+                  Typical in-person path
+                </span>
+              </div>
+            </div>
+
+            {careComparison.map((row) => (
+              <div
+                className="grid grid-cols-1 border-t border-sage/10 md:grid-cols-[1.1fr_1fr_1fr]"
+                key={row.need}
+              >
+                <div className="px-6 py-5">
+                  <p className="font-serif text-xl leading-snug tracking-normal text-sage">
+                    {row.need}
+                  </p>
                 </div>
-                <div className="flex items-center gap-2 border-l border-sage/10 px-6 py-4">
-                  <Minus aria-hidden className="h-4 w-4 text-rose" strokeWidth={2.4} />
-                  <span className="text-sm font-semibold text-sage-soft">
-                    Typical in-person path
-                  </span>
+                <div className="border-t border-sage/10 bg-gold/[0.06] px-6 py-5 md:border-l md:border-t-0">
+                  <p className="mb-1.5 flex items-center gap-2 text-xs font-semibold text-gold md:hidden">
+                    <Check aria-hidden className="h-3.5 w-3.5" strokeWidth={2.6} />
+                    MeloraHealth
+                  </p>
+                  <p className="text-sm leading-6 text-ink/80">{row.melora}</p>
+                </div>
+                <div className="border-t border-sage/10 px-6 py-5 md:border-l md:border-t-0">
+                  <p className="mb-1.5 flex items-center gap-2 text-xs font-semibold text-rose md:hidden">
+                    <Minus aria-hidden className="h-3.5 w-3.5" strokeWidth={2.6} />
+                    Typical in-person
+                  </p>
+                  <p className="text-sm leading-6 text-sage-soft">{row.offline}</p>
                 </div>
               </div>
-
-              {careComparison.map((row) => (
-                <div
-                  className="grid grid-cols-1 border-t border-sage/10 md:grid-cols-[1.1fr_1fr_1fr]"
-                  key={row.need}
-                >
-                  <div className="px-6 py-5">
-                    <p className="font-serif text-xl leading-snug tracking-normal text-sage">
-                      {row.need}
-                    </p>
-                  </div>
-                  <div className="border-t border-sage/10 bg-gold/[0.06] px-6 py-5 md:border-l md:border-t-0">
-                    <p className="mb-1.5 flex items-center gap-2 text-xs font-semibold text-gold md:hidden">
-                      <Check aria-hidden className="h-3.5 w-3.5" strokeWidth={2.6} />
-                      MeloraHealth
-                    </p>
-                    <p className="text-sm leading-6 text-ink/80">{row.melora}</p>
-                  </div>
-                  <div className="border-t border-sage/10 px-6 py-5 md:border-l md:border-t-0">
-                    <p className="mb-1.5 flex items-center gap-2 text-xs font-semibold text-rose md:hidden">
-                      <Minus aria-hidden className="h-3.5 w-3.5" strokeWidth={2.6} />
-                      Typical in-person
-                    </p>
-                    <p className="text-sm leading-6 text-sage-soft">{row.offline}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+            ))}
           </div>
 
           <div

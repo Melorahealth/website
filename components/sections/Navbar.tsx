@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import { ArrowUpRight, CircleArrowRight, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { ButtonLink } from "@/components/ui/ButtonLink";
-import { Container } from "@/components/ui/Container";
 import { MELORA_APP_URL } from "@/lib/app-links";
 
 const navItems = [
@@ -41,10 +40,10 @@ export function Navbar() {
       } ${
         isTransparent
           ? "border-b border-transparent bg-transparent"
-          : "border-b border-sage/10 bg-[#fbf8f3]/80 shadow-[0_8px_30px_rgba(38,66,54,0.07)] backdrop-blur-xl supports-[backdrop-filter]:bg-[#fbf8f3]/70"
+          : "border-b border-sage/10 bg-white/85 shadow-[0_8px_30px_rgba(38,66,54,0.07)] backdrop-blur-xl supports-[backdrop-filter]:bg-white/75"
       }`}
     >
-      <Container>
+      <div className="mx-auto w-full px-5 sm:px-8 lg:px-12 2xl:px-14">
         <div
           className={`flex items-center justify-between gap-4 transition-all duration-300 lg:gap-6 ${
             isTransparent ? "min-h-[5rem]" : "min-h-[4.25rem]"
@@ -59,15 +58,21 @@ export function Navbar() {
             <span className="relative block h-10 w-10 shrink-0 overflow-hidden transition-transform duration-300 group-hover:scale-105">
               <Image
                 alt=""
-                className="object-contain"
+                className={`object-contain transition-[filter] duration-300 ${
+                  isTransparent ? "[filter:brightness(0)_invert(1)]" : ""
+                }`}
                 fill
                 sizes="40px"
                 src="/assets/logo/melora-logo-icon.png"
               />
             </span>
             <span className="min-w-0">
-              <span className="block truncate font-serif text-[1.55rem] leading-none tracking-normal text-sage sm:text-[1.7rem]">
-                melora<span className="text-rose">health</span>
+              <span
+                className={`block truncate font-serif text-[1.55rem] leading-none tracking-normal sm:text-[1.7rem] ${
+                  isTransparent ? "text-white" : "text-sage"
+                }`}
+              >
+                melora<span className={isTransparent ? "text-white" : "text-rose"}>health</span>
               </span>
               <span className="mt-1 hidden text-[0.54rem] font-semibold uppercase leading-none tracking-[0.28em] text-gold">
                 Understand. Heal. Become.
@@ -76,26 +81,31 @@ export function Navbar() {
           </Link>
           <nav
             aria-label="Main navigation"
-            className={`hidden items-center gap-0.5 rounded-full border border-sage/10 p-1 backdrop-blur-xl transition-all duration-300 lg:flex ${
-              isTransparent
-                ? "bg-white/55 shadow-[0_10px_30px_rgba(38,66,54,0.05)]"
-                : "bg-white/70 shadow-[0_10px_30px_rgba(38,66,54,0.06)]"
-            }`}
+            className="hidden items-center gap-1 transition-all duration-300 lg:flex"
           >
-            {navItems.map((item) => (
-              <Link
-                aria-current={pathname === item.href ? "page" : undefined}
-                className={`rounded-full px-3.5 py-2 text-sm font-medium transition-all duration-200 ${
-                  pathname === item.href
-                    ? "bg-sage text-white shadow-[0_6px_16px_rgba(38,66,54,0.18)]"
-                    : "text-ink/70 hover:bg-cream hover:text-sage"
-                }`}
-                href={item.href}
-                key={item.href}
-              >
-                {item.label}
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <Link
+                  aria-current={isActive ? "page" : undefined}
+                  className={`relative px-3 py-2 text-sm font-medium transition-colors duration-200 after:pointer-events-none after:absolute after:inset-x-3 after:-bottom-0.5 after:h-[2px] after:rounded-full after:bg-gold after:origin-left after:transition-transform after:duration-300 ${
+                    isActive ? "after:scale-x-100" : "after:scale-x-0 hover:after:scale-x-100"
+                  } ${
+                    isActive
+                      ? isTransparent
+                        ? "text-white"
+                        : "text-sage"
+                      : isTransparent
+                        ? "text-white/75 hover:text-white"
+                        : "text-ink/65 hover:text-sage"
+                  }`}
+                  href={item.href}
+                  key={item.href}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </nav>
           <div className="hidden sm:block">
             <ButtonLink href={MELORA_APP_URL} icon={CircleArrowRight}>
@@ -106,10 +116,10 @@ export function Navbar() {
             aria-controls="mobile-menu"
             aria-expanded={isOpen}
             aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
-            className={`inline-flex h-11 w-11 items-center justify-center rounded-full border shadow-[0_16px_44px_rgba(38,66,54,0.08),inset_0_1px_0_rgba(255,255,255,0.54)] backdrop-blur-2xl transition hover:bg-white/50 focus-visible:outline-none focus-visible:ring-4 lg:hidden ${
+            className={`inline-flex h-11 w-11 items-center justify-center rounded-full border shadow-[0_16px_44px_rgba(38,66,54,0.08)] backdrop-blur-2xl transition focus-visible:outline-none focus-visible:ring-4 lg:hidden ${
               isTransparent
-                ? "border-white/60 bg-white/[0.45] text-sage focus-visible:ring-sage/15"
-                : "border-sage/10 bg-white/75 text-sage focus-visible:ring-sage/15"
+                ? "border-white/40 bg-white/10 text-white hover:bg-white/20 focus-visible:ring-white/20"
+                : "border-sage/10 bg-white/80 text-sage hover:bg-white focus-visible:ring-sage/15"
             }`}
             onClick={() => setIsOpen((value) => !value)}
             type="button"
@@ -167,7 +177,7 @@ export function Navbar() {
             </div>
           </nav>
         </div>
-      </Container>
+      </div>
     </header>
   );
 }

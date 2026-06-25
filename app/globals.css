@@ -205,6 +205,12 @@ textarea {
   animation: highlight-sweep 1.4s 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 
+/* Warm brown underline variant — for use on dark/cool backgrounds */
+.mark-highlight.mark-cool::after {
+  height: 0.26em;
+  background: linear-gradient(90deg, rgba(139, 94, 60, 0.5), #8b5e3c 45%, rgba(139, 94, 60, 0.8));
+}
+
 .hero-words {
   position: relative;
   display: inline-grid;
