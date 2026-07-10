@@ -62,6 +62,12 @@ export const siteRoutes = [
     priority: 0.8
   },
   {
+    path: "/for-government",
+    label: "Mental Health Support for Government and Parastatals",
+    description: "Licensed, private, and culturally aware mental health care for the staff and communities of Nigerian ministries, parastatals, and public institutions, built with privacy at the centre.",
+    priority: 0.8
+  },
+  {
     path: "/about",
     label: "About MeloraHealth",
     description: "Learn how MeloraHealth builds culturally aware mental health access across people and institutions.",

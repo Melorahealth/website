@@ -12,6 +12,7 @@ const navItems = [
   { href: "/for-you", label: "For You" },
   { href: "/for-professionals", label: "Professionals" },
   { href: "/for-partners", label: "Partners" },
+  { href: "/for-government", label: "Government" },
   { href: "/gift-care", label: "Gift Care" },
   { href: "/services", label: "Services" },
   { href: "/about", label: "About" }

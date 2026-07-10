@@ -239,18 +239,15 @@ export default function Home() {
                   "/assets/avatars/avatar-2.jpg",
                   "/assets/avatars/avatar-3.jpg"
                 ].map((src) => (
-                  <span
-                    className="relative inline-block h-7 w-7 overflow-hidden rounded-full ring-2 ring-white/80"
+                  <Image
+                    alt=""
+                    className="inline-block h-7 w-7 rounded-full object-cover ring-2 ring-white/80"
+                    height={28}
                     key={src}
-                  >
-                    <Image
-                      alt=""
-                      className="object-cover"
-                      fill
-                      sizes="28px"
-                      src={src}
-                    />
-                  </span>
+                    sizes="28px"
+                    src={src}
+                    width={28}
+                  />
                 ))}
               </div>
               <p className="flex items-center gap-1 text-xs font-medium text-white">

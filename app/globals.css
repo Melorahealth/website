@@ -511,6 +511,144 @@ textarea {
   z-index: 1;
 }
 
+/* Faded diagonal line texture for cards */
+.card-stripes::after,
+.card-stripes-on-dark::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(38, 66, 54, 0.03),
+    rgba(38, 66, 54, 0.03) 1px,
+    transparent 1px,
+    transparent 12px
+  );
+  -webkit-mask-image: radial-gradient(135% 135% at 100% 0%, #000, transparent 68%);
+  mask-image: radial-gradient(135% 135% at 100% 0%, #000, transparent 68%);
+}
+
+.card-stripes-on-dark::after {
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.055),
+    rgba(255, 255, 255, 0.055) 1px,
+    transparent 1px,
+    transparent 12px
+  );
+}
+
+.card-stripes > *,
+.card-stripes-on-dark > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Modern motion helpers */
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes float-soft-alt {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(11px);
+  }
+}
+
+@keyframes travel-x {
+  0% {
+    left: 6%;
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    left: 94%;
+    opacity: 0;
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scale(1.16);
+  }
+}
+
+.animate-float-soft {
+  animation: float-soft 7s ease-in-out infinite;
+}
+
+.animate-float-soft-alt {
+  animation: float-soft-alt 8.5s ease-in-out infinite;
+}
+
+.animate-travel-x {
+  animation: travel-x 5s ease-in-out infinite;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-soft,
+  .animate-float-soft-alt,
+  .animate-travel-x,
+  .animate-glow-pulse {
+    animation: none;
+  }
+}
+
+/* Soft edge fade so an image melts into the surrounding background */
+.image-fade-edges {
+  -webkit-mask-image: radial-gradient(120% 108% at 50% 50%, #000 52%, transparent 96%);
+  mask-image: radial-gradient(120% 108% at 50% 50%, #000 52%, transparent 96%);
+}
+
+/* Faded diagonal line texture for section backgrounds */
+.bg-stripes {
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(38, 66, 54, 0.028),
+    rgba(38, 66, 54, 0.028) 1px,
+    transparent 1px,
+    transparent 26px
+  );
+}
+
+.bg-stripes-on-dark {
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.05) 1px,
+    transparent 1px,
+    transparent 26px
+  );
+}
+
 .care-map {
   border-radius: 26px;
   background:

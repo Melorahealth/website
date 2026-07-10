@@ -9,6 +9,7 @@ const footerLinks = [
   { href: "/services", label: "Services" },
   { href: "/for-professionals", label: "Join as Professional" },
   { href: "/for-partners", label: "Partner Inquiry" },
+  { href: "/for-government", label: "For Government" },
   { href: MELORA_GIFT_URL, label: "Gift Session" },
   { href: "/resources", label: "Resources" },
   { href: "/contact", label: "Contact" },

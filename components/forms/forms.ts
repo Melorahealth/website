@@ -67,6 +67,40 @@ export const partnerFields = [
   }
 ];
 
+export const governmentFields = [
+  { label: "Agency or ministry", name: "agency", placeholder: "Ministry, agency, or institution" },
+  { label: "Contact person", name: "contact_person", placeholder: "Full name and role" },
+  { label: "Official email", name: "email", type: "email" as const, placeholder: "name@gov.example" },
+  {
+    label: "Level of government",
+    name: "government_level",
+    options: [
+      "National / federal",
+      "State / regional",
+      "Local / municipal",
+      "Public university",
+      "Public health agency"
+    ]
+  },
+  {
+    label: "Program focus",
+    name: "program_focus",
+    options: [
+      "Maternal & postpartum health",
+      "Workforce / public servants",
+      "Community / student access",
+      "Population mental health program",
+      "Integration / API"
+    ]
+  },
+  {
+    label: "Message",
+    name: "message",
+    textarea: true,
+    placeholder: "Share the population you want to reach and the outcomes you're accountable for."
+  }
+];
+
 export const contactFields = [
   { label: "Name", name: "name", placeholder: "Your full name" },
   { label: "Email", name: "email", type: "email" as const, placeholder: "you@example.com" },
