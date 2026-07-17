@@ -4,7 +4,7 @@ import { ImagePanel } from "@/components/sections/ImagePanel";
 import { LoopLine } from "@/components/ui/LoopLine";
 
 type PageHeroProps = {
-  eyebrow: string;
+  eyebrow?: string;
   title: string;
   body: string;
   primaryHref?: string;
@@ -16,7 +16,6 @@ type PageHeroProps = {
 };
 
 export function PageHero({
-  eyebrow,
   title,
   body,
   primaryHref,
@@ -31,7 +30,6 @@ export function PageHero({
       <LoopLine className="-bottom-10 right-0" />
       <Container className="grid gap-12 py-16 sm:py-20 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:py-24">
         <div className="reveal">
-          <p className="eyebrow mb-6">{eyebrow}</p>
           <h1 className="font-serif text-5xl leading-[1] tracking-normal text-sage sm:text-6xl lg:text-7xl">
             {title}
           </h1>

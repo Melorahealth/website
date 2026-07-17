@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { Building2, Landmark, Network, RadioTower, ShieldCheck, Users } from "lucide-react";
-import { InfoCard } from "@/components/cards/InfoCard";
+import { FeatureCard } from "@/components/cards/FeatureCard";
 import { LeadForm } from "@/components/forms/LeadForm";
 import { partnerFields } from "@/components/forms/forms";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { CTASection } from "@/components/sections/CTASection";
-import { PageHero } from "@/components/sections/PageHero";
-import { Container } from "@/components/ui/Container";
+import { DecorSection } from "@/components/sections/DecorSection";
+import { SplitHero } from "@/components/sections/SplitHero";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { MELORA_GIFT_URL } from "@/lib/app-links";
 import { createPageMetadata } from "@/lib/seo";
@@ -61,59 +61,55 @@ export default function PartnersPage() {
         data={createBreadcrumbJsonLd("/for-partners", "Partner Inquiry")}
         id="partners-breadcrumb-jsonld"
       />
-      <PageHero
+      <SplitHero
         body="MeloraHealth helps organizations fund, route, and embed mental health support for employees, members, customers, and communities."
-        eyebrow="For partners"
         imageAlt="African professionals in a calm partnership meeting"
         imageSrc="/assets/images/partners-meeting.jpg"
         primaryHref="#partner-inquiry"
         primaryLabel="Send Partner Inquiry"
         title="Care access for the people you serve."
-        visualBody="A B2B platform for care access, sponsored sessions, and API-ready routing."
-        visualTitle="Access, sponsorship, and routing in one system."
+        variant={3}
       />
-      <section className="section-space relative overflow-hidden">
-        <Container>
-          <SectionHeader
-            body="Partner models can support direct access, sponsored care, workforce programs, member benefits, or embedded product flows."
-            eyebrow="Partner paths"
-            title="Built for organizations with responsibility."
-          />
-          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {partners.map((item) => (
-              <InfoCard key={item.title} {...item} />
-            ))}
-          </div>
-          <div className="mt-14 grid gap-5 rounded-[28px] border border-sage/10 bg-white/70 p-5 shadow-soft backdrop-blur lg:grid-cols-4">
-            {[
-              ["01", "Sponsor sessions"],
-              ["02", "Route care requests"],
-              ["03", "Match professionals"],
-              ["04", "Report without exposure"]
-            ].map(([number, label]) => (
-              <div className="rounded-2xl bg-cream/[0.55] p-5" key={label}>
-                <p className="font-serif text-3xl leading-none text-sage">{number}</p>
-                <p className="mt-4 text-sm font-semibold text-ink/[0.68]">{label}</p>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
-      <section className="section-space bg-cream/40" id="partner-inquiry">
-        <Container className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-          <SectionHeader
-            body="Share the population, product, or organization you want to support."
-            eyebrow="Partner inquiry"
-            title="Build a care access model."
-          />
-          <LeadForm
-            fields={partnerFields}
-            intro="A first step for HMOs, employers, banks, telcos, institutions, and sponsors."
-            submitLabel="Send inquiry"
-            title="Partner Inquiry"
-          />
-        </Container>
-      </section>
+      <DecorSection variant="light">
+        <SectionHeader
+          body="Partner models can support direct access, sponsored care, workforce programs, member benefits, or embedded product flows."
+          title="Built for organizations with responsibility."
+        />
+        <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {partners.map((item) => (
+            <FeatureCard key={item.title} {...item} />
+          ))}
+        </div>
+        <div className="mt-14 grid gap-5 rounded-[28px] border border-sage/10 bg-white/70 p-5 shadow-soft backdrop-blur lg:grid-cols-4">
+          {[
+            ["01", "Sponsor sessions"],
+            ["02", "Route care requests"],
+            ["03", "Match professionals"],
+            ["04", "Report without exposure"]
+          ].map(([number, label]) => (
+            <div className="rounded-2xl bg-cream/[0.55] p-5" key={label}>
+              <p className="font-serif text-3xl leading-none text-sage">{number}</p>
+              <p className="mt-4 text-sm font-semibold text-ink/[0.68]">{label}</p>
+            </div>
+          ))}
+        </div>
+      </DecorSection>
+      <DecorSection
+        containerClassName="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start"
+        id="partner-inquiry"
+        variant="cream"
+      >
+        <SectionHeader
+          body="Share the population, product, or organization you want to support."
+          title="Build a care access model."
+        />
+        <LeadForm
+          fields={partnerFields}
+          intro="A first step for HMOs, employers, banks, telcos, institutions, and sponsors."
+          submitLabel="Send inquiry"
+          title="Partner Inquiry"
+        />
+      </DecorSection>
       <CTASection
         body="Gift care credits can sit inside partner programs, diaspora sponsorships, or community support models."
         primaryHref={MELORA_GIFT_URL}

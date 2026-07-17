@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { BadgeCheck, CalendarDays, Globe2, LockKeyhole, Users } from "lucide-react";
-import { InfoCard } from "@/components/cards/InfoCard";
+import { FeatureCard } from "@/components/cards/FeatureCard";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { PageHero } from "@/components/sections/PageHero";
+import { DecorSection } from "@/components/sections/DecorSection";
+import { SplitHero } from "@/components/sections/SplitHero";
 import { ButtonLink } from "@/components/ui/ButtonLink";
-import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { createPageMetadata } from "@/lib/seo";
 import { createBreadcrumbJsonLd } from "@/lib/structured-data";
@@ -53,63 +53,59 @@ export default function ProfessionalsPage() {
         data={createBreadcrumbJsonLd("/for-professionals", "Join as a Professional")}
         id="professionals-breadcrumb-jsonld"
       />
-      <PageHero
+      <SplitHero
         body="MeloraHealth gives qualified therapists, psychologists, and psychiatrists a trusted place to meet structured care demand."
-        eyebrow="For professionals"
         imageAlt="African therapist and client in respectful conversation"
         imageSrc="/assets/images/professional-care.jpg"
         primaryHref="#join"
         primaryLabel="Join the Network"
         title="A marketplace for serious care work."
-        visualBody="Built for professionals who want reach without losing standards."
-        visualTitle="Practice with structure."
+        variant={4}
       />
-      <section className="section-space">
-        <Container>
-          <SectionHeader
-            body="The network is designed for clinical quality, clear routing, and sustainable access across borders."
-            eyebrow="Why join"
-            title="Built around professional standards."
-          />
-          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {benefits.map((item) => (
-              <InfoCard key={item.title} {...item} />
+      <DecorSection variant="light">
+        <SectionHeader
+          body="The network is designed for clinical quality, clear routing, and sustainable access across borders."
+          title="Built around professional standards."
+        />
+        <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {benefits.map((item) => (
+            <FeatureCard key={item.title} {...item} />
+          ))}
+        </div>
+      </DecorSection>
+      <DecorSection
+        containerClassName="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center"
+        id="join"
+        variant="cream"
+      >
+        <SectionHeader
+          body="Professional onboarding is handled through a review conversation so credentials, specialty, location, and availability can be understood with care."
+          title="Join as a professional."
+        />
+        <div className="rounded-2xl border border-sage/10 bg-white/55 p-6 shadow-[0_22px_70px_rgba(38,66,54,0.07)] backdrop-blur-xl sm:p-8">
+          <div className="grid gap-4 sm:grid-cols-3">
+            {["Share your practice", "Complete review", "Receive routed clients"].map((step, index) => (
+              <div className="border-l border-gold/50 pl-4" key={step}>
+                <p className="text-xs font-semibold uppercase tracking-normal text-gold">
+                  Step {index + 1}
+                </p>
+                <p className="mt-2 font-serif text-2xl leading-tight tracking-normal text-sage">
+                  {step}
+                </p>
+              </div>
             ))}
           </div>
-        </Container>
-      </section>
-      <section className="section-space bg-cream/40" id="join">
-        <Container className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
-          <SectionHeader
-            body="Professional onboarding is handled through a review conversation so credentials, specialty, location, and availability can be understood with care."
-            eyebrow="Professional sign-up"
-            title="Join as a professional."
-          />
-          <div className="rounded-2xl border border-sage/10 bg-white/45 p-6 shadow-[0_22px_70px_rgba(38,66,54,0.07)] sm:p-8">
-            <div className="grid gap-4 sm:grid-cols-3">
-              {["Share your practice", "Complete review", "Receive routed clients"].map((step, index) => (
-                <div className="border-l border-gold/50 pl-4" key={step}>
-                  <p className="text-xs font-semibold uppercase tracking-normal text-gold">
-                    Step {index + 1}
-                  </p>
-                  <p className="mt-2 font-serif text-2xl leading-tight tracking-normal text-sage">
-                    {step}
-                  </p>
-                </div>
-              ))}
-            </div>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/contact">Contact Onboarding</ButtonLink>
-              <ButtonLink href="/services" variant="secondary">
-                View Care Areas
-              </ButtonLink>
-              <ButtonLink href="/for-government" variant="secondary">
-                For Government
-              </ButtonLink>
-            </div>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <ButtonLink href="/contact">Contact Onboarding</ButtonLink>
+            <ButtonLink href="/services" variant="secondary">
+              View Care Areas
+            </ButtonLink>
+            <ButtonLink href="/for-government" variant="secondary">
+              For Government
+            </ButtonLink>
           </div>
-        </Container>
-      </section>
+        </div>
+      </DecorSection>
     </main>
   );
 }

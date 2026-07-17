@@ -6,14 +6,12 @@ type SectionHeaderProps = {
 };
 
 export function SectionHeader({
-  eyebrow,
   title,
   body,
   align = "left"
 }: SectionHeaderProps) {
   return (
     <div className={align === "center" ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
-      {eyebrow ? <p className="eyebrow mb-4">{eyebrow}</p> : null}
       <h2 className="font-serif text-4xl leading-tight tracking-normal text-sage sm:text-5xl">
         {title}
       </h2>

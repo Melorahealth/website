@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import {
   Building2,
   CalendarCheck,
@@ -19,7 +18,7 @@ import { LeadForm } from "@/components/forms/LeadForm";
 import { governmentFields } from "@/components/forms/forms";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { CTASection } from "@/components/sections/CTASection";
-import { ButtonLink } from "@/components/ui/ButtonLink";
+import { SplitHero } from "@/components/sections/SplitHero";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { createPageMetadata } from "@/lib/seo";
@@ -122,75 +121,26 @@ export default function GovernmentPage() {
       />
 
       {/* 1. Intent, in plain language */}
-      <section className="relative overflow-hidden bg-sage text-white bg-stripes-on-dark">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -left-24 top-0 h-80 w-80 rounded-full bg-gold/15 blur-[120px]"
-        />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -right-16 bottom-0 h-72 w-72 rounded-full bg-rose/20 blur-[120px]"
-        />
-        <Container className="grid gap-10 py-16 sm:py-20 lg:grid-cols-[0.94fr_1.06fr] lg:items-center lg:gap-14 lg:py-24">
-          <div className="reveal relative">
-            <h1 className="font-serif text-5xl leading-[1.03] tracking-normal sm:text-6xl lg:text-[4.5rem]">
-              Mental health care your people can actually{" "}
-              <span className="text-gold">trust</span>.
-            </h1>
-            <p className="mt-6 max-w-xl text-lg leading-8 text-white/75">
-              A simple, private way for Nigerian ministries, parastatals, and public institutions to give their staff and communities real mental health support.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <ButtonLink className="!bg-white !text-sage hover:!bg-cream" href="#talk-to-us">
-                Talk to our team
-              </ButtonLink>
-              <ButtonLink
-                className="!border-white/25 !bg-transparent !text-white hover:!border-white/50 hover:!bg-white/10"
-                href="#how-it-works"
-                variant="secondary"
-              >
-                See how it works
-              </ButtonLink>
-            </div>
-            <ul className="mt-9 flex flex-wrap gap-x-6 gap-y-3 text-sm text-white/70">
-              {[
-                "Licensed providers",
-                "Confidential by default",
-                "Built around the Nigeria Data Protection Act"
-              ].map((point) => (
-                <li className="flex items-center gap-2" key={point}>
-                  <span className="flex h-5 w-5 items-center justify-center rounded-full bg-gold/20 text-gold">
-                    <Check aria-hidden className="h-3 w-3" strokeWidth={2.4} />
-                  </span>
-                  {point}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="reveal reveal-delay relative">
-            <div
-              aria-hidden
-              className="pointer-events-none absolute -bottom-10 -left-10 h-44 w-44 rounded-full bg-gold/20 blur-[90px]"
-            />
-            <div
-              aria-hidden
-              className="pointer-events-none absolute -right-8 -top-8 h-44 w-44 rounded-full bg-rose/15 blur-[90px]"
-            />
-            <Image
-              alt="MeloraHealth presenting digital health solutions to government officials in a boardroom"
-              className="image-fade-edges relative h-full w-full rounded-[28px] object-cover"
-              height={1024}
-              priority
-              sizes="(min-width: 1024px) 52vw, 100vw"
-              src="/assets/images/government-boardroom.jpg"
-              width={1535}
-            />
-          </div>
-        </Container>
-      </section>
+      <SplitHero
+        body="A simple, private way for Nigerian ministries, parastatals, and public institutions to give their staff and communities real mental health support."
+        bullets={[
+          "Licensed providers",
+          "Confidential by default",
+          "Built around the Nigeria Data Protection Act"
+        ]}
+        highlight="trust."
+        imageAlt="MeloraHealth presenting digital health solutions to government officials in a boardroom"
+        imageSrc="/assets/images/government-boardroom.jpg"
+        primaryHref="#talk-to-us"
+        primaryLabel="Talk to our team"
+        secondaryHref="#how-it-works"
+        secondaryLabel="See how it works"
+        title="Mental health care your people can actually"
+        variant={8}
+      />
 
       {/* 2. What it is */}
-      <section className="section-space bg-stripes relative overflow-hidden">
+      <section className="section-space relative overflow-hidden">
         {/* Soft floating glows */}
         <div
           aria-hidden
@@ -233,7 +183,6 @@ export default function GovernmentPage() {
         <Container className="relative z-10">
           {/* Header */}
           <div className="reveal mx-auto max-w-2xl text-center">
-            <p className="eyebrow mb-4">Start here</p>
             <h2 className="font-serif text-4xl leading-tight tracking-normal text-sage sm:text-5xl">
               What MeloraHealth actually is.
             </h2>
@@ -283,7 +232,7 @@ export default function GovernmentPage() {
       </section>
 
       {/* 3. Who it is for */}
-      <section className="section-space bg-cream/40 bg-stripes">
+      <section className="section-space bg-cream/40">
         <Container>
           <SectionHeader
             body="If you are responsible for people, whether that is a workforce, a student body, or a whole community, this is built with you in mind."
@@ -340,7 +289,7 @@ export default function GovernmentPage() {
       </section>
 
       {/* 5. Security and privacy */}
-      <section className="section-space bg-sage text-white bg-stripes-on-dark relative overflow-hidden">
+      <section className="section-space bg-sage text-white relative overflow-hidden">
         {/* Floating glows */}
         <div
           aria-hidden
@@ -406,7 +355,7 @@ export default function GovernmentPage() {
           <div className="reveal reveal-delay grid gap-4 sm:grid-cols-2">
             {protections.map((item) => (
               <div
-                className="card-stripes-on-dark group relative flex flex-col gap-4 overflow-hidden rounded-2xl border border-white/15 bg-white/[0.06] p-6 backdrop-blur transition duration-500 hover:-translate-y-1.5 hover:border-gold/40 hover:bg-white/[0.09]"
+                className="group relative flex flex-col gap-4 overflow-hidden rounded-2xl border border-white/15 bg-white/[0.06] p-6 backdrop-blur transition duration-500 hover:-translate-y-1.5 hover:border-gold/40 hover:bg-white/[0.09]"
                 key={item.title}
               >
                 <div
@@ -427,7 +376,7 @@ export default function GovernmentPage() {
       </section>
 
       {/* 6. How it works */}
-      <section className="section-space bg-stripes" id="how-it-works">
+      <section className="section-space" id="how-it-works">
         <Container>
           <SectionHeader
             body="From your side it is simple. You decide who you want to reach and how much access to fund. We take it from there."
@@ -442,7 +391,7 @@ export default function GovernmentPage() {
               ["04", "Care continues with follow up", "Support does not stop after one call. People can keep going for as long as they need."]
             ].map(([number, head, text]) => (
               <div
-                className="card-stripes reveal overflow-hidden rounded-2xl border border-sage/10 bg-gradient-to-br from-white/70 to-cream/25 p-6 shadow-soft backdrop-blur"
+                className="reveal overflow-hidden rounded-2xl border border-sage/10 bg-gradient-to-br from-white/70 to-cream/25 p-6 shadow-soft backdrop-blur"
                 key={head}
               >
                 <p className="font-serif text-3xl leading-none text-sage">{number}</p>
@@ -457,7 +406,7 @@ export default function GovernmentPage() {
       </section>
 
       {/* 9. Talk to us */}
-      <section className="section-space bg-stripes" id="talk-to-us">
+      <section className="section-space" id="talk-to-us">
         <Container className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
           <SectionHeader
             body="There is no pressure and no hard pitch here. Tell us who you want to support and what you are trying to solve, and we will walk you through what a programme could look like for your institution."

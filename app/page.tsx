@@ -337,7 +337,6 @@ export default function Home() {
         <Container>
           <div className="section-grid">
             <div className="lg:col-span-4" data-reveal>
-              <p className="eyebrow mb-5">How it works</p>
               <h2 className="font-serif text-4xl leading-tight tracking-normal sm:text-5xl">
                 From struggling to supported, in three steps.
               </h2>

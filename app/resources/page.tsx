@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BookOpen, Clock, FileText, HeartPulse, Layers3, UserRound } from "lucide-react";
-import { InfoCard } from "@/components/cards/InfoCard";
+import { FeatureCard } from "@/components/cards/FeatureCard";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { CTASection } from "@/components/sections/CTASection";
-import { PageHero } from "@/components/sections/PageHero";
-import { Container } from "@/components/ui/Container";
+import { DecorSection } from "@/components/sections/DecorSection";
+import { SplitHero } from "@/components/sections/SplitHero";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { MELORA_GIFT_URL } from "@/lib/app-links";
 import { resourceArticles } from "@/lib/resource-articles";
@@ -67,48 +67,53 @@ export default function ResourcesPage() {
         data={createBreadcrumbJsonLd("/resources", "Mental Health Resources")}
         id="resources-breadcrumb-jsonld"
       />
-      <PageHero
+      <SplitHero
         body="Short, grounded insights for people, families, professionals, and organizations thinking about mental health care."
+        bullets={["Grounded", "Plain language", "Never pain as content"]}
         eyebrow="Resources"
         imageAlt="African professional in quiet reflection near a city window"
         imageSrc="/assets/images/hero-reflection.jpg"
         title="Clear language for complex feelings."
-        visualBody="Resources should make care easier to approach, not turn pain into content."
-        visualTitle="Read with steadiness."
+        variant={6}
       />
-      <section className="section-space">
-        <Container>
-          <SectionHeader
-            body="Grounded guides for the questions people ask before they are ready to begin care."
-            eyebrow="Insights"
-            title="Mental health without noise."
-          />
-          <div className="mt-10 grid gap-4">
-            {resourceArticles.map((article) => (
-              <Link
-                className="group block rounded-2xl border border-sage/10 bg-white/45 p-6 shadow-[0_22px_70px_rgba(38,66,54,0.07)] transition hover:border-gold/40 hover:bg-white"
-                href={`/resources/${article.slug}`}
-                key={article.slug}
-              >
-                <p className="text-xs font-semibold uppercase tracking-normal text-gold">
-                  {article.category}
-                </p>
-                <h2 className="mt-3 font-serif text-3xl leading-tight tracking-normal text-sage">
-                  {article.title}
-                </h2>
-                <p className="mt-4 max-w-3xl text-sm leading-6 text-ink/60">
-                  {article.summary}
-                </p>
-              </Link>
-            ))}
-          </div>
-          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {resources.map((item) => (
-              <InfoCard key={item.title} {...item} />
-            ))}
-          </div>
-        </Container>
-      </section>
+      <DecorSection variant="light">
+        <SectionHeader
+          body="Grounded guides for the questions people ask before they are ready to begin care."
+          eyebrow="Insights"
+          title="Mental health without noise."
+        />
+        <div className="mt-10 grid gap-4">
+          {resourceArticles.map((article) => (
+            <Link
+              className="group block rounded-2xl border border-sage/10 bg-white/55 p-6 shadow-[0_22px_70px_rgba(38,66,54,0.07)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:border-gold/40 hover:bg-white"
+              href={`/resources/${article.slug}`}
+              key={article.slug}
+            >
+              <p className="text-xs font-semibold uppercase tracking-normal text-gold">
+                {article.category}
+              </p>
+              <h2 className="mt-3 font-serif text-3xl leading-tight tracking-normal text-sage">
+                {article.title}
+              </h2>
+              <p className="mt-4 max-w-3xl text-sm leading-6 text-ink/60">
+                {article.summary}
+              </p>
+            </Link>
+          ))}
+        </div>
+      </DecorSection>
+      <DecorSection variant="cream">
+        <SectionHeader
+          body="More grounded reading, grouped by the moments people tend to search for."
+          eyebrow="More guides"
+          title="Read by what you're facing."
+        />
+        <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {resources.map((item) => (
+            <FeatureCard key={item.title} {...item} />
+          ))}
+        </div>
+      </DecorSection>
       <CTASection
         body="If what you are reading feels close to your life, you can move from insight into support."
         primaryHref="/contact"

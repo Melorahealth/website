@@ -25,7 +25,6 @@ export function CTASection({
         <div className="relative overflow-hidden rounded-[28px] bg-sage px-6 py-16 text-white sm:px-10 lg:px-16">
           <LoopLine className="bottom-0 right-0 opacity-30" />
           <div className="relative max-w-3xl">
-            <p className="eyebrow mb-5">Next step</p>
             <h2 className="font-serif text-4xl leading-tight tracking-normal sm:text-5xl">
               {title}
             </h2>

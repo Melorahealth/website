@@ -9,7 +9,7 @@ type InfoCardProps = {
 
 export function InfoCard({ title, body, icon: Icon, meta }: InfoCardProps) {
   return (
-    <article className="card-stripes pattern-card reveal group relative overflow-hidden rounded-[22px] border border-sage/[0.08] bg-gradient-to-br from-white/75 to-cream/25 p-7 shadow-[0_18px_48px_rgba(38,66,54,0.06)] backdrop-blur-2xl transition duration-500 hover:-translate-y-1.5 hover:border-gold/25 hover:shadow-soft">
+    <article className="pattern-card reveal group relative overflow-hidden rounded-[22px] border border-sage/[0.08] bg-gradient-to-br from-white/75 to-cream/25 p-7 shadow-[0_18px_48px_rgba(38,66,54,0.06)] backdrop-blur-2xl transition duration-500 hover:-translate-y-1.5 hover:border-gold/25 hover:shadow-soft">
       <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent opacity-40 transition duration-500 group-hover:opacity-100" />
       <div aria-hidden className="absolute -right-12 -top-12 h-28 w-28 rounded-full bg-gold/10 opacity-0 blur-2xl transition duration-500 group-hover:opacity-100" />
       <div className="relative z-10 mb-8 flex items-center justify-between gap-4">

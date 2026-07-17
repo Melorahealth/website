@@ -511,42 +511,6 @@ textarea {
   z-index: 1;
 }
 
-/* Faded diagonal line texture for cards */
-.card-stripes::after,
-.card-stripes-on-dark::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  border-radius: inherit;
-  background-image: repeating-linear-gradient(
-    135deg,
-    rgba(38, 66, 54, 0.03),
-    rgba(38, 66, 54, 0.03) 1px,
-    transparent 1px,
-    transparent 12px
-  );
-  -webkit-mask-image: radial-gradient(135% 135% at 100% 0%, #000, transparent 68%);
-  mask-image: radial-gradient(135% 135% at 100% 0%, #000, transparent 68%);
-}
-
-.card-stripes-on-dark::after {
-  background-image: repeating-linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.055),
-    rgba(255, 255, 255, 0.055) 1px,
-    transparent 1px,
-    transparent 12px
-  );
-}
-
-.card-stripes > *,
-.card-stripes-on-dark > * {
-  position: relative;
-  z-index: 1;
-}
-
 /* Modern motion helpers */
 @keyframes float-soft {
   0%,
@@ -628,25 +592,17 @@ textarea {
   mask-image: radial-gradient(120% 108% at 50% 50%, #000 52%, transparent 96%);
 }
 
-/* Faded diagonal line texture for section backgrounds */
-.bg-stripes {
-  background-image: repeating-linear-gradient(
-    135deg,
-    rgba(38, 66, 54, 0.028),
-    rgba(38, 66, 54, 0.028) 1px,
-    transparent 1px,
-    transparent 26px
-  );
-}
-
-.bg-stripes-on-dark {
-  background-image: repeating-linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.05),
-    rgba(255, 255, 255, 0.05) 1px,
-    transparent 1px,
-    transparent 26px
-  );
+/* Organic "blob" mask for hero imagery */
+.hero-blob {
+  --blob: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20200%20200'%3E%3Cpath%20d='M156%2C30%20C178%2C38%20180%2C66%20190%2C86%20C199%2C104%20190%2C128%20172%2C138%20C160%2C145%20162%2C166%20146%2C174%20C130%2C182%20110%2C170%2090%2C172%20C68%2C174%2050%2C188%2036%2C172%20C23%2C157%2038%2C138%2030%2C118%20C21%2C96%2010%2C74%2028%2C60%20C44%2C47%2068%2C56%2086%2C44%20C106%2C31%20134%2C22%20156%2C30%20Z'%20fill='%23000'/%3E%3C/svg%3E");
+  -webkit-mask-image: var(--blob);
+  mask-image: var(--blob);
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
 }
 
 .care-map {
