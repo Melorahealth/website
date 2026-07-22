@@ -11,7 +11,6 @@ import {
   Star,
   Video
 } from "lucide-react";
-import { ScrollMotion } from "@/components/motion/ScrollMotion";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { CTASection } from "@/components/sections/CTASection";
 import { TestimonialSlider } from "@/components/sections/TestimonialSlider";
@@ -178,13 +177,12 @@ export default function Home() {
   return (
     <main>
       <JsonLd data={createHomeJsonLd()} id="melorahealth-home-jsonld" />
-      <ScrollMotion />
       <section
         className="relative isolate overflow-hidden border-b border-sage/10 bg-[radial-gradient(90%_80%_at_50%_40%,#2a4a39_0%,#1c3128_58%,#142219_100%)]"
         data-hero
       >
         <Image
-          alt="Illustrated collage of calming mental-health motifs — plants, hands, and warm light"
+          alt="Illustrated collage of calming mental-health motifs, plants, hands, and warm light"
           className="object-cover object-center lg:object-contain"
           data-hero-bg
           fill
@@ -401,7 +399,7 @@ export default function Home() {
       </section>
 
       <section className="section-space relative overflow-hidden">
-        {/* Cool sage wash — keeps this band calm and cool against the warm page */}
+        {/* Cool sage wash, keeps this band calm and cool against the warm page */}
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(122,143,127,0.16)_0%,rgba(122,143,127,0.06)_42%,transparent_88%)]"
@@ -410,7 +408,7 @@ export default function Home() {
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(38,66,54,0.18),transparent)]"
         />
-        {/* Line artwork — soft organic flourish, top-right */}
+        {/* Line artwork, soft organic flourish, top-right */}
         <svg
           aria-hidden
           className="line-draw pointer-events-none absolute -right-10 top-10 hidden h-40 w-72 text-sage/25 lg:block"
@@ -433,7 +431,7 @@ export default function Home() {
           />
           <circle cx="260" cy="88" fill="#C8A46B" fillOpacity="0.6" r="3" />
         </svg>
-        {/* Line artwork — botanical sprig, lower-left (diagonal balance) */}
+        {/* Line artwork, botanical sprig, lower-left (diagonal balance) */}
         <svg
           aria-hidden
           className="line-draw pointer-events-none absolute -left-6 bottom-8 hidden h-52 w-52 text-sage/15 lg:block"

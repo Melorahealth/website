@@ -15,8 +15,8 @@ export const metadata: Metadata = createPageMetadata({
   description:
     "Sponsor therapy sessions or send care credits so family, communities, and people who need support can begin professional mental health care with dignity.",
   path: "/gift-care",
-  image: "/assets/images/postpartum-care.jpg",
-  imageAlt: "African mother holding a newborn in calm natural light"
+  image: "/assets/images/gift-care-hero.png",
+  imageAlt: "A warm moment of care being shared between people"
 });
 
 const giftOptions = [
@@ -51,10 +51,9 @@ export default function GiftCarePage() {
       />
       <SplitHero
         body="Sponsor a Session lets people fund care for family, communities, and people who need support but may not be able to begin alone."
-        bullets={["Private and dignified", "Diaspora-friendly", "Flexible care credits"]}
         eyebrow="Gift care"
-        imageAlt="African mother holding a newborn in calm natural light"
-        imageSrc="/assets/images/postpartum-care.jpg"
+        imageAlt="A warm moment of care being shared between people"
+        imageSrc="/assets/images/gift-care-hero.png"
         primaryHref={MELORA_GIFT_URL}
         primaryLabel="Gift a Session"
         title="Care can be carried together."

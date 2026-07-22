@@ -95,7 +95,17 @@ textarea {
 }
 
 .form-field {
-  @apply w-full rounded-md border border-white/50 bg-white/[0.35] px-4 py-3 text-sm text-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.42)] outline-none backdrop-blur-2xl transition placeholder:text-ink/40 focus:border-sage/[0.35] focus:bg-white/50 focus:ring-4 focus:ring-sage/10;
+  @apply w-full rounded-xl border border-sage/25 bg-white/90 px-4 py-3 text-sm text-ink shadow-[inset_0_1px_2px_rgba(38,66,54,0.05)] outline-none transition placeholder:text-ink/55 hover:border-sage/40 focus:border-sage focus:bg-white focus:ring-4 focus:ring-sage/20;
+}
+
+/* Leading-icon padding for fields that render an inline icon. */
+.form-field.has-icon {
+  @apply pl-11;
+}
+
+/* Gentle inline validation: only after the user has interacted with the field. */
+.form-field:user-invalid {
+  @apply border-rose focus:border-rose focus:ring-rose/20;
 }
 
 .eyebrow {
@@ -592,19 +602,6 @@ textarea {
   mask-image: radial-gradient(120% 108% at 50% 50%, #000 52%, transparent 96%);
 }
 
-/* Organic "blob" mask for hero imagery */
-.hero-blob {
-  --blob: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20200%20200'%3E%3Cpath%20d='M156%2C30%20C178%2C38%20180%2C66%20190%2C86%20C199%2C104%20190%2C128%20172%2C138%20C160%2C145%20162%2C166%20146%2C174%20C130%2C182%20110%2C170%2090%2C172%20C68%2C174%2050%2C188%2036%2C172%20C23%2C157%2038%2C138%2030%2C118%20C21%2C96%2010%2C74%2028%2C60%20C44%2C47%2068%2C56%2086%2C44%20C106%2C31%20134%2C22%20156%2C30%20Z'%20fill='%23000'/%3E%3C/svg%3E");
-  -webkit-mask-image: var(--blob);
-  mask-image: var(--blob);
-  -webkit-mask-size: 100% 100%;
-  mask-size: 100% 100%;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-position: center;
-}
-
 .care-map {
   border-radius: 26px;
   background:
@@ -803,6 +800,35 @@ textarea {
 
 .reveal-delay {
   animation-delay: 140ms;
+}
+
+/* Hand-drawn underline for nav links: a rough, wavy gold stroke that draws
+   itself left-to-right on hover / active, instead of a straight bar. */
+.nav-underline::after {
+  content: "";
+  position: absolute;
+  left: 0.7rem;
+  right: 0.7rem;
+  bottom: -0.4rem;
+  height: 0.5rem;
+  pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20120%2012'%20preserveAspectRatio='none'%3E%3Cpath%20d='M2%207%20C14%204%2026%209.5%2040%206%20C52%203%2064%209%2078%206%20C92%203.4%20104%208.5%20118%206'%20fill='none'%20stroke='%23C8A46B'%20stroke-width='2.1'%20stroke-linecap='round'/%3E%3C/svg%3E")
+    no-repeat center / 100% 100%;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 360ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.nav-underline:hover::after,
+.nav-underline.is-active::after,
+.group:hover .nav-underline::after,
+.group:focus-within .nav-underline::after {
+  clip-path: inset(0 0 0 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-underline::after {
+    transition: none;
+  }
 }
 
 .kicker-rule {

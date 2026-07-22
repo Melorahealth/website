@@ -3,18 +3,55 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowUpRight, CircleArrowRight, Menu, X } from "lucide-react";
+import { ArrowUpRight, ChevronDown, CircleArrowRight, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { MELORA_APP_URL } from "@/lib/app-links";
+import { serviceLandingPages } from "@/lib/service-landing-pages";
 
-const navItems = [
-  { href: "/for-you", label: "For You" },
-  { href: "/for-professionals", label: "Professionals" },
-  { href: "/for-partners", label: "Partners" },
-  { href: "/for-government", label: "Government" },
+type NavLink = { href: string; label: string };
+type NavItem = NavLink | { label: string; children: NavLink[] };
+
+// Pages whose first section is light (PageHero / policy content). Everywhere
+// else leads with the dark SplitHero, so the header can sit transparent over it
+// like the home page. Over a light top, a transparent white-on-white header
+// would be unreadable, so it stays solid there.
+function hasLightTop(pathname: string) {
+  if (pathname === "/privacy-policy" || pathname === "/refund-policy") return true;
+  if (pathname.startsWith("/resources/")) return true;
+  if (pathname.startsWith("/services/")) {
+    const page = serviceLandingPages.find(
+      (item) => item.slug === pathname.slice("/services/".length)
+    );
+    return page ? page.group !== "Specialized care" : false;
+  }
+  return false;
+}
+
+const navItems: NavItem[] = [
+  {
+    label: "Specialized care",
+    children: [
+      { href: "/services/individual-therapy", label: "Individual therapy" },
+      { href: "/services/couples-therapy", label: "Couples therapy" },
+      { href: "/services/group-therapy", label: "Group therapy" },
+      { href: "/services/womens-therapy", label: "Women's therapy" },
+      { href: "/services/postpartum-therapy", label: "Postpartum therapy" },
+      { href: "/services/queer-affirming-therapy", label: "Queer-affirming therapy" },
+      { href: "/services/psychiatry", label: "Psychiatry" }
+    ]
+  },
+  {
+    label: "People We Serve",
+    children: [
+      { href: "/for-you", label: "For You" },
+      { href: "/for-employers", label: "Employers" },
+      { href: "/for-hmos", label: "HMOs" },
+      { href: "/for-government", label: "Government" },
+      { href: "/for-universities", label: "Universities" }
+    ]
+  },
   { href: "/gift-care", label: "Gift Care" },
-  { href: "/services", label: "Services" },
   { href: "/about", label: "About" }
 ];
 
@@ -22,8 +59,8 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
   const pathname = usePathname();
-  const isHome = pathname === "/";
-  const isTransparent = isHome && !hasScrolled && !isOpen;
+  const isLightTop = hasLightTop(pathname);
+  const isTransparent = !isLightTop && !hasScrolled && !isOpen;
 
   useEffect(() => {
     const updateScrolled = () => setHasScrolled(window.scrollY > 16);
@@ -37,7 +74,7 @@ export function Navbar() {
   return (
     <header
       className={`top-0 z-50 transition-all duration-300 ${
-        isHome ? "fixed inset-x-0" : "sticky"
+        isLightTop ? "sticky" : "fixed inset-x-0"
       } ${
         isTransparent
           ? "border-b border-transparent bg-transparent"
@@ -85,12 +122,69 @@ export function Navbar() {
             className="hidden items-center gap-1 transition-all duration-300 lg:flex"
           >
             {navItems.map((item) => {
+              if ("children" in item) {
+                const isActive = item.children.some((child) => pathname === child.href);
+                return (
+                  <div className="group relative" key={item.label}>
+                    <button
+                      aria-haspopup="menu"
+                      className={`nav-underline relative flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors duration-200 ${
+                        isActive ? "is-active" : ""
+                      } ${
+                        isActive
+                          ? isTransparent
+                            ? "text-white"
+                            : "text-sage"
+                          : isTransparent
+                            ? "text-white/75 hover:text-white"
+                            : "text-ink/65 hover:text-sage"
+                      }`}
+                      type="button"
+                    >
+                      {item.label}
+                      <ChevronDown
+                        aria-hidden
+                        className="h-4 w-4 transition-transform duration-300 group-hover:rotate-180 group-focus-within:rotate-180"
+                        strokeWidth={1.8}
+                      />
+                    </button>
+                    <div className="invisible absolute left-0 top-full z-50 pt-2 opacity-0 transition duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                      <div
+                        className="grid min-w-[15rem] gap-1 rounded-[22px] border border-white/[0.55] bg-white/90 p-2 shadow-[0_24px_70px_rgba(38,66,54,0.14),inset_0_1px_0_rgba(255,255,255,0.48)] backdrop-blur-2xl"
+                        role="menu"
+                      >
+                        {item.children.map((child) => (
+                          <Link
+                            aria-current={pathname === child.href ? "page" : undefined}
+                            className={`group/link flex min-h-11 items-center justify-between rounded-[16px] px-4 text-sm font-semibold transition ${
+                              pathname === child.href
+                                ? "bg-cream/60 text-sage"
+                                : "text-ink/[0.72] hover:bg-cream/50 hover:text-sage"
+                            }`}
+                            href={child.href}
+                            key={child.href}
+                            role="menuitem"
+                          >
+                            {child.label}
+                            <ArrowUpRight
+                              aria-hidden
+                              className="h-4 w-4 text-gold opacity-0 transition group-hover/link:opacity-100"
+                              strokeWidth={1.7}
+                            />
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+
               const isActive = pathname === item.href;
               return (
                 <Link
                   aria-current={isActive ? "page" : undefined}
-                  className={`relative px-3 py-2 text-sm font-medium transition-colors duration-200 after:pointer-events-none after:absolute after:inset-x-3 after:-bottom-0.5 after:h-[2px] after:rounded-full after:bg-gold after:origin-left after:transition-transform after:duration-300 ${
-                    isActive ? "after:scale-x-100" : "after:scale-x-0 hover:after:scale-x-100"
+                  className={`nav-underline relative px-3 py-2 text-sm font-medium transition-colors duration-200 ${
+                    isActive ? "is-active" : ""
                   } ${
                     isActive
                       ? isTransparent
@@ -137,26 +231,60 @@ export function Navbar() {
           <nav aria-label="Mobile navigation" className="min-h-0">
             <div className="mb-4 rounded-[26px] border border-white/[0.55] bg-white/30 p-2 shadow-[0_24px_70px_rgba(38,66,54,0.1),inset_0_1px_0_rgba(255,255,255,0.48)] backdrop-blur-2xl">
               <div className="grid gap-1">
-                {navItems.map((item) => (
-                  <Link
-                    aria-current={pathname === item.href ? "page" : undefined}
-                    className={`group flex min-h-12 items-center justify-between rounded-[18px] px-4 text-sm font-semibold transition ${
-                      pathname === item.href
-                        ? "bg-white/[0.5] text-sage shadow-[inset_0_1px_0_rgba(255,255,255,0.48)]"
-                        : "text-ink/[0.72] hover:bg-white/[0.45] hover:text-sage"
-                    }`}
-                    href={item.href}
-                    key={item.href}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {item.label}
-                    <ArrowUpRight
-                      aria-hidden
-                      className="h-4 w-4 text-gold opacity-0 transition group-hover:opacity-100"
-                      strokeWidth={1.7}
-                    />
-                  </Link>
-                ))}
+                {navItems.map((item) => {
+                  if ("children" in item) {
+                    return (
+                      <div className="mt-1" key={item.label}>
+                        <p className="px-4 pb-1 pt-2 text-[0.68rem] font-bold uppercase tracking-[0.18em] text-gold">
+                          {item.label}
+                        </p>
+                        <div className="grid gap-1">
+                          {item.children.map((child) => (
+                            <Link
+                              aria-current={pathname === child.href ? "page" : undefined}
+                              className={`group flex min-h-12 items-center justify-between rounded-[18px] px-4 text-sm font-semibold transition ${
+                                pathname === child.href
+                                  ? "bg-white/[0.5] text-sage shadow-[inset_0_1px_0_rgba(255,255,255,0.48)]"
+                                  : "text-ink/[0.72] hover:bg-white/[0.45] hover:text-sage"
+                              }`}
+                              href={child.href}
+                              key={child.href}
+                              onClick={() => setIsOpen(false)}
+                            >
+                              {child.label}
+                              <ArrowUpRight
+                                aria-hidden
+                                className="h-4 w-4 text-gold opacity-0 transition group-hover:opacity-100"
+                                strokeWidth={1.7}
+                              />
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  }
+
+                  return (
+                    <Link
+                      aria-current={pathname === item.href ? "page" : undefined}
+                      className={`group flex min-h-12 items-center justify-between rounded-[18px] px-4 text-sm font-semibold transition ${
+                        pathname === item.href
+                          ? "bg-white/[0.5] text-sage shadow-[inset_0_1px_0_rgba(255,255,255,0.48)]"
+                          : "text-ink/[0.72] hover:bg-white/[0.45] hover:text-sage"
+                      }`}
+                      href={item.href}
+                      key={item.href}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {item.label}
+                      <ArrowUpRight
+                        aria-hidden
+                        className="h-4 w-4 text-gold opacity-0 transition group-hover:opacity-100"
+                        strokeWidth={1.7}
+                      />
+                    </Link>
+                  );
+                })}
               </div>
               <div className="mt-2 grid grid-cols-2 gap-2 border-t border-sage/10 pt-2">
                 <Link

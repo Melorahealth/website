@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Baby, Heart, Laptop, MapPin, MessageCircle, Shield, Stethoscope, Users } from "lucide-react";
+import { ArrowRight, Baby, Heart, Laptop, MapPin, MessageCircle, Shield, Stethoscope, Users, UsersRound } from "lucide-react";
 import { FeatureCard } from "@/components/cards/FeatureCard";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { CTASection } from "@/components/sections/CTASection";
@@ -15,52 +15,64 @@ import { createBreadcrumbJsonLd } from "@/lib/structured-data";
 export const metadata: Metadata = createPageMetadata({
   title: "Mental Health Services",
   description:
-    "Explore online and in-person therapy, psychiatry, couples care, postpartum support, and identity-affirming mental health care — all in one place, matched to what you actually need.",
+    "Explore online and in-person therapy, psychiatry, couples care, postpartum support, and identity-affirming mental health care, all in one place, matched to what you actually need.",
   path: "/services",
-  image: "/assets/images/professional-care.jpg",
-  imageAlt: "African therapist and client seated in a respectful care conversation"
+  image: "/assets/images/services-hero.png",
+  imageAlt: "A calm, welcoming moment that captures culturally aware mental health care"
 });
 
 const careFormats = [
   {
+    title: "Individual therapy",
+    body: "One-to-one support for stress, anxiety, grief, and the changes life asks you to carry.",
+    icon: MessageCircle,
+    href: "/services/individual-therapy"
+  },
+  {
+    title: "Couples therapy",
+    body: "Support to talk honestly, rebuild trust, and move through the hard transitions together.",
+    icon: Users,
+    href: "/services/couples-therapy"
+  },
+  {
+    title: "Group therapy",
+    body: "Shared, guided support with others facing something similar, so you don't carry it alone.",
+    icon: UsersRound,
+    href: "/services/group-therapy"
+  },
+  {
+    title: "Women's therapy",
+    body: "A place for the load you hold quietly, relationships, identity, and the pressure no one sees.",
+    icon: Heart,
+    href: "/services/womens-therapy"
+  },
+  {
+    title: "Postpartum therapy",
+    body: "Care for the exhaustion, the mental load, and the private shift in who you are after birth.",
+    icon: Baby,
+    href: "/services/postpartum-therapy"
+  },
+  {
+    title: "Queer-affirming therapy",
+    body: "Affirming care for queer people working through identity, belonging, family, faith, and change.",
+    icon: Shield,
+    href: "/services/queer-affirming-therapy"
+  },
+  {
+    title: "Psychiatry",
+    body: "Medical support when you need it, assessment, medication, and someone checking in over time.",
+    icon: Stethoscope,
+    href: "/services/psychiatry"
+  },
+  {
     title: "Online care",
-    body: "Private video or voice sessions you can join from anywhere — across the city or across borders.",
+    body: "Private video or voice sessions you can join from anywhere, across the city or across borders.",
     icon: Laptop
   },
   {
     title: "In-person care",
     body: "When you'd rather sit in the same room, we'll help you find a vetted professional near you.",
     icon: MapPin
-  },
-  {
-    title: "Individual therapy",
-    body: "One-to-one support for stress, anxiety, grief, and the changes life asks you to carry.",
-    icon: MessageCircle
-  },
-  {
-    title: "Women's therapy",
-    body: "A place for the load you hold quietly — relationships, identity, and the pressure no one sees.",
-    icon: Heart
-  },
-  {
-    title: "Postpartum therapy",
-    body: "Care for the exhaustion, the mental load, and the private shift in who you are after birth.",
-    icon: Baby
-  },
-  {
-    title: "Queer-affirming therapy",
-    body: "Affirming care for queer people working through identity, belonging, family, faith, and change.",
-    icon: Shield
-  },
-  {
-    title: "Couples therapy",
-    body: "Support to talk honestly, rebuild trust, and move through the hard transitions together.",
-    icon: Users
-  },
-  {
-    title: "Psychiatry",
-    body: "Medical support when you need it — assessment, medication, and someone checking in over time.",
-    icon: Stethoscope
   }
 ];
 
@@ -72,11 +84,10 @@ export default function ServicesPage() {
         id="services-breadcrumb-jsonld"
       />
       <SplitHero
-        body="MeloraHealth brings online and in-person care together in one calm place — women's therapy, postpartum care, queer-affirming therapy, couples support, and psychiatry."
-        bullets={["Online or in person", "Matched to you", "Specialized care"]}
+        body="MeloraHealth brings online and in-person care together in one calm place, women's therapy, postpartum care, queer-affirming therapy, couples support, and psychiatry."
         eyebrow="Services"
-        imageAlt="African therapist and client seated in a respectful care conversation"
-        imageSrc="/assets/images/professional-care.jpg"
+        imageAlt="A calm, welcoming moment that captures culturally aware mental health care"
+        imageSrc="/assets/images/services-hero.png"
         primaryHref="/contact"
         primaryLabel="Find Support"
         title="Care that fits the moment."

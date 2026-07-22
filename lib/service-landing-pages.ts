@@ -1,6 +1,6 @@
 export type ServiceLandingPage = {
   slug: string;
-  group: "Africa-wide care" | "Nigeria care" | "Diaspora and sponsorship";
+  group: "Africa-wide care" | "Nigeria care" | "Diaspora and sponsorship" | "Specialized care";
   linkLabel: string;
   metaTitle: string;
   metaDescription: string;
@@ -449,6 +449,279 @@ export const serviceLandingPages: ServiceLandingPage[] = [
     nextStepBody:
       "Share who you want to support and the kind of funding route you have in mind. We will shape the next step."
   },
+  {
+    slug: "individual-therapy",
+    group: "Specialized care",
+    linkLabel: "Individual therapy",
+    metaTitle: "Individual Therapy",
+    metaDescription:
+      "One-to-one therapy with culturally aware professionals for stress, anxiety, grief, identity, and the changes life asks you to carry.",
+    title: "Individual therapy, one-to-one.",
+    body:
+      "Private, one-to-one support for stress, anxiety, grief, identity, and the quiet weight of changes life asks you to carry, with a professional who understands your context.",
+    imageSrc: "/assets/images/hero-reflection.jpg",
+    imageAlt: "African professional sitting in quiet reflection by a window",
+    visualTitle: "A steady space that is only yours.",
+    introTitle: "Somewhere to think clearly, out loud.",
+    introBody:
+      "Individual therapy is not only for crisis. It is a place to make sense of what you feel, understand your patterns, and find steadier ground at your own pace.",
+    cards: [
+      {
+        title: "Space for what is heavy",
+        body: "Work through stress, anxiety, grief, anger, numbness, or a sense that something has become too much to hold alone."
+      },
+      {
+        title: "Understand your patterns",
+        body: "See the habits, fears, and stories underneath how you react, and where you would like to respond differently."
+      },
+      {
+        title: "Support over time",
+        body: "Care that continues session to session, so progress builds rather than resetting each time."
+      }
+    ],
+    suitedFor: [
+      "People carrying stress or anxiety",
+      "Anyone navigating grief or change",
+      "People questioning identity or direction",
+      "People who want privacy before speaking openly"
+    ],
+    nextStepBody:
+      "Start with whatever you can name. MeloraHealth can route you to an individual therapist who fits your needs."
+  },
+  {
+    slug: "womens-therapy",
+    group: "Specialized care",
+    linkLabel: "Women's therapy",
+    metaTitle: "Women's Therapy",
+    metaDescription:
+      "Therapy for women navigating relationships, identity, expectation, and the load carried quietly, with culturally aware, affirming professionals.",
+    title: "Women's therapy, for the load you hold.",
+    body:
+      "A place for the pressure no one sees: relationships, identity, expectation, and the load many women carry quietly, held by a professional who understands it.",
+    imageSrc: "/assets/images/claudia-wolff-owBcefxgrIE-unsplash.jpg",
+    imageAlt: "A woman in a quiet, reflective moment",
+    visualTitle: "Room for the part you rarely say out loud.",
+    introTitle: "Care that sees the whole weight.",
+    introBody:
+      "Women often hold work, family, care, and expectation at once. Therapy can be a space where that load is named, understood, and made lighter to carry.",
+    cards: [
+      {
+        title: "Relationships and roles",
+        body: "Support for family expectation, partnership, motherhood, boundaries, and the pull of being relied on."
+      },
+      {
+        title: "Identity and self",
+        body: "A place to reconnect with who you are beneath the roles, and what you actually need."
+      },
+      {
+        title: "Pressure and burnout",
+        body: "Care for exhaustion, resentment, guilt, and the quiet strain of holding everything together."
+      }
+    ],
+    suitedFor: [
+      "Women under family or work pressure",
+      "Women navigating identity or change",
+      "Mothers carrying a heavy mental load",
+      "Women who put themselves last"
+    ],
+    nextStepBody:
+      "Tell us what has felt heavy. MeloraHealth can route you to affirming, culturally aware women's therapy."
+  },
+  {
+    slug: "postpartum-therapy",
+    group: "Specialized care",
+    linkLabel: "Postpartum therapy",
+    metaTitle: "Postpartum Therapy",
+    metaDescription:
+      "Postpartum therapy for the emotional adjustment after birth: identity shift, mental load, exhaustion, and anxiety, with culturally aware care.",
+    title: "Postpartum therapy, after birth.",
+    body:
+      "Support for the emotional adjustment after birth: the identity shift, mental load, exhaustion, and private feelings many parents carry quietly.",
+    imageSrc: "/assets/images/postpartum-care.jpg",
+    imageAlt: "African mother holding a newborn in calm natural light",
+    visualTitle: "Care for the person who gave care.",
+    introTitle: "After birth, the parent changes too.",
+    introBody:
+      "Postpartum support should make room for love and difficulty at the same time. Therapy can steady you through the adjustment, without judgement.",
+    cards: [
+      {
+        title: "Emotional adjustment",
+        body: "Support for mood changes, overwhelm, worry, sadness, irritability, and feeling unlike yourself."
+      },
+      {
+        title: "The mental load",
+        body: "A space to name sleep loss, family expectation, and the invisible responsibility of care."
+      },
+      {
+        title: "When more help is needed",
+        body: "Where appropriate, care can be routed toward psychiatric review or added professional support."
+      }
+    ],
+    suitedFor: [
+      "New mothers and birthing parents",
+      "Parents feeling unlike themselves",
+      "Families worried about someone after birth",
+      "Partners seeking a way to help"
+    ],
+    nextStepBody:
+      "Tell us what the adjustment has felt like. MeloraHealth can route postpartum support with care."
+  },
+  {
+    slug: "queer-affirming-therapy",
+    group: "Specialized care",
+    linkLabel: "Queer-affirming therapy",
+    metaTitle: "Queer-Affirming Therapy",
+    metaDescription:
+      "Affirming therapy for queer people working through identity, belonging, family, faith, and change, private and culturally aware.",
+    title: "Queer-affirming therapy.",
+    body:
+      "Affirming care for queer people working through identity, belonging, family, faith, relationships, and change, with professionals who affirm who you are.",
+    imageSrc: "/assets/images/african-american-woman-standing-pink-background-mouth-lips-shut-as-zip-with-fingers-secret-silent-taboo-talking.jpg",
+    imageAlt: "A woman holding her lips shut like a zip, a gesture of silence and taboo",
+    visualTitle: "Care that starts by affirming you.",
+    introTitle: "Support without having to explain your existence.",
+    introBody:
+      "Affirming therapy means the work is not about justifying who you are. It is a private space to hold identity, relationships, safety, and belonging with care.",
+    cards: [
+      {
+        title: "Identity and belonging",
+        body: "Space for coming out, self-understanding, faith, culture, and the tension of belonging in more than one world."
+      },
+      {
+        title: "Family and relationships",
+        body: "Support for acceptance, boundaries, chosen family, and relationships under pressure."
+      },
+      {
+        title: "Safety and privacy",
+        body: "Care routed with discretion, in contexts where privacy and safety genuinely matter."
+      }
+    ],
+    suitedFor: [
+      "Queer people exploring identity",
+      "People navigating family or faith tension",
+      "Anyone wanting affirming, private care",
+      "People who have felt unseen by other services"
+    ],
+    nextStepBody:
+      "Share what you would like support with. MeloraHealth can route you to a queer-affirming professional, privately."
+  },
+  {
+    slug: "couples-therapy",
+    group: "Specialized care",
+    linkLabel: "Couples therapy",
+    metaTitle: "Couples Therapy",
+    metaDescription:
+      "Couples therapy for communication, trust, distance, and the transitions two people face, with guided, culturally aware support.",
+    title: "Couples therapy, together.",
+    body:
+      "A steadier space for two people navigating distance, silence, conflict, trust, or decisions that have become hard to make alone.",
+    imageSrc: "/assets/images/couples-therapy-hero.png",
+    imageAlt: "A couple sitting together in a calm, supportive moment",
+    visualTitle: "A careful space for hard conversations.",
+    introTitle: "Support for what sits between two people.",
+    introBody:
+      "Couples therapy is not only for crisis. It can help partners speak more clearly, understand patterns, and decide what repair or change requires.",
+    cards: [
+      {
+        title: "Communication",
+        body: "Work through silence, repeated arguments, and conversations that keep closing too early."
+      },
+      {
+        title: "Trust and repair",
+        body: "Support for betrayal, disappointment, resentment, and the slow work of rebuilding safety."
+      },
+      {
+        title: "Transitions",
+        body: "Care for couples facing marriage, parenting, relocation, family pressure, grief, or money stress."
+      }
+    ],
+    suitedFor: [
+      "Couples feeling distant",
+      "Partners facing a major decision",
+      "Married or unmarried couples",
+      "Couples wanting help before things worsen"
+    ],
+    nextStepBody:
+      "Share what has become difficult between you. MeloraHealth can route a private couples care request."
+  },
+  {
+    slug: "psychiatry",
+    group: "Specialized care",
+    linkLabel: "Psychiatry",
+    metaTitle: "Psychiatry",
+    metaDescription:
+      "Psychiatric support for assessment, medication review, and ongoing medical mental health care, routed with clarity and cultural understanding.",
+    title: "Psychiatry, when care is medical.",
+    body:
+      "Some mental health needs call for medical assessment, medication review, or psychiatric support. MeloraHealth helps route those requests with clarity.",
+    imageSrc: "/assets/images/psychiatry-hero.png",
+    imageAlt: "A psychiatrist in a calm, professional consultation setting",
+    visualTitle: "Medical support, handled with care.",
+    introTitle: "Know when medical support may help.",
+    introBody:
+      "Psychiatric care can be part of a wider plan. It may help when symptoms affect sleep, work, safety, concentration, mood, or daily functioning.",
+    cards: [
+      {
+        title: "Assessment",
+        body: "Support for understanding symptoms, history, risk, and the kind of care that may be appropriate."
+      },
+      {
+        title: "Medication review",
+        body: "Where clinically needed, psychiatric care can guide medication decisions and ongoing review."
+      },
+      {
+        title: "Care coordination",
+        body: "Psychiatry can sit alongside therapy and follow-up, rather than feeling like a separate path."
+      }
+    ],
+    suitedFor: [
+      "People considering psychiatric assessment",
+      "People with symptoms affecting daily life",
+      "Families seeking medical guidance",
+      "People in therapy who may need review"
+    ],
+    nextStepBody:
+      "Describe what has been happening and any urgency. MeloraHealth can route the request appropriately."
+  },
+  {
+    slug: "group-therapy",
+    group: "Specialized care",
+    linkLabel: "Group therapy",
+    metaTitle: "Group Therapy",
+    metaDescription:
+      "Group therapy with culturally aware facilitators, where shared experience, support, and being understood help you feel less alone.",
+    title: "Group therapy, held together.",
+    body:
+      "A guided, private space where people carrying something similar meet, share, and support one another, led by a professional who keeps it safe.",
+    imageSrc: "/assets/images/group-therapy-hero.png",
+    imageAlt: "A small, calm group seated together in a supportive conversation",
+    visualTitle: "You are not the only one carrying this.",
+    introTitle: "Healing that happens alongside others.",
+    introBody:
+      "Some things ease when they are spoken among people who understand. Group therapy pairs professional guidance with the relief of not being alone in it.",
+    cards: [
+      {
+        title: "Shared experience",
+        body: "Sit with others facing something similar, and feel the weight lift a little in being understood."
+      },
+      {
+        title: "Guided and safe",
+        body: "A trained facilitator keeps the space respectful, confidential, and steady for everyone in it."
+      },
+      {
+        title: "Support that sticks",
+        body: "Encouragement, perspective, and accountability that carry on between sessions, not just during them."
+      }
+    ],
+    suitedFor: [
+      "People who feel alone in what they carry",
+      "Anyone healing from grief, stress, or change",
+      "People who learn from shared experience",
+      "Those wanting support beyond one-to-one care"
+    ],
+    nextStepBody:
+      "Tell us what you are working through. MeloraHealth can route you toward a group that fits."
+  }
 ];
 
 export const serviceLandingPageGroups = [

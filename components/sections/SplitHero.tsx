@@ -1,6 +1,5 @@
-import type { CSSProperties } from "react";
 import Image from "next/image";
-import { Check } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
 
@@ -12,60 +11,15 @@ type SplitHeroProps = {
   body: string;
   primaryHref?: string;
   primaryLabel?: string;
+  /** Optional icon for the primary button (defaults to an arrow). */
+  primaryIcon?: LucideIcon;
   secondaryHref?: string;
   secondaryLabel?: string;
-  bullets?: string[];
   imageSrc: string;
   imageAlt: string;
   /** Selects the blob shape + decorative mark arrangement. Vary it across pages. */
   variant?: number;
 };
-
-/* ---- Organic blob generator (deterministic per seed, fills the box) ---- */
-function mulberry32(seed: number) {
-  let a = seed >>> 0;
-  return () => {
-    a = (a + 0x6d2b79f5) | 0;
-    let t = Math.imul(a ^ (a >>> 15), 1 | a);
-    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
-}
-
-// Smooth closed curve (Catmull-Rom → cubic bézier) through radial points that
-// reach ~99 of a 100 half-extent, so the shape fills its 200×200 box edge-to-edge.
-function makeBlobPath(seed: number) {
-  const rand = mulberry32(seed + 1);
-  const n = 8;
-  const cx = 100;
-  const cy = 100;
-  const pts: [number, number][] = [];
-  for (let i = 0; i < n; i++) {
-    const ang = (i / n) * Math.PI * 2 + (rand() - 0.5) * 0.62;
-    const r = 69 + rand() * 30; // 69–99 → deeper bays + near-edge bulges
-    pts.push([cx + Math.cos(ang) * r, cy + Math.sin(ang) * r]);
-  }
-  const f = (v: number) => Math.round(v * 10) / 10;
-  let d = `M${f(pts[0][0])},${f(pts[0][1])}`;
-  for (let i = 0; i < n; i++) {
-    const p0 = pts[(i - 1 + n) % n];
-    const p1 = pts[i];
-    const p2 = pts[(i + 1) % n];
-    const p3 = pts[(i + 2) % n];
-    const c1x = p1[0] + (p2[0] - p0[0]) / 6;
-    const c1y = p1[1] + (p2[1] - p0[1]) / 6;
-    const c2x = p2[0] - (p3[0] - p1[0]) / 6;
-    const c2y = p2[1] - (p3[1] - p1[1]) / 6;
-    d += ` C${f(c1x)},${f(c1y)} ${f(c2x)},${f(c2y)} ${f(p2[0])},${f(p2[1])}`;
-  }
-  return `${d} Z`;
-}
-
-function blobUrl(seed: number) {
-  const d = makeBlobPath(seed);
-  const svg = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><path d='${d}' fill='#000'/></svg>`;
-  return `url("data:image/svg+xml,${encodeURIComponent(svg)}")`;
-}
 
 /* ---- Decorative marks (aspect kept via preserveAspectRatio) ---- */
 const markBase = "pointer-events-none absolute z-10";
@@ -131,11 +85,11 @@ function Wavy({ className = "" }: { className?: string }) {
 const marks = { Dashes, DotGrid, Zigzag, Hatch, Crosses, Rings, Wavy };
 type MarkName = keyof typeof marks;
 
-/* ---- Corner slots: nestled into the blob's corner bays, close to its edge ---- */
-const TL = "left-[3%] top-[6%] h-12 w-12 sm:h-14 sm:w-14";
-const TR = "right-[3%] top-[6%] h-12 w-12 sm:h-14 sm:w-14";
-const BL = "left-[3%] bottom-[7%] h-14 w-14 sm:h-16 sm:w-16";
-const BR = "right-[3%] bottom-[7%] h-14 w-14 sm:h-16 sm:w-16";
+/* ---- Corner slots: seated in the frame around the image, clear of its edges ---- */
+const TL = "left-[1%] top-[1%] h-10 w-10 sm:h-12 sm:w-12";
+const TR = "right-[1%] top-[1%] h-10 w-10 sm:h-12 sm:w-12";
+const BL = "left-[1%] bottom-[1%] h-10 w-10 sm:h-12 sm:w-12";
+const BR = "right-[1%] bottom-[1%] h-10 w-10 sm:h-12 sm:w-12";
 
 /* ---- Mark arrangements, one per variant (type + tone rotate) ---- */
 const doodleSets: { mark: MarkName; className: string }[][] = [
@@ -183,9 +137,9 @@ export function SplitHero({
   body,
   primaryHref,
   primaryLabel,
+  primaryIcon,
   secondaryHref,
   secondaryLabel,
-  bullets,
   imageSrc,
   imageAlt,
   variant = 0
@@ -193,7 +147,7 @@ export function SplitHero({
   const doodles = doodleSets[variant % doodleSets.length];
 
   return (
-    <section className="relative overflow-hidden bg-sage text-white">
+    <section className="relative overflow-hidden bg-sage text-white" data-hero>
       <div
         aria-hidden
         className="pointer-events-none absolute -left-24 top-0 h-80 w-80 rounded-full bg-gold/15 blur-[120px]"
@@ -202,9 +156,12 @@ export function SplitHero({
         aria-hidden
         className="pointer-events-none absolute -right-16 bottom-0 h-72 w-72 rounded-full bg-rose/20 blur-[120px]"
       />
-      <Container className="grid gap-10 py-16 sm:py-20 lg:grid-cols-[0.94fr_1.06fr] lg:items-center lg:gap-14 lg:py-24">
-        <div className="reveal relative">
-          <h1 className="font-serif text-5xl leading-[1.03] tracking-normal sm:text-6xl lg:text-[4.5rem]">
+      <Container className="grid gap-10 pb-16 pt-28 sm:pb-20 sm:pt-32 lg:grid-cols-[0.94fr_1.06fr] lg:items-center lg:gap-14 lg:pb-24 lg:pt-36">
+        <div className="relative">
+          <h1
+            className="font-serif text-5xl leading-[1.03] tracking-normal sm:text-6xl lg:text-[4.5rem]"
+            data-hero-item
+          >
             {title}
             {highlight ? (
               <>
@@ -213,11 +170,17 @@ export function SplitHero({
               </>
             ) : null}
           </h1>
-          <p className="mt-6 max-w-xl text-lg leading-8 text-white/75">{body}</p>
+          <p className="mt-6 max-w-xl text-lg leading-8 text-white/75" data-hero-item>
+            {body}
+          </p>
           {(primaryHref && primaryLabel) || (secondaryHref && secondaryLabel) ? (
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-wrap gap-3" data-hero-item>
               {primaryHref && primaryLabel ? (
-                <ButtonLink className="!bg-white !text-sage hover:!bg-cream" href={primaryHref}>
+                <ButtonLink
+                  className="!bg-white !text-sage hover:!bg-cream"
+                  href={primaryHref}
+                  icon={primaryIcon}
+                >
                   {primaryLabel}
                 </ButtonLink>
               ) : null}
@@ -232,20 +195,11 @@ export function SplitHero({
               ) : null}
             </div>
           ) : null}
-          {bullets && bullets.length > 0 ? (
-            <ul className="mt-9 flex flex-wrap gap-x-6 gap-y-3 text-sm text-white/70">
-              {bullets.map((point) => (
-                <li className="flex items-center gap-2" key={point}>
-                  <span className="flex h-5 w-5 items-center justify-center rounded-full bg-gold/20 text-gold">
-                    <Check aria-hidden className="h-3 w-3" strokeWidth={2.4} />
-                  </span>
-                  {point}
-                </li>
-              ))}
-            </ul>
-          ) : null}
         </div>
-        <div className="reveal reveal-delay relative">
+        <div
+          className="relative mx-auto flex aspect-square w-full max-w-[34rem] items-center justify-center"
+          data-hero-item
+        >
           {/* Soft depth glows */}
           <div
             aria-hidden
@@ -262,13 +216,11 @@ export function SplitHero({
             return <Mark className={className} key={`${mark}-${index}`} />;
           })}
 
-          <div
-            className="hero-blob relative z-[1] aspect-square w-full"
-            style={{ ["--blob"]: blobUrl(variant) } as CSSProperties}
-          >
+          <div className="relative z-[1] aspect-square w-3/4 overflow-hidden rounded-2xl">
             <Image
               alt={imageAlt}
-              className="object-contain"
+              className="object-cover"
+              data-hero-bg
               fill
               priority
               sizes="(min-width: 1024px) 52vw, 100vw"

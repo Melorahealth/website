@@ -3,6 +3,7 @@ import Script from "next/script";
 import type { ReactNode } from "react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
+import { ScrollMotion } from "@/components/motion/ScrollMotion";
 import { Footer } from "@/components/sections/Footer";
 import { Navbar } from "@/components/sections/Navbar";
 import {
@@ -75,6 +76,7 @@ gtag('js', new Date());
 gtag('config', 'G-1LCTFSKLD0');`}
       </Script>
       <body>
+        <ScrollMotion />
         <Navbar />
         {children}
         <Footer />

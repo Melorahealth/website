@@ -67,7 +67,7 @@ export function TestimonialSlider({ items }: { items: Testimonial[] }) {
     };
   }, []);
 
-  // Autoplay — paused on interaction and disabled for reduced-motion users.
+  // Autoplay, paused on interaction and disabled for reduced-motion users.
   useEffect(() => {
     if (paused || items.length < 2) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ServiceLandingPage } from "@/components/sections/ServiceLandingPage";
+import { SpecializedCarePage } from "@/components/sections/SpecializedCarePage";
 import { getServiceLandingPage, serviceLandingPages } from "@/lib/service-landing-pages";
 
 type ServicePageProps = {
@@ -70,6 +71,10 @@ export default function ServicePage({ params }: ServicePageProps) {
 
   if (!page) {
     notFound();
+  }
+
+  if (page.group === "Specialized care") {
+    return <SpecializedCarePage page={page} />;
   }
 
   return <ServiceLandingPage page={page} />;

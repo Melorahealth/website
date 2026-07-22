@@ -62,9 +62,27 @@ export const siteRoutes = [
     priority: 0.8
   },
   {
+    path: "/for-employers",
+    label: "Employee Mental Health Programs",
+    description: "Give your team confidential, licensed, culturally aware mental health care. Build an employee wellbeing program that reduces burnout and absenteeism and supports retention.",
+    priority: 0.82
+  },
+  {
     path: "/for-government",
     label: "Mental Health Support for Government and Parastatals",
     description: "Licensed, private, and culturally aware mental health care for the staff and communities of Nigerian ministries, parastatals, and public institutions, built with privacy at the centre.",
+    priority: 0.8
+  },
+  {
+    path: "/for-universities",
+    label: "Student & Staff Mental Health for Universities",
+    description: "Confidential, licensed, culturally aware mental health care for students and staff. Extend your counselling centre, cut waitlists, and support wellbeing across campus.",
+    priority: 0.8
+  },
+  {
+    path: "/for-hmos",
+    label: "Mental Health Benefits for HMOs and Health Plans",
+    description: "Extend member care with confidential, licensed, culturally aware therapy and psychiatry. Add a mental health benefit without building a provider network from scratch.",
     priority: 0.8
   },
   {
@@ -84,6 +102,12 @@ export const siteRoutes = [
     label: "Contact MeloraHealth",
     description: "Send care requests, professional onboarding requests, partner inquiries, and sponsorship messages.",
     priority: 0.76
+  },
+  {
+    path: "/book-demo",
+    label: "Book a Demo",
+    description: "Book a demo of MeloraHealth for employers, HMOs, government institutions, and universities.",
+    priority: 0.78
   },
   {
     path: "/privacy-policy",

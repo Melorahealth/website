@@ -1,14 +1,16 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 /**
- * Scroll-driven motion layer for the home page.
+ * Scroll-driven motion layer, mounted once in the root layout.
  *
- * Renders nothing. On mount it wires GSAP + ScrollTrigger to elements tagged
- * with data attributes in the markup:
+ * Renders nothing. It re-runs on every route change (keyed on the pathname) so
+ * each page's hero re-inits after client-side navigation. It wires GSAP +
+ * ScrollTrigger to elements tagged with data attributes in the markup:
  *   - [data-hero]          hero wrapper (parallax trigger)
  *   - [data-hero-bg]       hero background image (scrubbed parallax + scale)
  *   - [data-hero-item]     hero children, revealed in a staggered entrance
@@ -19,6 +21,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
  * is no flash before hydration. Honors `prefers-reduced-motion`.
  */
 export function ScrollMotion() {
+  const pathname = usePathname();
+
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -59,7 +63,7 @@ export function ScrollMotion() {
           });
         }
 
-        // Scroll reveals — batched so neighbours animate together with stagger
+        // Scroll reveals, batched so neighbours animate together with stagger
         const reveals = gsap.utils.toArray<HTMLElement>("[data-reveal]");
         gsap.set(reveals, { y: 34, opacity: 0 });
         ScrollTrigger.batch("[data-reveal]", {
@@ -80,7 +84,7 @@ export function ScrollMotion() {
         ScrollTrigger.refresh();
       });
 
-      // Reduced motion — show everything, no transforms ---------------------
+      // Reduced motion, show everything, no transforms ---------------------
       mm.add("(prefers-reduced-motion: reduce)", () => {
         gsap.set("[data-hero-item], [data-reveal]", {
           opacity: 1,
@@ -91,7 +95,7 @@ export function ScrollMotion() {
     });
 
     return () => ctx.revert();
-  }, []);
+  }, [pathname]);
 
   return null;
 }

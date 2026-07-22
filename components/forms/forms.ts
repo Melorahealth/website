@@ -67,6 +67,34 @@ export const partnerFields = [
   }
 ];
 
+export const employerFields = [
+  { label: "Company name", name: "company", placeholder: "Your organization" },
+  { label: "Contact person", name: "contact_person", placeholder: "Full name and role" },
+  { label: "Work email", name: "email", type: "email" as const, placeholder: "name@company.com" },
+  {
+    label: "Number of employees",
+    name: "employee_count",
+    options: ["1–50", "51–200", "201–1,000", "1,001–5,000", "5,000+"]
+  },
+  {
+    label: "What you're exploring",
+    name: "interest_area",
+    options: [
+      "Employee therapy & psychiatry",
+      "Confidential EAP",
+      "Manager and HR support",
+      "Sponsored access for staff",
+      "Not sure yet"
+    ]
+  },
+  {
+    label: "Message",
+    name: "message",
+    textarea: true,
+    placeholder: "Tell us about your team and what you're hoping to support."
+  }
+];
+
 export const governmentFields = [
   { label: "Agency or ministry", name: "agency", placeholder: "Ministry, agency, or institution" },
   { label: "Contact person", name: "contact_person", placeholder: "Full name and role" },
@@ -98,6 +126,90 @@ export const governmentFields = [
     name: "message",
     textarea: true,
     placeholder: "Share the population you want to reach and the outcomes you're accountable for."
+  }
+];
+
+export const universityFields = [
+  { label: "Institution name", name: "institution", placeholder: "University, polytechnic, or college" },
+  { label: "Contact person", name: "contact_person", placeholder: "Full name and role" },
+  { label: "Official email", name: "email", type: "email" as const, placeholder: "name@institution.edu" },
+  {
+    label: "Institution type",
+    name: "institution_type",
+    options: ["University", "Polytechnic", "College of education", "Other"]
+  },
+  {
+    label: "What you're exploring",
+    name: "interest_area",
+    options: [
+      "Student counselling",
+      "Staff & faculty wellbeing",
+      "Overflow referrals",
+      "Campus-wide program",
+      "Not sure yet"
+    ]
+  },
+  {
+    label: "Message",
+    name: "message",
+    textarea: true,
+    placeholder: "Tell us about your campus and the students or staff you want to support."
+  }
+];
+
+export const hmoFields = [
+  { label: "HMO or plan name", name: "organization", placeholder: "Your HMO or health plan" },
+  { label: "Contact person", name: "contact_person", placeholder: "Full name and role" },
+  { label: "Work email", name: "email", type: "email" as const, placeholder: "name@company.com" },
+  {
+    label: "Approximate member count",
+    name: "member_count",
+    options: ["Under 5,000", "5,000–25,000", "25,000–100,000", "100,000–500,000", "500,000+"]
+  },
+  {
+    label: "What you're exploring",
+    name: "interest_area",
+    options: [
+      "Member mental-health benefit",
+      "Extend provider network",
+      "Therapy & psychiatry",
+      "Routed access / referrals",
+      "API / integration"
+    ]
+  },
+  {
+    label: "Message",
+    name: "message",
+    textarea: true,
+    placeholder: "Share the member population and the kind of mental-health access you want to offer."
+  }
+];
+
+export const demoFields = [
+  { label: "Organization name", name: "organization", placeholder: "Company, institution, or agency" },
+  { label: "Contact person", name: "contact_person", placeholder: "Full name and role" },
+  { label: "Work email", name: "email", type: "email" as const, placeholder: "name@organization.com" },
+  {
+    label: "Organization type",
+    name: "organization_type",
+    options: [
+      "Employer",
+      "HMO or health plan",
+      "Government or parastatal",
+      "University or institution",
+      "Other"
+    ]
+  },
+  {
+    label: "Approximate size",
+    name: "size",
+    options: ["Under 200", "200–1,000", "1,000–5,000", "5,000–50,000", "50,000+"]
+  },
+  {
+    label: "What you'd like to cover",
+    name: "message",
+    textarea: true,
+    placeholder: "Tell us who you want to support and what you're hoping to solve."
   }
 ];
 

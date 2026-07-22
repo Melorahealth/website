@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
 
 type FeatureCardProps = {
@@ -8,12 +9,13 @@ type FeatureCardProps = {
   meta?: string;
   /** Render the card on a dark section. */
   dark?: boolean;
+  /** When set, the whole card becomes a link to this destination. */
+  href?: string;
 };
 
-export function FeatureCard({ title, body, icon: Icon, meta, dark = false }: FeatureCardProps) {
-  if (dark) {
-    return (
-      <article className="reveal group relative flex flex-col gap-4 overflow-hidden rounded-2xl border border-white/15 bg-white/[0.06] p-7 backdrop-blur transition duration-500 hover:-translate-y-1.5 hover:border-gold/40 hover:bg-white/[0.09]">
+export function FeatureCard({ title, body, icon: Icon, meta, dark = false, href }: FeatureCardProps) {
+  const card = dark ? (
+    <article className="reveal group relative flex flex-col gap-4 overflow-hidden rounded-2xl border border-white/15 bg-white/[0.06] p-7 backdrop-blur transition duration-500 hover:-translate-y-1.5 hover:border-gold/40 hover:bg-white/[0.09]">
         <div
           aria-hidden
           className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent opacity-0 transition duration-500 group-hover:opacity-100"
@@ -31,10 +33,7 @@ export function FeatureCard({ title, body, icon: Icon, meta, dark = false }: Fea
           <p className="mt-2 text-sm leading-6 text-white/70">{body}</p>
         </div>
       </article>
-    );
-  }
-
-  return (
+  ) : (
     <article className="reveal group relative overflow-hidden rounded-2xl border border-sage/12 bg-white/55 p-7 shadow-[0_18px_48px_rgba(38,66,54,0.06)] backdrop-blur-xl transition duration-500 hover:-translate-y-1.5 hover:border-gold/30 hover:bg-white/70">
       {/* Corner glow */}
       <div
@@ -78,4 +77,17 @@ export function FeatureCard({ title, body, icon: Icon, meta, dark = false }: Fea
       </svg>
     </article>
   );
+
+  if (href) {
+    return (
+      <Link
+        className="block rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 focus-visible:ring-offset-2"
+        href={href}
+      >
+        {card}
+      </Link>
+    );
+  }
+
+  return card;
 }

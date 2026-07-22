@@ -52,7 +52,6 @@ export default function ContactPage() {
       />
       <SplitHero
         body="Use the route that matches your need. Each inquiry is structured so it can be sent to the right care or partnership path."
-        bullets={["Care requests", "Professional onboarding", "Partner inquiries"]}
         eyebrow="Contact"
         imageAlt="African woman in a calm reflective interior"
         imageSrc="/assets/images/individual-reflection.jpg"

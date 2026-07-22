@@ -69,7 +69,6 @@ export default function ResourcesPage() {
       />
       <SplitHero
         body="Short, grounded insights for people, families, professionals, and organizations thinking about mental health care."
-        bullets={["Grounded", "Plain language", "Never pain as content"]}
         eyebrow="Resources"
         imageAlt="African professional in quiet reflection near a city window"
         imageSrc="/assets/images/hero-reflection.jpg"

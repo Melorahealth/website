@@ -67,6 +67,8 @@ export default function PartnersPage() {
         imageSrc="/assets/images/partners-meeting.jpg"
         primaryHref="#partner-inquiry"
         primaryLabel="Send Partner Inquiry"
+        secondaryHref="/for-employers"
+        secondaryLabel="For employers"
         title="Care access for the people you serve."
         variant={3}
       />

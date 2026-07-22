@@ -1,3 +1,4 @@
+import type { LucideIcon } from "lucide-react";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
 import { LoopLine } from "@/components/ui/LoopLine";
@@ -7,8 +8,12 @@ type CTASectionProps = {
   body: string;
   primaryHref: string;
   primaryLabel: string;
+  /** Optional icon for the primary button (defaults to an arrow). */
+  primaryIcon?: LucideIcon;
   secondaryHref?: string;
   secondaryLabel?: string;
+  /** Optional icon for the secondary button (defaults to an arrow). */
+  secondaryIcon?: LucideIcon;
 };
 
 export function CTASection({
@@ -16,8 +21,10 @@ export function CTASection({
   body,
   primaryHref,
   primaryLabel,
+  primaryIcon,
   secondaryHref,
-  secondaryLabel
+  secondaryLabel,
+  secondaryIcon
 }: CTASectionProps) {
   return (
     <section className="section-space">
@@ -30,13 +37,18 @@ export function CTASection({
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-7 text-white/70">{body}</p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink className="!bg-white !text-sage hover:!bg-cream" href={primaryHref}>
+              <ButtonLink
+                className="!bg-white !text-sage hover:!bg-cream"
+                href={primaryHref}
+                icon={primaryIcon}
+              >
                 {primaryLabel}
               </ButtonLink>
               {secondaryHref && secondaryLabel ? (
                 <ButtonLink
                   className="!border-white/20 !bg-transparent !text-white hover:!border-white/50 hover:!bg-white/10"
                   href={secondaryHref}
+                  icon={secondaryIcon}
                   variant="secondary"
                 >
                   {secondaryLabel}
