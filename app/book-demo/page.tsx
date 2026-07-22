@@ -83,7 +83,9 @@ export default function BookDemoPage() {
           />
           <LeadForm
             fields={demoFields}
+            formEndpoint={process.env.NEXT_PUBLIC_FORMSPREE_DEMO_ENDPOINT}
             intro="A first step for employers, HMOs, government institutions, and universities."
+            subject="New demo request"
             submitLabel="Book a demo"
             title="Book a demo"
           />
