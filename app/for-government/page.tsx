@@ -17,6 +17,7 @@ import { FeatureCard } from "@/components/cards/FeatureCard";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { CTASection } from "@/components/sections/CTASection";
 import { DecorSection } from "@/components/sections/DecorSection";
+import { ReportingSection } from "@/components/sections/ReportingSection";
 import { SplitHero } from "@/components/sections/SplitHero";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -180,6 +181,20 @@ export default function GovernmentPage() {
           ))}
         </div>
       </DecorSection>
+
+      {/* 3b. Dashboard & reporting */}
+      <ReportingSection
+        activeUnit="staff"
+        coverage={[
+          { name: "Ministry HQ", pct: 88 },
+          { name: "Field offices", pct: 80 },
+          { name: "Parastatals", pct: 74 },
+          { name: "Local units", pct: 66 }
+        ]}
+        coverageLabel="Adoption by agency"
+        subject="your people"
+        viewerLabel="programme leads"
+      />
 
       {/* 4. Privacy */}
       <section className="section-space relative overflow-hidden bg-sage text-white">

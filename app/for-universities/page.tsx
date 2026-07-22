@@ -22,6 +22,7 @@ import { FeatureCard } from "@/components/cards/FeatureCard";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { CTASection } from "@/components/sections/CTASection";
 import { DecorSection } from "@/components/sections/DecorSection";
+import { ReportingSection } from "@/components/sections/ReportingSection";
 import { SplitHero } from "@/components/sections/SplitHero";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -288,6 +289,20 @@ export default function UniversitiesPage() {
           </div>
         </Container>
       </section>
+
+      {/* 4b. Dashboard & reporting */}
+      <ReportingSection
+        activeUnit="students & staff"
+        coverage={[
+          { name: "Sciences", pct: 90 },
+          { name: "Arts & humanities", pct: 83 },
+          { name: "Engineering", pct: 78 },
+          { name: "Faculty & staff", pct: 70 }
+        ]}
+        coverageLabel="Adoption by faculty"
+        subject="your campus"
+        viewerLabel="student affairs and welfare teams"
+      />
 
       {/* 5. Privacy / trust */}
       <section className="section-space relative overflow-hidden bg-cream/40">

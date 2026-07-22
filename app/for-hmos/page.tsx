@@ -22,6 +22,7 @@ import { FeatureCard } from "@/components/cards/FeatureCard";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { CTASection } from "@/components/sections/CTASection";
 import { DecorSection } from "@/components/sections/DecorSection";
+import { ReportingSection } from "@/components/sections/ReportingSection";
 import { SplitHero } from "@/components/sections/SplitHero";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -288,6 +289,20 @@ export default function HmosPage() {
           </div>
         </Container>
       </section>
+
+      {/* 4b. Dashboard & reporting */}
+      <ReportingSection
+        activeUnit="members"
+        coverage={[
+          { name: "Premium plan", pct: 90 },
+          { name: "Standard plan", pct: 84 },
+          { name: "Family plan", pct: 77 },
+          { name: "Corporate plan", pct: 69 }
+        ]}
+        coverageLabel="Adoption by member plan"
+        subject="your members"
+        viewerLabel="benefits and product teams"
+      />
 
       {/* 5. Privacy / trust */}
       <section className="section-space relative overflow-hidden bg-cream/40">

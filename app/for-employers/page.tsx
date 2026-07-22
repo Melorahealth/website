@@ -24,6 +24,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { CTASection } from "@/components/sections/CTASection";
 import { DecorSection } from "@/components/sections/DecorSection";
 import { ImagePanel } from "@/components/sections/ImagePanel";
+import { ReportingSection } from "@/components/sections/ReportingSection";
 import { SplitHero } from "@/components/sections/SplitHero";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -352,6 +353,20 @@ export default function EmployersPage() {
           something that helps.
         </p>
       </DecorSection>
+
+      {/* 5b. Dashboard & reporting */}
+      <ReportingSection
+        activeUnit="employees"
+        coverage={[
+          { name: "Engineering", pct: 92 },
+          { name: "Operations", pct: 88 },
+          { name: "Sales", pct: 79 },
+          { name: "Support", pct: 71 }
+        ]}
+        coverageLabel="Adoption by department"
+        subject="your team"
+        viewerLabel="HR and People teams"
+      />
 
       {/* 6. Privacy / trust */}
       <section className="section-space relative overflow-hidden bg-cream/40">
