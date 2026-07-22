@@ -10,7 +10,7 @@ export const dynamic = "force-static";
 // OG/social image per top-level route, mirroring each page's metadata image.
 // Routes without a meaningful image (policies) are omitted.
 const routeImages: Record<string, string> = {
-  "/": "/assets/og/melorahealth-home-og.jpg",
+  "/": "/assets/images/home-og.png",
   "/for-you":
     "/assets/images/shot-of-a-young-businesswoman-looking-bored-while-2026-01-09-11-08-39-utc.jpg",
   "/services": "/assets/images/services-hero.png",

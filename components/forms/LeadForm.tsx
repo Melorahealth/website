@@ -7,12 +7,14 @@ import {
   CheckCircle2,
   ChevronDown,
   Hash,
+  Loader2,
   LockKeyhole,
   Mail,
   MapPin,
   MessageSquare,
   Paperclip,
   Phone,
+  TriangleAlert,
   User
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -38,6 +40,10 @@ type LeadFormProps = {
   fields: Field[];
   submitLabel: string;
   idPrefix?: string;
+  /** Override the Formspree endpoint for this form (defaults to the env var). */
+  formEndpoint?: string;
+  /** Email subject Formspree uses for this form's notifications. */
+  subject?: string;
 };
 
 // Required unless explicitly overridden. Free-text messages and fields labelled
@@ -108,21 +114,74 @@ function iconFor(field: Field): LucideIcon | undefined {
   return undefined;
 }
 
-export function LeadForm({ title, intro, fields, submitLabel, idPrefix }: LeadFormProps) {
+export function LeadForm({
+  title,
+  intro,
+  fields,
+  submitLabel,
+  idPrefix,
+  formEndpoint,
+  subject
+}: LeadFormProps) {
   const prefix = idPrefix ?? title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
   const hasFileField = fields.some((field) => field.type === "file");
   const hasRequired = fields.some(isRequired);
+  const endpoint = formEndpoint ?? process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT;
   const [formKey, setFormKey] = useState(0);
-  const [status, setStatus] = useState<"idle" | "success">("idle");
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
   const hasSucceeded = status === "success";
+  const isSubmitting = status === "submitting";
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setStatus("success");
+    const form = event.currentTarget;
+    setErrorMessage("");
+    setStatus("submitting");
+
+    // No endpoint configured (e.g. local preview without secrets): keep the
+    // optimistic success behaviour so the UI can still be demonstrated.
+    if (!endpoint) {
+      if (process.env.NODE_ENV !== "production") {
+        // eslint-disable-next-line no-console
+        console.warn(
+          "LeadForm: NEXT_PUBLIC_FORMSPREE_ENDPOINT is not set — the form was not actually submitted."
+        );
+      }
+      setStatus("success");
+      return;
+    }
+
+    try {
+      const data = new FormData(form);
+      data.append("_subject", subject ?? `New inquiry: ${title}`);
+
+      const response = await fetch(endpoint, {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" }
+      });
+
+      if (response.ok) {
+        setStatus("success");
+        return;
+      }
+
+      const payload = (await response.json().catch(() => null)) as
+        | { errors?: { message?: string }[] }
+        | null;
+      const message = payload?.errors?.map((error) => error.message).filter(Boolean).join(" ");
+      setErrorMessage(message || "Something went wrong. Please try again.");
+      setStatus("error");
+    } catch {
+      setErrorMessage("We couldn't send your message. Check your connection and try again.");
+      setStatus("error");
+    }
   }
 
   function resetForm() {
     setStatus("idle");
+    setErrorMessage("");
     setFormKey((key) => key + 1);
   }
 
@@ -254,12 +313,30 @@ export function LeadForm({ title, intro, fields, submitLabel, idPrefix }: LeadFo
               );
             })}
           </div>
+          {status === "error" ? (
+            <p
+              className="relative mt-6 flex items-start gap-2 rounded-xl border border-rose/40 bg-rose/[0.06] px-4 py-3 text-sm leading-6 text-rose"
+              role="alert"
+            >
+              <TriangleAlert aria-hidden className="mt-0.5 h-4 w-4 shrink-0" strokeWidth={1.8} />
+              {errorMessage}
+            </p>
+          ) : null}
           <div className="relative mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-5">
             <button
+              aria-busy={isSubmitting}
               className="group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-sage px-6 text-sm font-bold text-white shadow-[0_18px_44px_rgba(38,66,54,0.2)] transition hover:bg-sage/90 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-sage/25 disabled:cursor-not-allowed disabled:bg-sage/65 sm:w-auto"
+              disabled={isSubmitting}
               type="submit"
             >
-              {submitLabel}
+              {isSubmitting ? (
+                <>
+                  <Loader2 aria-hidden className="h-4 w-4 animate-spin" strokeWidth={2} />
+                  Sending…
+                </>
+              ) : (
+                submitLabel
+              )}
             </button>
             <div className="flex items-center gap-3 text-xs text-ink/[0.5]">
               {hasRequired ? (

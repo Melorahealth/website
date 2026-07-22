@@ -26,10 +26,10 @@ export const metadata: Metadata = createPageMetadata({
   description:
     "Mental healthcare matched to you. Private, online, and built for real life, with specialized care for women, maternal mental health, and communities standard care too often overlooks.",
   path: "/",
-  image: "/assets/og/melorahealth-home-og.jpg",
-  imageAlt: "MeloraHealth care platform showing culturally aware therapy and connected support routes",
-  imageHeight: 630,
-  imageWidth: 1200
+  image: "/assets/images/home-og.png",
+  imageAlt: "MeloraHealth, culturally aware mental health care",
+  imageHeight: 1024,
+  imageWidth: 1536
 });
 
 const howItWorks = [
