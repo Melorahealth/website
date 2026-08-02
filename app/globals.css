@@ -112,6 +112,14 @@ textarea {
   @apply text-xs font-semibold uppercase tracking-normal text-gold;
 }
 
+/* The logo mark is painted from the current background colour rather than the
+   source PNG, so the header can recolour it (white over the dark hero, sage
+   once the solid header takes over) without shipping a second asset. */
+.logo-mark {
+  -webkit-mask: url("/assets/logo/melora-logo-icon.png") center / contain no-repeat;
+  mask: url("/assets/logo/melora-logo-icon.png") center / contain no-repeat;
+}
+
 .display {
   @apply font-serif text-5xl leading-[1] tracking-normal text-sage sm:text-6xl lg:text-7xl xl:text-[5.6rem] 2xl:text-8xl;
 }
@@ -800,6 +808,45 @@ textarea {
 
 .reveal-delay {
   animation-delay: 140ms;
+}
+
+/* Minimalist chart: the line draws itself in, the fill fades up. */
+@keyframes chart-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes chart-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.chart-line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: chart-draw 1100ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.chart-area {
+  animation: chart-fade 1100ms ease forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chart-line {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+  .chart-area {
+    animation: none;
+  }
 }
 
 /* Hand-drawn underline for nav links: a rough, wavy gold stroke that draws

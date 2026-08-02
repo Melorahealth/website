@@ -120,6 +120,12 @@ export const siteRoutes = [
     label: "Refund Policy",
     description: "Read MeloraHealth's no-refund policy for payments, sessions, care credits, sponsorships, and partner services.",
     priority: 0.32
+  },
+  {
+    path: "/terms-of-service",
+    label: "Terms of Service",
+    description: "Read the terms governing use of MeloraHealth by individuals, care professionals, sponsors, and partner organizations.",
+    priority: 0.3
   }
 ] as const;
 

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { MELORA_GIFT_URL } from "@/lib/app-links";
@@ -17,6 +16,7 @@ const footerLinks = [
   { href: "/resources", label: "Resources" },
   { href: "/contact", label: "Contact" },
   { href: "/privacy-policy", label: "Privacy Policy" },
+  { href: "/terms-of-service", label: "Terms of Service" },
   { href: "/refund-policy", label: "Refund Policy" }
 ];
 
@@ -27,23 +27,10 @@ export function Footer() {
         <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-end">
           <div>
             <div className="mb-5 flex items-center gap-3">
-              <span className="relative block h-12 w-12 overflow-hidden">
-                <Image
-                  alt=""
-                  className="object-contain"
-                  fill
-                  sizes="48px"
-                  src="/assets/logo/melora-logo-icon.png"
-                />
-              </span>
-              <div>
-                <p className="font-serif text-4xl leading-none tracking-normal text-sage">
-                  melora<span className="text-rose">health</span>
-                </p>
-                <p className="mt-2 text-[0.62rem] font-semibold uppercase leading-none tracking-[0.32em] text-gold">
-                  Understand. Heal. Become.
-                </p>
-              </div>
+              <span aria-hidden className="logo-mark block h-12 w-12 shrink-0 bg-sage" />
+              <p className="font-serif text-4xl leading-none tracking-normal text-sage">
+                melorahealth
+              </p>
             </div>
             <p className="max-w-xl text-sm leading-6 text-ink/60">
               Mental health infrastructure for people, professionals, and
