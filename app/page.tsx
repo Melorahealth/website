@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { CTASection } from "@/components/sections/CTASection";
+import { PartnersSection } from "@/components/sections/PartnersSection";
 import { TestimonialSlider } from "@/components/sections/TestimonialSlider";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
@@ -70,30 +71,6 @@ const careComparison = [
     need: "Continuing care",
     melora: "Your care follows you across cities, sponsors, organizations, and providers.",
     offline: "Continuity depends mostly on one office, one schedule, and one provider."
-  }
-];
-
-const partnerLogos = [
-  {
-    name: "TAC Africa",
-    href: "https://tacafrica.org/",
-    src: "/assets/partners/tac-africa.png",
-    width: 72,
-    height: 72
-  },
-  {
-    name: "Platview Technologies",
-    href: "https://platview.com/",
-    src: "/assets/partners/platview-provided.svg",
-    width: 149,
-    height: 45
-  },
-  {
-    name: "BlazeTech",
-    href: "https://blazetch.com/",
-    src: "/assets/partners/blazetech.png",
-    width: 72,
-    height: 72
   }
 ];
 
@@ -277,11 +254,7 @@ export default function Home() {
         </Container>
       </section>
 
-      {/* <section className="py-9">
-        <Container>
-          <PartnerCarousel logos={partnerLogos} />
-        </Container>
-      </section> */}
+      <PartnersSection />
 
       {/* <section className="section-space relative overflow-hidden bg-cream/40">
         <div aria-hidden className="pattern-band" />
