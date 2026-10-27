@@ -505,23 +505,12 @@ export default function Home() {
             {/* Column headers (md and up) */}
             <div className="hidden md:grid md:grid-cols-[1.1fr_1fr_1fr]">
               <div aria-hidden className="px-6 py-5" />
-              <div className="relative flex items-center gap-3 border-l border-sage/10 bg-sage px-6 py-5 text-white">
-                <span
-                  aria-hidden
-                  className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white/15 ring-1 ring-white/25"
-                >
-                  <Check className="h-3.5 w-3.5 text-gold" strokeWidth={2.6} />
-                </span>
-                <span className="text-sm font-semibold tracking-wide">MeloraHealth</span>
-                <span aria-hidden className="absolute inset-x-0 bottom-0 h-px bg-gold/60" />
+              <div className="flex items-center gap-2.5 border-l border-sage/10 bg-sage px-6 py-4 text-white">
+                <Check aria-hidden className="h-4 w-4 text-gold" strokeWidth={2.4} />
+                <span className="text-sm font-semibold">MeloraHealth</span>
               </div>
-              <div className="flex items-center gap-3 border-l border-sage/10 px-6 py-5">
-                <span
-                  aria-hidden
-                  className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-rose/10 ring-1 ring-rose/20"
-                >
-                  <Minus className="h-3.5 w-3.5 text-rose" strokeWidth={2.6} />
-                </span>
+              <div className="flex items-center gap-2.5 border-l border-sage/10 px-6 py-4">
+                <Minus aria-hidden className="h-4 w-4 text-rose" strokeWidth={2.4} />
                 <span className="text-sm font-semibold text-sage-soft">
                   Typical in-person path
                 </span>
@@ -544,19 +533,18 @@ export default function Home() {
                     {row.need}
                   </p>
                 </div>
-                <div className="border-t border-sage/10 bg-sage/[0.07] px-6 py-6 md:border-l md:border-t-0">
+                <div className="border-t border-sage/10 bg-white/60 px-6 py-6 md:border-l md:border-t-0">
                   <p className="mb-2 flex items-center gap-2 text-xs font-semibold text-sage md:hidden">
                     <Check aria-hidden className="h-3.5 w-3.5 text-gold" strokeWidth={2.6} />
                     MeloraHealth
                   </p>
                   <div className="flex items-start gap-3">
-                    <span
+                    <Check
                       aria-hidden
-                      className="mt-0.5 hidden h-5 w-5 shrink-0 items-center justify-center rounded-full bg-sage text-white md:flex"
-                    >
-                      <Check className="h-3 w-3" strokeWidth={3} />
-                    </span>
-                    <p className="text-[15px] font-medium leading-6 text-ink">{row.melora}</p>
+                      className="mt-1 hidden h-4 w-4 shrink-0 text-gold md:block"
+                      strokeWidth={2.6}
+                    />
+                    <p className="text-[15px] leading-6 text-ink/85">{row.melora}</p>
                   </div>
                 </div>
                 <div className="border-t border-sage/10 px-6 py-6 md:border-l md:border-t-0">
@@ -565,13 +553,12 @@ export default function Home() {
                     Typical in-person
                   </p>
                   <div className="flex items-start gap-3">
-                    <span
+                    <Minus
                       aria-hidden
-                      className="mt-0.5 hidden h-5 w-5 shrink-0 items-center justify-center rounded-full bg-rose/10 text-rose md:flex"
-                    >
-                      <Minus className="h-3 w-3" strokeWidth={3} />
-                    </span>
-                    <p className="text-[15px] leading-6 text-ink/60">{row.offline}</p>
+                      className="mt-1 hidden h-4 w-4 shrink-0 text-rose/80 md:block"
+                      strokeWidth={2.6}
+                    />
+                    <p className="text-[15px] leading-6 text-ink/55">{row.offline}</p>
                   </div>
                 </div>
               </div>
