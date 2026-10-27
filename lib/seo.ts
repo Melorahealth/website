@@ -18,6 +18,10 @@ export const socialLinks = [
   {
     label: "Instagram",
     href: "https://www.instagram.com/melorahealth"
+  },
+  {
+    label: "TikTok",
+    href: "https://www.tiktok.com/@melorahealth"
   }
 ] as const;
 

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { Fragment } from "react";
 import {
+  ArrowRight,
   Check,
   CircleArrowRight,
   ClipboardList,
@@ -9,6 +11,7 @@ import {
   Minus,
   Sparkles,
   Star,
+  Stethoscope,
   Video
 } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -349,8 +352,31 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="section-space bg-sage text-white">
-        <Container>
+      <section className="relative overflow-hidden bg-sage py-28 text-white sm:py-32 lg:py-36">
+        {/* A single broad sweep on each edge, rising left to right at the top and
+            falling at the bottom, so this band tilts rather than ripples. */}
+        <svg
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-16 w-full sm:h-24 lg:h-28"
+          fill="none"
+          preserveAspectRatio="none"
+          viewBox="0 0 1440 120"
+        >
+          {/* Light gold lens, then the cream on top; the lens shows where they part. */}
+          <path d="M0 0h1440v34C1200 96 880 112 600 100 340 88 150 70 0 68V0z" fill="#F1D98E" />
+          <path d="M0 0h1440v26C1180 62 900 70 640 60 380 50 160 46 0 66V0z" fill="#fbf8f3" />
+        </svg>
+        <svg
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-16 w-full sm:h-24 lg:h-28"
+          fill="none"
+          preserveAspectRatio="none"
+          viewBox="0 0 1440 120"
+        >
+          <path d="M0 120h1440V86C1200 24 880 8 600 20 340 32 150 50 0 52v68z" fill="#F1D98E" />
+          <path d="M0 120h1440V94C1180 58 900 50 640 60 380 70 160 74 0 54v66z" fill="#fbf8f3" />
+        </svg>
+        <Container className="relative">
           <div className="section-grid">
             <div className="lg:col-span-4" data-reveal>
               <h2 className="font-serif text-4xl leading-tight tracking-normal sm:text-5xl">
@@ -417,15 +443,6 @@ export default function Home() {
       </section>
 
       <section className="section-space relative overflow-hidden" id="why-melora">
-        {/* Cool sage wash, keeps this band calm and cool against the warm page */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(122,143,127,0.16)_0%,rgba(122,143,127,0.06)_42%,transparent_88%)]"
-        />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(38,66,54,0.18),transparent)]"
-        />
         {/* Line artwork, soft organic flourish, top-right */}
         <svg
           aria-hidden
@@ -498,87 +515,50 @@ export default function Home() {
             </p> */}
           </div>
 
-          <div
-            className="mt-12 overflow-hidden rounded-2xl border border-sage/12 bg-white/45 shadow-[0_22px_55px_rgba(38,66,54,0.07)] backdrop-blur-xl"
-            data-reveal
-          >
-            {/* Column headers (md and up) */}
-            <div className="hidden md:grid md:grid-cols-[1.1fr_1fr_1fr]">
-              <div aria-hidden className="px-6 py-5" />
-              <div className="flex items-center gap-2.5 border-l border-sage/10 bg-sage px-6 py-4 text-white">
-                <Check aria-hidden className="h-4 w-4 text-gold" strokeWidth={2.4} />
-                <span className="text-sm font-semibold">MeloraHealth</span>
-              </div>
-              <div className="flex items-center gap-2.5 border-l border-sage/10 px-6 py-4">
-                <Minus aria-hidden className="h-4 w-4 text-rose" strokeWidth={2.4} />
-                <span className="text-sm font-semibold text-sage-soft">
-                  Typical in-person path
-                </span>
-              </div>
-            </div>
-
-            {careComparison.map((row, index) => (
-              <div
-                className="grid grid-cols-1 border-t border-sage/10 md:grid-cols-[1.1fr_1fr_1fr]"
-                key={row.need}
-              >
-                <div className="flex items-start gap-4 px-6 py-6">
-                  <span
-                    aria-hidden
-                    className="mt-1 font-serif text-sm tabular-nums text-gold"
-                  >
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <p className="font-serif text-xl leading-snug tracking-normal text-sage">
-                    {row.need}
-                  </p>
-                </div>
-                <div className="border-t border-sage/10 bg-white/60 px-6 py-6 md:border-l md:border-t-0">
-                  <p className="mb-2 flex items-center gap-2 text-xs font-semibold text-sage md:hidden">
-                    <Check aria-hidden className="h-3.5 w-3.5 text-gold" strokeWidth={2.6} />
-                    MeloraHealth
-                  </p>
-                  <div className="flex items-start gap-3">
-                    <Check
-                      aria-hidden
-                      className="mt-1 hidden h-4 w-4 shrink-0 text-gold md:block"
-                      strokeWidth={2.6}
-                    />
-                    <p className="text-[15px] leading-6 text-ink/85">{row.melora}</p>
-                  </div>
-                </div>
-                <div className="border-t border-sage/10 px-6 py-6 md:border-l md:border-t-0">
-                  <p className="mb-2 flex items-center gap-2 text-xs font-semibold text-rose md:hidden">
-                    <Minus aria-hidden className="h-3.5 w-3.5" strokeWidth={2.6} />
-                    Typical in-person
-                  </p>
-                  <div className="flex items-start gap-3">
-                    <Minus
-                      aria-hidden
-                      className="mt-1 hidden h-4 w-4 shrink-0 text-rose/80 md:block"
-                      strokeWidth={2.6}
-                    />
-                    <p className="text-[15px] leading-6 text-ink/55">{row.offline}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div
-            className="mt-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
-            data-reveal
-          >
-            <p className="max-w-xl text-sm leading-6 text-ink/60">
-              We&apos;re not here to automate therapy. We&apos;re here to make
-              getting help calmer, clearer, and easier to trust.
+          <div className="mt-12 grid md:grid-cols-[1fr_1.1fr]" data-reveal>
+            {/* Header row */}
+            <p className="hidden items-end pb-4 pr-12 text-[11px] font-semibold uppercase tracking-[0.18em] text-ink/45 md:flex">
+              The usual way
             </p>
-            <div className="flex flex-col gap-3 sm:shrink-0 sm:flex-row">
-              <ButtonLink href="/contact">Get Matched</ButtonLink>
-              <ButtonLink href="/services" variant="secondary">
-                Explore Services
-              </ButtonLink>
+            <div className="flex items-center gap-2.5 rounded-t-[22px] bg-sage px-7 py-5 text-white">
+              <span aria-hidden className="logo-mark block h-5 w-5 shrink-0 bg-white" />
+              <span className="font-serif text-lg leading-none tracking-normal">melorahealth</span>
+              <span className="ml-auto text-[11px] font-semibold uppercase tracking-[0.18em] text-gold">
+                With us
+              </span>
             </div>
+
+            {careComparison.map((row, index) => {
+              const isLast = index === careComparison.length - 1;
+              return (
+                <Fragment key={row.need}>
+                  <div className="relative border-t border-sage/10 py-7 pr-10 md:pr-14">
+                    <p className="font-serif text-sm tabular-nums text-gold">
+                      {String(index + 1).padStart(2, "0")}
+                    </p>
+                    <h3 className="mt-1 font-serif text-xl leading-snug tracking-normal text-sage">
+                      {row.need}
+                    </h3>
+                    <p className="mt-2 max-w-md text-sm leading-6 text-ink/55">{row.offline}</p>
+                    <ArrowRight
+                      aria-hidden
+                      className="absolute right-4 top-1/2 hidden h-4 w-4 -translate-y-1/2 text-gold md:block"
+                      strokeWidth={2}
+                    />
+                  </div>
+                  <div
+                    className={`mb-6 flex flex-col justify-center rounded-2xl bg-sage px-7 py-6 text-white md:mb-0 md:rounded-none md:border-t md:border-white/10 md:py-7 ${
+                      isLast ? "md:rounded-b-[22px]" : ""
+                    }`}
+                  >
+                    <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-gold md:hidden">
+                      With melorahealth
+                    </p>
+                    <p className="max-w-lg text-base leading-7 text-white/90">{row.melora}</p>
+                  </div>
+                </Fragment>
+              );
+            })}
           </div>
         </Container>
       </section>
@@ -610,7 +590,29 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="section-space relative overflow-hidden bg-sage text-white">
+      <section className="relative overflow-hidden bg-sage py-28 text-white sm:py-32 lg:py-36">
+        {/* Wavy edges in the page cream, so the band flows in and out of the page. */}
+        <svg
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-16 w-full sm:h-24 lg:h-28"
+          fill="none"
+          preserveAspectRatio="none"
+          viewBox="0 0 1440 110"
+        >
+          {/* Pale gold ribbon offset below the cream ripple. */}
+          <path d="M0 0h1440v28c-120 24-260 40-420 36-180-4-300-40-480-36S240 68 0 40V0z" fill="#F7E9BC" transform="translate(0 26)" />
+          <path d="M0 0h1440v28c-120 24-260 40-420 36-180-4-300-40-480-36S240 68 0 40V0z" fill="#fbf8f3" />
+        </svg>
+        <svg
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-16 w-full sm:h-24 lg:h-28"
+          fill="none"
+          preserveAspectRatio="none"
+          viewBox="0 0 1440 110"
+        >
+          <path d="M0 110h1440V82c-120-24-260-40-420-36-180 4-300 40-480 36S240 42 0 70v40z" fill="#F7E9BC" transform="translate(0 -26)" />
+          <path d="M0 110h1440V82c-120-24-260-40-420-36-180 4-300 40-480 36S240 42 0 70v40z" fill="#fbf8f3" />
+        </svg>
         <div
           aria-hidden
           className="pointer-events-none absolute -right-24 top-1/2 h-[32rem] w-[32rem] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(200,164,107,0.16),transparent_60%)]"
@@ -674,10 +676,17 @@ export default function Home() {
 
       <div data-reveal>
         <CTASection
+          image={{
+            src: "/assets/images/cta-friends.jpg",
+            alt: "",
+            position: "56% 35%"
+          }}
           body="Take the first step today. We'll match you with the right support, for you or someone you love."
           primaryHref="/contact"
+          primaryIcon={CircleArrowRight}
           primaryLabel="Get Matched"
           secondaryHref="/for-professionals"
+          secondaryIcon={Stethoscope}
           secondaryLabel="Join as Professional"
           title="Ready to talk to someone who gets it?"
         />

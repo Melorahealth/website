@@ -103,6 +103,25 @@ textarea {
   background: radial-gradient(40% 55% at 50% 46%, rgba(44, 74, 59, 0.6) 0%, rgba(44, 74, 59, 0.25) 50%, transparent 75%);
 }
 
+/* CTA card photo: sits on the right half and fades in from the green so the
+   card reads as one surface. Tinted slightly toward sage to match. */
+.cta-photo {
+  pointer-events: none;
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 52%;
+  opacity: 0.92;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.5) 42%, #000 76%);
+  mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.5) 42%, #000 76%);
+}
+
+.cta-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(38, 66, 54, 0.55), rgba(38, 66, 54, 0.18));
+}
+
 .loop-line {
   pointer-events: none;
   position: absolute;

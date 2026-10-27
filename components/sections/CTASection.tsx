@@ -1,4 +1,5 @@
 import type { LucideIcon } from "lucide-react";
+import Image from "next/image";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
 import { LoopLine } from "@/components/ui/LoopLine";
@@ -14,6 +15,8 @@ type CTASectionProps = {
   secondaryLabel?: string;
   /** Optional icon for the secondary button (defaults to an arrow). */
   secondaryIcon?: LucideIcon;
+  /** Optional editorial photo, faded in from the green on wide screens. */
+  image?: { src: string; alt?: string; position?: string };
 };
 
 export function CTASection({
@@ -24,14 +27,27 @@ export function CTASection({
   primaryIcon,
   secondaryHref,
   secondaryLabel,
-  secondaryIcon
+  secondaryIcon,
+  image
 }: CTASectionProps) {
   return (
     <section className="section-space">
       <Container>
         <div className="relative overflow-hidden rounded-[28px] bg-sage px-6 py-16 text-white sm:px-10 lg:px-16">
+          {image ? (
+            <div aria-hidden={!image.alt} className="cta-photo hidden lg:block">
+              <Image
+                alt={image.alt ?? ""}
+                className="object-cover"
+                fill
+                sizes="(min-width: 1024px) 50vw, 0px"
+                src={image.src}
+                style={{ objectPosition: image.position ?? "50% 50%" }}
+              />
+            </div>
+          ) : null}
           <LoopLine className="bottom-0 right-0 opacity-30" />
-          <div className="relative max-w-3xl">
+          <div className="relative max-w-3xl lg:max-w-2xl">
             <h2 className="font-serif text-4xl leading-tight tracking-normal sm:text-5xl">
               {title}
             </h2>
