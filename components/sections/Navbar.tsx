@@ -169,7 +169,7 @@ export function Navbar() {
         } ${
           isTransparent
             ? "border-b border-transparent bg-transparent"
-            : "border-b border-sage/10 bg-white/85 shadow-[0_8px_30px_rgba(38,66,54,0.07)] backdrop-blur-xl supports-[backdrop-filter]:bg-white/75"
+            : "border-b border-sage/10 bg-white shadow-[0_8px_30px_rgba(38,66,54,0.07)]"
         }`}
       >
         <div className="mx-auto w-full px-5 sm:px-8 lg:px-12 2xl:px-14">

@@ -154,28 +154,72 @@ export default function Home() {
   return (
     <main>
       <JsonLd data={createHomeJsonLd()} id="melorahealth-home-jsonld" />
-      <section
-        className="relative isolate overflow-hidden border-b border-sage/10 bg-[radial-gradient(90%_80%_at_50%_40%,#2a4a39_0%,#1c3128_58%,#142219_100%)]"
-        data-hero
-      >
-        <Image
-          alt="Illustrated collage of calming mental-health motifs, plants, hands, and warm light"
-          className="object-cover object-center lg:object-contain"
+      <div className="px-1.5 pb-1.5 sm:px-2 sm:pb-2 lg:px-2.5 lg:pb-2.5">
+        <section
+          className="relative isolate overflow-hidden rounded-b-[1.75rem] bg-[linear-gradient(155deg,#3a5f4e_0%,#2f4f40_42%,#264335_72%,#1f3a2d_100%)] sm:rounded-b-[2.25rem] lg:rounded-b-[2.5rem]"
+          data-hero
+        >
+        {/* Soft colour glows: sage top-left, gold bottom-right, a whisper of rose. */}
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-[radial-gradient(42%_55%_at_18%_18%,rgba(140,166,146,0.32),transparent_70%),radial-gradient(38%_50%_at_84%_82%,rgba(200,164,107,0.18),transparent_70%),radial-gradient(30%_40%_at_68%_10%,rgba(201,143,138,0.08),transparent_70%)]"
           data-hero-bg
-          fill
-          priority
-          sizes="100vw"
-          src="/assets/images/hero-.png"
         />
-        <Container className="relative z-10 flex min-h-[100svh] flex-col items-center justify-center py-24 text-center sm:py-28">
+        {/* Heritage pattern, faded into opposite corners. */}
+        <div
+          aria-hidden
+          className="heritage-pattern absolute -right-16 -top-16 h-[22rem] w-[22rem] opacity-[0.06] [mask-image:radial-gradient(circle_at_70%_30%,#000_15%,transparent_70%)]"
+        />
+        <div
+          aria-hidden
+          className="heritage-pattern absolute -bottom-20 -left-16 h-[20rem] w-[20rem] opacity-[0.05] [mask-image:radial-gradient(circle_at_30%_70%,#000_15%,transparent_70%)]"
+        />
+        {/* Editorial photos dissolved into the fill: feathered edges, green tint. */}
+        <div aria-hidden className="hero-photo hero-photo-left hidden lg:block">
+          <Image
+            alt=""
+            className="object-cover"
+            fill
+            sizes="(min-width: 1024px) 48vw, 0px"
+            src="/assets/images/hero-man-smiling.jpg"
+            style={{ objectPosition: "50% 30%" }}
+          />
+        </div>
+        <div aria-hidden className="hero-photo hero-photo-right hidden lg:block">
+          <Image
+            alt=""
+            className="object-cover"
+            fill
+            sizes="(min-width: 1024px) 52vw, 0px"
+            src="/assets/images/hero-woman-flowers.jpg"
+            style={{ objectPosition: "64% 40%" }}
+          />
+        </div>
+        <div aria-hidden className="hero-scrim hidden lg:block" />
+        {/* A single loop line, low in the frame. */}
+        <svg
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-44 w-full opacity-25"
+          fill="none"
+          preserveAspectRatio="none"
+          viewBox="0 0 1440 176"
+        >
+          <path
+            d="M-40 132C230 44 430 164 730 104S1210 8 1490 110"
+            stroke="#7A8F7F"
+            strokeLinecap="round"
+            strokeWidth="1.5"
+          />
+        </svg>
+        {/* Fine film grain over everything. */}
+        <div aria-hidden className="hero-grain absolute inset-0" />
+        <Container className="relative z-10 flex min-h-[calc(100svh-6.125rem)] flex-col items-center justify-center py-24 text-center sm:min-h-[calc(100svh-7rem)] sm:py-28 lg:min-h-[calc(100svh-7.25rem)]">
           <div className="flex max-w-3xl flex-col items-center">
             <p
               className="mb-5 flex items-center gap-3 text-sm font-semibold tracking-wide text-white"
               data-hero-item
             >
-              <span aria-hidden className="kicker-rule is-left h-px w-6 bg-gold" />
               You don&apos;t have to figure this out alone
-              <span aria-hidden className="kicker-rule is-right h-px w-6 bg-gold" />
             </p>
             <h1
               className="display hero-display !text-white"
@@ -183,7 +227,7 @@ export default function Home() {
             >
               Find a culturally
               <br />
-              aware <span className="mark-highlight mark-cool !text-white">therapist.</span>
+              aware therapist.
             </h1>
             {/* <p
               className="mt-7 max-w-[600px] text-lg leading-8 text-white"
@@ -252,7 +296,8 @@ export default function Home() {
             </ul> */}
           </div>
         </Container>
-      </section>
+        </section>
+      </div>
 
       <PartnersSection />
 
@@ -371,7 +416,7 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="section-space relative overflow-hidden">
+      <section className="section-space relative overflow-hidden" id="why-melora">
         {/* Cool sage wash, keeps this band calm and cool against the warm page */}
         <div
           aria-hidden
@@ -459,42 +504,75 @@ export default function Home() {
           >
             {/* Column headers (md and up) */}
             <div className="hidden md:grid md:grid-cols-[1.1fr_1fr_1fr]">
-              <div aria-hidden />
-              <div className="flex items-center gap-2 border-l border-t-2 border-sage/10 border-t-gold/45 bg-gold/[0.07] px-6 py-4">
-                <Check aria-hidden className="h-4 w-4 text-gold" strokeWidth={2.4} />
-                <span className="text-sm font-semibold text-sage">MeloraHealth</span>
+              <div aria-hidden className="px-6 py-5" />
+              <div className="relative flex items-center gap-3 border-l border-sage/10 bg-sage px-6 py-5 text-white">
+                <span
+                  aria-hidden
+                  className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white/15 ring-1 ring-white/25"
+                >
+                  <Check className="h-3.5 w-3.5 text-gold" strokeWidth={2.6} />
+                </span>
+                <span className="text-sm font-semibold tracking-wide">MeloraHealth</span>
+                <span aria-hidden className="absolute inset-x-0 bottom-0 h-px bg-gold/60" />
               </div>
-              <div className="flex items-center gap-2 border-l border-sage/10 px-6 py-4">
-                <Minus aria-hidden className="h-4 w-4 text-rose" strokeWidth={2.4} />
+              <div className="flex items-center gap-3 border-l border-sage/10 px-6 py-5">
+                <span
+                  aria-hidden
+                  className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-rose/10 ring-1 ring-rose/20"
+                >
+                  <Minus className="h-3.5 w-3.5 text-rose" strokeWidth={2.6} />
+                </span>
                 <span className="text-sm font-semibold text-sage-soft">
                   Typical in-person path
                 </span>
               </div>
             </div>
 
-            {careComparison.map((row) => (
+            {careComparison.map((row, index) => (
               <div
                 className="grid grid-cols-1 border-t border-sage/10 md:grid-cols-[1.1fr_1fr_1fr]"
                 key={row.need}
               >
-                <div className="px-6 py-5">
+                <div className="flex items-start gap-4 px-6 py-6">
+                  <span
+                    aria-hidden
+                    className="mt-1 font-serif text-sm tabular-nums text-gold"
+                  >
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
                   <p className="font-serif text-xl leading-snug tracking-normal text-sage">
                     {row.need}
                   </p>
                 </div>
-                <div className="border-t border-sage/10 bg-gold/[0.06] px-6 py-5 md:border-l md:border-t-0">
-                  <p className="mb-1.5 flex items-center gap-2 text-xs font-semibold text-gold md:hidden">
-                    <Check aria-hidden className="h-3.5 w-3.5" strokeWidth={2.6} />
+                <div className="border-t border-sage/10 bg-sage/[0.07] px-6 py-6 md:border-l md:border-t-0">
+                  <p className="mb-2 flex items-center gap-2 text-xs font-semibold text-sage md:hidden">
+                    <Check aria-hidden className="h-3.5 w-3.5 text-gold" strokeWidth={2.6} />
                     MeloraHealth
                   </p>
-                  <p className="text-sm leading-6 text-ink/80">{row.melora}</p>
+                  <div className="flex items-start gap-3">
+                    <span
+                      aria-hidden
+                      className="mt-0.5 hidden h-5 w-5 shrink-0 items-center justify-center rounded-full bg-sage text-white md:flex"
+                    >
+                      <Check className="h-3 w-3" strokeWidth={3} />
+                    </span>
+                    <p className="text-[15px] font-medium leading-6 text-ink">{row.melora}</p>
+                  </div>
                 </div>
-                <div className="border-t border-sage/10 px-6 py-5 md:border-l md:border-t-0">
-                  <p className="mb-1.5 flex items-center gap-2 text-xs font-semibold text-rose md:hidden">
+                <div className="border-t border-sage/10 px-6 py-6 md:border-l md:border-t-0">
+                  <p className="mb-2 flex items-center gap-2 text-xs font-semibold text-rose md:hidden">
                     <Minus aria-hidden className="h-3.5 w-3.5" strokeWidth={2.6} />
                     Typical in-person
                   </p>
-                  <p className="text-sm leading-6 text-sage-soft">{row.offline}</p>
+                  <div className="flex items-start gap-3">
+                    <span
+                      aria-hidden
+                      className="mt-0.5 hidden h-5 w-5 shrink-0 items-center justify-center rounded-full bg-rose/10 text-rose md:flex"
+                    >
+                      <Minus className="h-3 w-3" strokeWidth={3} />
+                    </span>
+                    <p className="text-[15px] leading-6 text-ink/60">{row.offline}</p>
+                  </div>
                 </div>
               </div>
             ))}

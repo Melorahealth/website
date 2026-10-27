@@ -50,6 +50,59 @@ textarea {
   background: rgba(201, 143, 138, 0.32);
 }
 
+/* Film grain for the home hero: an SVG turbulence tile, blended softly so the
+   gradient reads as paper rather than a flat vector fill. */
+.hero-grain {
+  pointer-events: none;
+  opacity: 0.9;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.6' numOctaves='5' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 220px 220px;
+}
+
+/* Home hero photos: blended as luminosity so they borrow the green from the
+   fill, darkened to sit at the same brightness, and masked with a long fade
+   that starts at the centre so there is no visible edge. */
+.hero-photo {
+  pointer-events: none;
+  position: absolute;
+  overflow: hidden;
+  opacity: 0.7;
+  mix-blend-mode: luminosity;
+  /* closest-side keeps the fade inside the box, so no edge is ever clipped. */
+  -webkit-mask-image: radial-gradient(ellipse closest-side at 50% 56%, #000 0%, rgba(0, 0, 0, 0.72) 24%, rgba(0, 0, 0, 0.34) 50%, rgba(0, 0, 0, 0.1) 76%, transparent 100%);
+  mask-image: radial-gradient(ellipse closest-side at 50% 56%, #000 0%, rgba(0, 0, 0, 0.72) 24%, rgba(0, 0, 0, 0.34) 50%, rgba(0, 0, 0, 0.1) 76%, transparent 100%);
+}
+
+.hero-photo img {
+  filter: brightness(0.58) contrast(0.92) saturate(0.4);
+}
+
+.hero-photo-left {
+  left: -6%;
+  bottom: -14%;
+  width: 34%;
+  height: 84%;
+  /* Portrait subject sits high in the frame, so the clear zone sits higher too. */
+  -webkit-mask-image: radial-gradient(ellipse closest-side at 50% 42%, #000 0%, rgba(0, 0, 0, 0.72) 24%, rgba(0, 0, 0, 0.34) 50%, rgba(0, 0, 0, 0.1) 76%, transparent 100%);
+  mask-image: radial-gradient(ellipse closest-side at 50% 42%, #000 0%, rgba(0, 0, 0, 0.72) 24%, rgba(0, 0, 0, 0.34) 50%, rgba(0, 0, 0, 0.1) 76%, transparent 100%);
+}
+
+.hero-photo-right {
+  right: -8%;
+  bottom: -14%;
+  width: 44%;
+  height: 66%;
+}
+
+/* Keeps the headline zone clean where the photos would otherwise creep in. */
+.hero-scrim {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(40% 55% at 50% 46%, rgba(44, 74, 59, 0.6) 0%, rgba(44, 74, 59, 0.25) 50%, transparent 75%);
+}
+
 .loop-line {
   pointer-events: none;
   position: absolute;

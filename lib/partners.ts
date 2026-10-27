@@ -52,6 +52,14 @@ export const partnerLogos: PartnerLogo[] = [
     className: "h-9 sm:h-10"
   },
   {
+    name: "Pan-Atlantic University",
+    href: "https://pau.edu.ng/",
+    src: "/assets/partners/pan-atlantic-university-logo.png",
+    width: 213,
+    height: 88,
+    className: "h-9 sm:h-10"
+  },
+  {
     name: "NVIDIA Inception Program member",
     href: "https://www.nvidia.com/en-us/startups/",
     src: "/assets/partners/nvidia-inception.svg",
