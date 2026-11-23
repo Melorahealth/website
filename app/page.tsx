@@ -81,11 +81,11 @@ const careComparison = [
   }
 ];
 
-/** The colour an FAQ answer opens into, taken in turn: pale gold, pale rose, mint. */
+/** The number chip on each FAQ row, taken in turn: gold, rose, mint. Solid once the row is open. */
 const faqStyles = [
-  { fill: "open:bg-[#f5e9cd]", badge: "group-open:bg-gold group-open:text-ink", numeral: "group-open:text-[#a98443]" },
-  { fill: "open:bg-[#f6e1dc]", badge: "group-open:bg-rose group-open:text-ink", numeral: "group-open:text-[#a8635c]" },
-  { fill: "open:bg-[#e6f1eb]", badge: "group-open:bg-accent group-open:text-white", numeral: "group-open:text-accent-deep" }
+  { number: "bg-[#f5e9cd] text-[#8a6a2f] group-open:bg-gold group-open:text-ink" },
+  { number: "bg-[#f6e1dc] text-[#9c574f] group-open:bg-rose group-open:text-ink" },
+  { number: "bg-[#e6f1eb] text-accent-deep group-open:bg-[#e6f1eb] group-open:text-sage" }
 ] as const;
 
 /** The three "how it works" cards: each a colour block, each set a little higher than the last. */
@@ -680,8 +680,8 @@ export default async function Home() {
           <div className="flex flex-col gap-10">
             <div className="flex justify-center" data-reveal>
               <SectionHeader
-                // body="Straight answers to the questions people ask before they trust someone with their mental health."
-                // eyebrow="FAQ"
+                align="center"
+                body="Straight answers to what people ask before they trust someone with how they feel."
                 title="Frequently asked questions."
               />
             </div>
@@ -691,34 +691,46 @@ export default async function Home() {
                   const style = faqStyles[index % faqStyles.length]!;
                   return (
                     <details
-                      className={`group w-full rounded-[1.5rem] bg-white/60 ring-1 ring-inset ring-sage/10 transition-colors duration-300 open:ring-0 hover:bg-white ${style.fill}`}
+                      className="group w-full rounded-[1.75rem] bg-white ring-1 ring-inset ring-sage/10 transition-colors duration-300 open:bg-sage open:ring-0 hover:ring-sage/25"
                       data-reveal
                       key={faq.question}
                       open={index === 0}
                     >
-                      <summary className="flex cursor-pointer list-none items-center gap-4 rounded-[1.5rem] p-5 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent/30 sm:gap-6 sm:p-6 [&::-webkit-details-marker]:hidden">
+                      <summary className="flex cursor-pointer list-none items-center gap-4 rounded-[1.75rem] p-4 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent/30 sm:gap-5 sm:p-5 [&::-webkit-details-marker]:hidden">
                         <span
                           aria-hidden
-                          className={`w-9 shrink-0 font-serif text-2xl leading-none text-sage/35 transition-colors duration-300 ${style.numeral}`}
+                          className={`grid h-12 w-12 shrink-0 place-items-center rounded-full font-serif text-lg leading-none transition-colors duration-300 ${style.number}`}
                         >
                           0{index + 1}
                         </span>
-                        <span className="flex-1 font-serif text-xl leading-snug tracking-normal text-sage sm:text-2xl">
+                        <span className="flex-1 font-serif text-xl leading-snug tracking-normal text-sage transition-colors duration-300 group-open:text-white sm:text-2xl">
                           {faq.question}
                         </span>
                         <span
                           aria-hidden
-                          className={`grid h-11 w-11 shrink-0 place-items-center rounded-full bg-sage/[0.07] text-sage transition duration-300 group-open:rotate-45 ${style.badge}`}
+                          className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-sage text-white transition duration-300 group-open:rotate-45 group-open:bg-white/15 group-hover:scale-105"
                         >
                           <Plus className="h-5 w-5" strokeWidth={1.8} />
                         </span>
                       </summary>
-                      <p className="px-5 pb-6 text-[15px] leading-7 text-ink/75 sm:pb-7 sm:pl-[5.25rem] sm:pr-20">
+                      <p className="px-5 pb-7 text-base leading-7 text-white/85 sm:pb-8 sm:pl-[5.5rem] sm:pr-24">
                         {faq.answer}
                       </p>
                     </details>
                   );
                 })}
+                <a
+                  className="group mt-2 flex items-center justify-between gap-4 rounded-[1.75rem] border border-dashed border-sage/30 p-4 pl-6 text-sage transition duration-300 hover:border-sage/60 hover:bg-white focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent/30 sm:p-5 sm:pl-7"
+                  data-reveal
+                  href="/contact"
+                >
+                  <span className="font-serif text-xl leading-snug sm:text-2xl">
+                    Can&rsquo;t find your question? Ask us.
+                  </span>
+                  <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-gold text-ink transition duration-300 group-hover:translate-x-1">
+                    <ArrowRight aria-hidden className="h-5 w-5" />
+                  </span>
+                </a>
               </div>
             </div>
 
