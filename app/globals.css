@@ -1114,3 +1114,34 @@ textarea {
     transition-duration: 0.01ms !important;
   }
 }
+
+/*
+ * Accent tones for card rows. Put "tone" on each sibling in a grid or list and
+ * it takes pale gold, pale rose, mint, then white in turn. Children read the
+ * variables: --tone-bg (the block), --tone-accent (badge fill), --tone-on (badge
+ * text), --tone-mark (large faded numerals and icons).
+ */
+.tone {
+  --tone-bg: #f5e9cd;
+  --tone-accent: #c8a46b;
+  --tone-on: #111b17;
+  --tone-mark: rgba(200, 164, 107, 0.4);
+}
+.tone:nth-child(4n + 2) {
+  --tone-bg: #f6e1dc;
+  --tone-accent: #c98f8a;
+  --tone-on: #111b17;
+  --tone-mark: rgba(201, 143, 138, 0.4);
+}
+.tone:nth-child(4n + 3) {
+  --tone-bg: #e6f1eb;
+  --tone-accent: #4c7a6e;
+  --tone-on: #ffffff;
+  --tone-mark: rgba(76, 122, 110, 0.22);
+}
+.tone:nth-child(4n + 4) {
+  --tone-bg: #ffffff;
+  --tone-accent: #264236;
+  --tone-on: #ffffff;
+  --tone-mark: rgba(38, 66, 54, 0.08);
+}

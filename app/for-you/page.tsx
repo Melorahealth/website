@@ -11,6 +11,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { MELORA_GIFT_URL } from "@/lib/app-links";
 import { createPageMetadata } from "@/lib/seo";
 import { createBreadcrumbJsonLd } from "@/lib/structured-data";
+import { FaqList } from "@/components/sections/FaqList";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Find Therapy and Mental Health Support",
@@ -164,21 +165,8 @@ export default function ForYouPage() {
           body="The questions people ask us most before they start."
           title="Good questions, answered plainly."
         />
-        <div className="mx-auto mt-12 max-w-3xl divide-y divide-sage/10 border-y border-sage/10">
-          {faqs.map((item) => (
-            <details className="group py-5" key={item.q}>
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-serif text-xl leading-snug tracking-normal text-sage">
-                {item.q}
-                <span
-                  aria-hidden
-                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-sage/15 text-gold transition duration-300 group-open:rotate-45"
-                >
-                  <span className="text-lg leading-none">+</span>
-                </span>
-              </summary>
-              <p className="mt-4 max-w-2xl text-sm leading-7 text-ink/[0.66]">{item.a}</p>
-            </details>
-          ))}
+        <div className="mt-12">
+          <FaqList items={faqs.map((item) => ({ question: item.q, answer: item.a }))} />
         </div>
       </DecorSection>
       <NextStepSection

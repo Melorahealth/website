@@ -62,8 +62,8 @@ export function NextStepSection({ body, steps = defaultSteps }: NextStepSectionP
         </p>
         <ol className="relative mt-7 space-y-5">
           {steps.map((step, index) => (
-            <li className="flex gap-4" key={step.title}>
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sage text-sm font-bold text-white shadow-soft">
+            <li className="tone flex gap-4" key={step.title}>
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--tone-accent)] font-serif text-base text-[color:var(--tone-on)]">
                 {index + 1}
               </span>
               <div>

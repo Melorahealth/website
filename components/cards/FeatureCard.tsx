@@ -5,89 +5,52 @@ type FeatureCardProps = {
   title: string;
   body: string;
   icon: LucideIcon;
-  /** Optional short uppercase label shown by the icon (e.g. a category). */
+  /** Optional short label shown in a chip (e.g. a category). */
   meta?: string;
-  /** Render the card on a dark section. */
+  /** Kept for callers on dark sections; the colour block reads the same on light and dark. */
   dark?: boolean;
   /** When set, the whole card becomes a link to this destination. */
   href?: string;
 };
 
-export function FeatureCard({ title, body, icon: Icon, meta, dark = false, href }: FeatureCardProps) {
-  const card = dark ? (
-    <article className="reveal group relative flex flex-col gap-4 overflow-hidden rounded-2xl border border-white/15 bg-white/[0.06] p-7 backdrop-blur transition duration-500 hover:-translate-y-1.5 hover:border-gold/40 hover:bg-white/[0.09]">
-        <div
-          aria-hidden
-          className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent opacity-0 transition duration-500 group-hover:opacity-100"
-        />
-        <span className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/15 bg-white/10 text-gold transition duration-500 group-hover:border-gold/40 group-hover:bg-gold/10">
-          <Icon aria-hidden className="h-[1.15rem] w-[1.15rem]" strokeWidth={1.6} />
-        </span>
-        <div className="relative">
-          <div className="flex items-center justify-between gap-3">
-            <h3 className="font-serif text-xl leading-tight tracking-normal">{title}</h3>
-            {meta ? (
-              <span className="text-xs font-semibold uppercase tracking-normal text-gold">{meta}</span>
-            ) : null}
-          </div>
-          <p className="mt-2 text-sm leading-6 text-white/70">{body}</p>
-        </div>
-      </article>
-  ) : (
-    <article className="reveal group relative overflow-hidden rounded-2xl border border-sage/12 bg-white/55 p-7 shadow-[0_18px_48px_rgba(38,66,54,0.06)] backdrop-blur-xl transition duration-500 hover:-translate-y-1.5 hover:border-gold/30 hover:bg-white/70">
-      {/* Corner glow */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-[radial-gradient(circle,rgba(200,164,107,0.22),transparent_70%)] transition duration-700 group-hover:scale-125"
-      />
-      {/* Oversized bleeding icon */}
+/**
+ * A colour-block card. Siblings in a grid take pale gold, rose, mint and white
+ * in turn (the "tone" class in globals.css), with the icon in a solid badge and
+ * a large faded copy of it in the corner.
+ */
+export function FeatureCard({ title, body, icon: Icon, meta, href }: FeatureCardProps) {
+  const shell =
+    "tone reveal group relative flex h-full flex-col overflow-hidden rounded-[2rem] bg-[var(--tone-bg)] p-7 text-sage ring-1 ring-inset ring-sage/[0.06] transition duration-500 hover:-translate-y-1";
+  const content = (
+    <>
       <Icon
         aria-hidden
-        className="pointer-events-none absolute -right-3 -top-3 h-24 w-24 text-sage/[0.06] transition duration-700 ease-out group-hover:rotate-6 group-hover:scale-110 group-hover:text-gold/20"
+        className="pointer-events-none absolute -right-4 -top-4 h-28 w-28 text-[color:var(--tone-mark)] transition duration-700 ease-out group-hover:rotate-6 group-hover:scale-105"
         strokeWidth={1}
       />
-      {/* Icon badge */}
-      <div className="relative flex items-center justify-between gap-4">
-        <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-sage/10 bg-gradient-to-br from-white/85 to-cream/40 text-sage shadow-[inset_0_1px_0_rgba(255,255,255,0.65)] transition duration-500 group-hover:border-gold/40">
-          <Icon aria-hidden className="h-[1.15rem] w-[1.15rem]" strokeWidth={1.5} />
+      <div className="relative flex items-center gap-3">
+        <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-[var(--tone-accent)] text-[color:var(--tone-on)]">
+          <Icon aria-hidden className="h-5 w-5" strokeWidth={1.7} />
         </span>
         {meta ? (
-          <span className="relative text-xs font-semibold uppercase tracking-normal text-gold">{meta}</span>
+          <span className="rounded-full bg-white/80 px-3 py-1 text-xs font-semibold text-sage">{meta}</span>
         ) : null}
       </div>
-      <h3 className="relative mt-7 font-serif text-2xl leading-tight tracking-normal text-sage">
-        {title}
-      </h3>
-      <p className="relative mt-3 text-sm leading-6 text-ink/[0.62]">{body}</p>
-      {/* Bottom drawn-line motif */}
-      <svg
-        aria-hidden
-        className="pointer-events-none absolute inset-x-6 bottom-3 h-3 w-[calc(100%-3rem)] text-gold/35"
-        fill="none"
-        preserveAspectRatio="none"
-        viewBox="0 0 200 12"
-      >
-        <path
-          d="M0 9 C40 9 40 3 80 3 C120 3 120 9 160 9 C180 9 190 6 200 6"
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeWidth="1.5"
-        />
-        <circle cx="200" cy="6" fill="currentColor" r="2" />
-      </svg>
-    </article>
+      <h3 className="relative mt-9 text-pretty font-serif text-2xl leading-tight tracking-normal">{title}</h3>
+      <p className="relative mt-3 text-sm leading-6 text-ink/75">{body}</p>
+    </>
   );
 
   if (href) {
     return (
       <Link
-        className="block rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 focus-visible:ring-offset-2"
+        className={`${shell} focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent/40`}
         href={href}
       >
-        {card}
+        {content}
       </Link>
     );
   }
 
-  return card;
+  return <article className={shell}>{content}</article>;
 }
