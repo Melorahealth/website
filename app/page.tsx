@@ -24,7 +24,6 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { MELORA_APP_URL, MELORA_BLOG_URL, MELORA_GIFT_URL } from "@/lib/app-links";
 import { BlogHighlights } from "@/components/sections/BlogHighlights";
-import { FaqSection } from "@/components/sections/FaqSection";
 import { getLatestBlogPosts } from "@/lib/blog-posts";
 import { createPageMetadata } from "@/lib/seo";
 import { createHomeJsonLd } from "@/lib/structured-data";
@@ -668,9 +667,41 @@ export default async function Home() {
         </Container>
       </section>
 
-      <section className="section-space bg-[#fbf8f3]" id="faq">
+      <section className="section-space bg-[#fbf8f3]">
         <Container>
-          <FaqSection faqs={faqs} />
+          <div className="flex flex-col gap-10">
+            <div className="flex justify-center" data-reveal>
+              <SectionHeader
+                // body="Straight answers to the questions people ask before they trust someone with their mental health."
+                // eyebrow="FAQ"
+                title="Frequently asked questions."
+              />
+            </div>
+            <div className="flex justify-center gap-3 max-w-3xl w-full mx-auto">
+              <div className="grid gap-3 col-span-8 w-full">
+                {faqs.map((faq) => (
+                  <details
+                    className="group rounded-xl border border-sage/10 bg-white/45 p-6 shadow-[0_14px_38px_rgba(38,66,54,0.04)] w-full"
+                    data-reveal
+                    key={faq.question}
+                  >
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-6 font-serif text-2xl leading-tight tracking-normal text-sage">
+                      {faq.question}
+                      <MessageCircle
+                        aria-hidden
+                        className="h-5 w-5 shrink-0 text-gold transition group-open:rotate-6"
+                        strokeWidth={1.6}
+                      />
+                    </summary>
+                    <p className="mt-4 max-w-3xl text-sm leading-6 text-ink/64">
+                      {faq.answer}
+                    </p>
+                  </details>
+                ))}
+              </div>
+            </div>
+
+          </div>
         </Container>
       </section>
 
