@@ -27,6 +27,17 @@ function speakerIcon(context: string): LucideIcon {
 }
 
 /**
+ * The brand's three accents, rotated across the cards so the row reads as a set
+ * without every card looking the same. Each is used small: the quote mark and
+ * the speaker's icon chip.
+ */
+const accents = [
+  { mark: "text-gold", chip: "bg-gold/20 text-[#8a6a2f]" },
+  { mark: "text-rose", chip: "bg-rose/20 text-[#9c574f]" },
+  { mark: "text-sage-soft", chip: "bg-sage-soft/20 text-sage" }
+] as const;
+
+/**
  * Modern testimonial slider for the sage "Built from real conversations" band.
  *
  * Native scroll-snap powers touch swipe + smooth scrolling; prev/next buttons and
@@ -104,11 +115,12 @@ export function TestimonialSlider({ items }: { items: Testimonial[] }) {
       onTouchStart={() => setPaused(true)}
     >
       <ul
-        className="-mx-6 -mb-6 flex snap-x snap-mandatory scroll-px-6 gap-5 overflow-x-auto scroll-smooth px-6 pb-14 pt-3 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="-mx-6 flex snap-x snap-mandatory scroll-px-6 gap-5 overflow-x-auto scroll-smooth px-6 pb-2 pt-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         ref={trackRef}
       >
         {items.map((item, i) => {
           const Icon = speakerIcon(item.context);
+          const accent = accents[i % accents.length]!;
           return (
             <li
               className="w-[86%] shrink-0 snap-start sm:w-[58%] md:w-[46%] lg:w-[calc((100%-2.5rem)/3)]"
@@ -117,23 +129,21 @@ export function TestimonialSlider({ items }: { items: Testimonial[] }) {
                 slideRefs.current[i] = el;
               }}
             >
-              {/* Cream card on the sage band: the quote is the loudest thing on it. */}
-              <figure className="group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] bg-[#fbf8f3] p-8 shadow-[0_18px_36px_-8px_rgba(8,22,17,0.34)] transition duration-500 hover:-translate-y-1 sm:p-9">
+              {/* Flat cream card on the sage band: quote first, one accent, nothing else. */}
+              <figure className="flex h-full flex-col rounded-[1.5rem] bg-[#fbf8f3] p-8 transition duration-500 hover:-translate-y-1 sm:p-9">
                 <span
                   aria-hidden
-                  className="pointer-events-none absolute -right-10 -top-12 h-40 w-40 rounded-full bg-[radial-gradient(circle,rgba(200,164,107,0.22),transparent_68%)]"
-                />
-                <span
-                  aria-hidden
-                  className="block h-11 select-none font-serif text-[5.25rem] leading-none text-gold"
+                  className={`block h-9 select-none font-serif text-[4.5rem] leading-none ${accent.mark}`}
                 >
                   &ldquo;
                 </span>
-                <blockquote className="relative mt-5 flex-1 text-pretty font-serif text-[1.4rem] leading-[1.38] tracking-normal text-sage sm:text-[1.5rem]">
+                <blockquote className="mt-6 flex-1 text-pretty font-serif text-[1.4rem] leading-[1.4] tracking-normal text-sage sm:text-[1.5rem]">
                   {item.quote}
                 </blockquote>
-                <figcaption className="relative mt-9 flex items-center gap-3.5 border-t border-sage/10 pt-6">
-                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-sage text-cream">
+                <figcaption className="mt-10 flex items-center gap-3.5">
+                  <span
+                    className={`grid h-11 w-11 shrink-0 place-items-center rounded-full ${accent.chip}`}
+                  >
                     <Icon aria-hidden className="h-5 w-5" strokeWidth={1.6} />
                   </span>
                   <span className="min-w-0">
@@ -151,7 +161,7 @@ export function TestimonialSlider({ items }: { items: Testimonial[] }) {
         })}
       </ul>
 
-      <div className="mt-2 flex items-center justify-between gap-4">
+      <div className="mt-7 flex items-center justify-between gap-4">
         <div className="flex items-center gap-2" role="tablist" aria-label="Testimonials">
           {items.map((item, i) => (
             <button

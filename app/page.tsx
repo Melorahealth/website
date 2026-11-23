@@ -660,21 +660,25 @@ export default function Home() {
               </ButtonLink>
             </div>
             <div className="grid gap-5 md:grid-cols-3">
-              {featuredBlogPosts.map((post) => (
+              {featuredBlogPosts.map((post, index) => (
                 <a
-                  className="group flex h-full flex-col rounded-[1.5rem] border border-sage/10 bg-white/60 p-7 shadow-[0_14px_38px_rgba(38,66,54,0.05)] transition duration-300 hover:-translate-y-1 hover:border-sage/25 hover:bg-white focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-sage/20 sm:p-8"
+                  className="group flex h-full flex-col rounded-[1.5rem] border border-sage/10 bg-white/70 p-7 transition duration-300 hover:-translate-y-1 hover:border-sage/25 hover:bg-white focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-sage/20 sm:p-8"
                   data-reveal
                   href={post.href}
                   key={post.href}
                 >
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gold">
+                  <p className="flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-ink/60">
+                    <span
+                      aria-hidden
+                      className={`h-2 w-2 rounded-full ${["bg-gold", "bg-rose", "bg-sage-soft"][index % 3]}`}
+                    />
                     {post.topic}
                   </p>
                   <h3 className="mt-4 text-pretty font-serif text-2xl leading-snug tracking-normal text-sage">
                     {post.title}
                   </h3>
                   <p className="mt-4 flex-1 text-sm leading-6 text-ink/65">{post.excerpt}</p>
-                  <p className="mt-7 flex items-center justify-between border-t border-sage/10 pt-5 text-sm font-semibold text-sage">
+                  <p className="mt-8 flex items-center justify-between text-sm font-semibold text-sage">
                     <span className="flex items-center gap-2">
                       Read article
                       <ArrowRight
