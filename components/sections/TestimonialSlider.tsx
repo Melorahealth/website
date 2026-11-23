@@ -48,6 +48,7 @@ const palettes = [
 export function TestimonialSlider({ items }: { items: Testimonial[] }) {
   const trackRef = useRef<HTMLUListElement>(null);
   const [paused, setPaused] = useState(false);
+  const resumeTimer = useRef<number>();
   // Where the visible window sits in the whole track, both as fractions (0-1).
   const [thumb, setThumb] = useState({ start: 0, size: 1 });
 
@@ -91,11 +92,13 @@ export function TestimonialSlider({ items }: { items: Testimonial[] }) {
     };
   }, []);
 
+  useEffect(() => () => window.clearTimeout(resumeTimer.current), []);
+
   // Autoplay, paused on interaction and disabled for reduced-motion users.
   useEffect(() => {
     if (paused || items.length < 2) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const id = window.setInterval(() => step(1), 5500);
+    const id = window.setInterval(() => step(1), 4500);
     return () => window.clearInterval(id);
   }, [paused, step, items.length]);
 
@@ -108,7 +111,15 @@ export function TestimonialSlider({ items }: { items: Testimonial[] }) {
       onFocus={() => setPaused(true)}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
-      onTouchStart={() => setPaused(true)}
+      onTouchEnd={() => {
+        // A phone has no "mouse leave", so start sliding again shortly after a swipe or tap.
+        window.clearTimeout(resumeTimer.current);
+        resumeTimer.current = window.setTimeout(() => setPaused(false), 4000);
+      }}
+      onTouchStart={() => {
+        window.clearTimeout(resumeTimer.current);
+        setPaused(true);
+      }}
     >
       <ul
         aria-label="What people told us"
