@@ -9,6 +9,7 @@ import {
   Gift,
   MessageCircle,
   Minus,
+  Plus,
   Sparkles,
   Star,
   Stethoscope,
@@ -79,6 +80,13 @@ const careComparison = [
     offline: "Continuity depends mostly on one office, one schedule, and one provider."
   }
 ];
+
+/** The colour an FAQ answer opens into, taken in turn: pale gold, pale rose, mint. */
+const faqStyles = [
+  { fill: "open:bg-[#f5e9cd]", badge: "group-open:bg-gold group-open:text-ink", numeral: "group-open:text-[#a98443]" },
+  { fill: "open:bg-[#f6e1dc]", badge: "group-open:bg-rose group-open:text-ink", numeral: "group-open:text-[#a8635c]" },
+  { fill: "open:bg-[#e6f1eb]", badge: "group-open:bg-accent group-open:text-white", numeral: "group-open:text-accent-deep" }
+] as const;
 
 /** The three "how it works" cards: each a colour block, each set a little higher than the last. */
 const stepStyles = [
@@ -667,7 +675,7 @@ export default async function Home() {
         </Container>
       </section>
 
-      <section className="section-space bg-[#fbf8f3]">
+      <section className="section-space bg-[#fbf8f3]" id="faq">
         <Container>
           <div className="flex flex-col gap-10">
             <div className="flex justify-center" data-reveal>
@@ -679,25 +687,38 @@ export default async function Home() {
             </div>
             <div className="flex justify-center gap-3 max-w-3xl w-full mx-auto">
               <div className="grid gap-3 col-span-8 w-full">
-                {faqs.map((faq) => (
-                  <details
-                    className="group rounded-xl border border-sage/10 bg-white/45 p-6 shadow-[0_14px_38px_rgba(38,66,54,0.04)] w-full"
-                    data-reveal
-                    key={faq.question}
-                  >
-                    <summary className="flex cursor-pointer list-none items-center justify-between gap-6 font-serif text-2xl leading-tight tracking-normal text-sage">
-                      {faq.question}
-                      <MessageCircle
-                        aria-hidden
-                        className="h-5 w-5 shrink-0 text-gold transition group-open:rotate-6"
-                        strokeWidth={1.6}
-                      />
-                    </summary>
-                    <p className="mt-4 max-w-3xl text-sm leading-6 text-ink/64">
-                      {faq.answer}
-                    </p>
-                  </details>
-                ))}
+                {faqs.map((faq, index) => {
+                  const style = faqStyles[index % faqStyles.length]!;
+                  return (
+                    <details
+                      className={`group w-full rounded-[1.5rem] bg-white/60 ring-1 ring-inset ring-sage/10 transition-colors duration-300 open:ring-0 hover:bg-white ${style.fill}`}
+                      data-reveal
+                      key={faq.question}
+                      open={index === 0}
+                    >
+                      <summary className="flex cursor-pointer list-none items-center gap-4 rounded-[1.5rem] p-5 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent/30 sm:gap-6 sm:p-6 [&::-webkit-details-marker]:hidden">
+                        <span
+                          aria-hidden
+                          className={`w-9 shrink-0 font-serif text-2xl leading-none text-sage/35 transition-colors duration-300 ${style.numeral}`}
+                        >
+                          0{index + 1}
+                        </span>
+                        <span className="flex-1 font-serif text-xl leading-snug tracking-normal text-sage sm:text-2xl">
+                          {faq.question}
+                        </span>
+                        <span
+                          aria-hidden
+                          className={`grid h-11 w-11 shrink-0 place-items-center rounded-full bg-sage/[0.07] text-sage transition duration-300 group-open:rotate-45 ${style.badge}`}
+                        >
+                          <Plus className="h-5 w-5" strokeWidth={1.8} />
+                        </span>
+                      </summary>
+                      <p className="px-5 pb-6 text-[15px] leading-7 text-ink/75 sm:pb-7 sm:pl-[5.25rem] sm:pr-20">
+                        {faq.answer}
+                      </p>
+                    </details>
+                  );
+                })}
               </div>
             </div>
 
