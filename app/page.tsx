@@ -643,10 +643,6 @@ export default async function Home() {
               <h2 className="font-serif text-4xl leading-tight tracking-normal sm:text-5xl">
                 What people told us
               </h2>
-              <p className="mt-5 max-w-md text-base leading-7 text-white/65">
-                Every decision starts with the people we serve. Here is some of
-                what they have told us.
-              </p>
             </div>
             <div className="lg:col-span-8" data-reveal>
               <TestimonialSlider items={testimonials} />
@@ -659,11 +655,10 @@ export default async function Home() {
         <Container>
           <div className="flex flex-col gap-10">
             <div
-              className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between"
+              className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between"
               data-reveal
             >
               <SectionHeader
-                body="The latest from the Melora blog: plain answers on therapy and mental health in Nigeria."
                 title="From the blog."
               />
               <ButtonLink className="shrink-0 self-start sm:self-auto" href={MELORA_BLOG_URL} variant="secondary">
