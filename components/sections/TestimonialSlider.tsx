@@ -2,10 +2,10 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
+  ArrowLeft,
+  ArrowRight,
   Baby,
   Building2,
-  ChevronLeft,
-  ChevronRight,
   HeartHandshake,
   UserRound
 } from "lucide-react";
@@ -26,60 +26,67 @@ function speakerIcon(context: string): LucideIcon {
   return UserRound;
 }
 
+/** The sage band behind the cards: the speaker badge sits in a notch cut to it. */
+const BAND = "#264236";
+
+/** Card colours, taken in turn: pale gold, pale rose, mint, cream. */
+const palettes = [
+  { card: "bg-[#f5e9cd]", mark: "text-gold/45", badge: "bg-gold text-ink" },
+  { card: "bg-[#f6e1dc]", mark: "text-rose/45", badge: "bg-rose text-ink" },
+  { card: "bg-[#e6f1eb]", mark: "text-accent/25", badge: "bg-accent text-white" },
+  { card: "bg-[#fbf8f3]", mark: "text-gold/35", badge: "bg-cream text-sage" }
+] as const;
+
 /**
- * Modern testimonial slider for the sage "Built from real conversations" band.
+ * Testimonial slider for the sage "What people told us" band.
  *
- * Native scroll-snap powers touch swipe + smooth scrolling; prev/next buttons and
- * dots drive it on desktop. Autoplays, pausing on hover/focus and for users who
- * prefer reduced motion. The active slide is derived from scroll position so the
- * controls stay in sync with manual swipes.
+ * Native scroll-snap powers touch swipe and smooth scrolling. The bar under the
+ * cards mirrors the scroll position, and the arrows move one card at a time,
+ * wrapping at either end. Autoplays, pausing on hover/focus and for people who
+ * prefer reduced motion.
  */
 export function TestimonialSlider({ items }: { items: Testimonial[] }) {
   const trackRef = useRef<HTMLUListElement>(null);
-  const slideRefs = useRef<Array<HTMLLIElement | null>>([]);
-  const activeRef = useRef(0);
-  const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
+  // Where the visible window sits in the whole track, both as fractions (0-1).
+  const [thumb, setThumb] = useState({ start: 0, size: 1 });
 
-  const goTo = useCallback(
-    (index: number) => {
-      const len = items.length;
-      const idx = ((index % len) + len) % len;
-      const track = trackRef.current;
-      const slide = slideRefs.current[idx];
-      if (!track || !slide) return;
-      track.scrollTo({ left: slide.offsetLeft - track.offsetLeft, behavior: "smooth" });
-    },
-    [items.length]
-  );
+  const step = useCallback((direction: 1 | -1) => {
+    const track = trackRef.current;
+    const first = track?.querySelector("li");
+    if (!track || !first) return;
+    const max = track.scrollWidth - track.clientWidth;
+    const gap = Number.parseFloat(getComputedStyle(track).columnGap) || 0;
+    const distance = first.clientWidth + gap;
+    if (direction > 0 && track.scrollLeft >= max - 4) {
+      track.scrollTo({ left: 0, behavior: "smooth" });
+    } else if (direction < 0 && track.scrollLeft <= 4) {
+      track.scrollTo({ left: max, behavior: "smooth" });
+    } else {
+      track.scrollBy({ left: direction * distance, behavior: "smooth" });
+    }
+  }, []);
 
-  // Keep `active` in sync with the scroll position (covers swipes + button nav).
+  // Keep the bar in step with the scroll position (swipes, arrows, autoplay, resize).
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
     let raf = 0;
-    const onScroll = () => {
+    const measure = () => {
       cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => {
-        const center = track.scrollLeft + track.clientWidth / 2;
-        let best = 0;
-        let bestDist = Number.POSITIVE_INFINITY;
-        slideRefs.current.forEach((slide, i) => {
-          if (!slide) return;
-          const slideCenter = slide.offsetLeft + slide.clientWidth / 2;
-          const dist = Math.abs(slideCenter - center);
-          if (dist < bestDist) {
-            bestDist = dist;
-            best = i;
-          }
-        });
-        activeRef.current = best;
-        setActive(best);
+        const size = Math.min(1, track.clientWidth / track.scrollWidth);
+        const max = track.scrollWidth - track.clientWidth;
+        const start = max > 0 ? (track.scrollLeft / max) * (1 - size) : 0;
+        setThumb({ start, size });
       });
     };
-    track.addEventListener("scroll", onScroll, { passive: true });
+    measure();
+    track.addEventListener("scroll", measure, { passive: true });
+    window.addEventListener("resize", measure);
     return () => {
-      track.removeEventListener("scroll", onScroll);
+      track.removeEventListener("scroll", measure);
+      window.removeEventListener("resize", measure);
       cancelAnimationFrame(raf);
     };
   }, []);
@@ -88,9 +95,9 @@ export function TestimonialSlider({ items }: { items: Testimonial[] }) {
   useEffect(() => {
     if (paused || items.length < 2) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const id = window.setInterval(() => goTo(activeRef.current + 1), 5500);
+    const id = window.setInterval(() => step(1), 5500);
     return () => window.clearInterval(id);
-  }, [paused, goTo, items.length]);
+  }, [paused, step, items.length]);
 
   return (
     <div
@@ -104,73 +111,88 @@ export function TestimonialSlider({ items }: { items: Testimonial[] }) {
       onTouchStart={() => setPaused(true)}
     >
       <ul
-        className="-mx-6 flex snap-x snap-mandatory scroll-px-6 gap-5 overflow-x-auto scroll-smooth px-6 pb-2 pt-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        aria-label="What people told us"
+        className="-mx-6 flex snap-x snap-mandatory scroll-px-6 gap-5 overflow-x-auto scroll-smooth px-6 pb-10 pt-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         ref={trackRef}
+        tabIndex={0}
       >
         {items.map((item, i) => {
           const Icon = speakerIcon(item.context);
+          const palette = palettes[i % palettes.length]!;
           return (
+            // Every other card sits a little lower, so the row reads as a rhythm, not a grid.
             <li
-              className="w-[86%] shrink-0 snap-start sm:w-[58%] md:w-[46%] lg:w-[calc((100%-2.5rem)/3)]"
+              className={`w-[86%] shrink-0 snap-start sm:w-[58%] md:w-[46%] lg:w-[calc((100%-2.5rem)/3)] ${
+                i % 2 === 1 ? "sm:translate-y-7" : ""
+              }`}
               key={item.quote}
-              ref={(el) => {
-                slideRefs.current[i] = el;
-              }}
             >
-              {/* Who is speaking, what they said, where it came from: in that order. */}
-              <figure className="flex h-full flex-col rounded-[1.5rem] bg-[#fefcf9] p-7 transition duration-500 hover:-translate-y-1 sm:p-8">
-                <figcaption className="inline-flex items-center gap-2 self-start rounded-full bg-accent-soft py-1.5 pl-2 pr-3.5 text-[13px] font-semibold text-accent-deep">
-                  <span className="grid h-6 w-6 place-items-center rounded-full bg-accent text-white">
-                    <Icon aria-hidden className="h-3.5 w-3.5" strokeWidth={2} />
-                  </span>
+              <figure
+                className={`group relative flex h-full min-h-[21rem] flex-col overflow-hidden rounded-[2rem] p-7 sm:p-8 ${palette.card}`}
+              >
+                <span
+                  aria-hidden
+                  className={`pointer-events-none absolute -top-3 right-6 select-none font-serif text-[10rem] leading-none transition duration-500 group-hover:-translate-y-1 ${palette.mark}`}
+                >
+                  &rdquo;
+                </span>
+                <figcaption className="relative self-start rounded-full bg-white/80 px-3.5 py-1.5 text-[13px] font-semibold text-sage">
                   {item.context}
                 </figcaption>
-                <blockquote className="mt-7 flex-1 text-pretty font-serif text-[1.4rem] leading-[1.4] tracking-normal text-sage sm:text-[1.5rem]">
-                  &ldquo;{item.quote}&rdquo;
+                <blockquote className="relative mt-9 flex-1 text-pretty font-serif text-[1.45rem] leading-[1.36] tracking-normal text-sage sm:text-[1.6rem]">
+                  {item.quote}
                 </blockquote>
-                <p className="mt-9 flex items-center gap-3 text-[13px] font-medium text-ink/55">
-                  <span aria-hidden className="h-0.5 w-7 rounded-full bg-gold" />
-                  {item.source}
-                </p>
+                <p className="relative mt-8 pr-16 text-[13px] font-medium text-ink/65">{item.source}</p>
+
+                {/* Speaker badge in a notch cut from the corner; the two spans draw its inward curves. */}
+                <span
+                  aria-hidden
+                  className="absolute bottom-0 right-0 rounded-tl-[1.75rem] pl-3 pt-3"
+                  style={{ backgroundColor: BAND }}
+                >
+                  <span
+                    className="absolute -top-6 right-0 h-6 w-6 rounded-br-[1.5rem]"
+                    style={{ boxShadow: `8px 8px 0 8px ${BAND}` }}
+                  />
+                  <span
+                    className="absolute -left-6 bottom-0 h-6 w-6 rounded-br-[1.5rem]"
+                    style={{ boxShadow: `8px 8px 0 8px ${BAND}` }}
+                  />
+                  <span
+                    className={`relative z-10 grid h-14 w-14 place-items-center rounded-full ${palette.badge}`}
+                  >
+                    <Icon className="h-5 w-5" strokeWidth={1.7} />
+                  </span>
+                </span>
               </figure>
             </li>
           );
         })}
       </ul>
 
-      <div className="mt-7 flex items-center justify-between gap-4">
-        <div className="flex items-center gap-2" role="tablist" aria-label="Testimonials">
-          {items.map((item, i) => (
-            <button
-              aria-label={`Go to testimonial ${i + 1}`}
-              aria-selected={active === i}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                active === i ? "w-7 bg-gold" : "w-3 bg-white/25 hover:bg-white/40"
-              }`}
-              key={item.quote}
-              onClick={() => goTo(i)}
-              role="tab"
-              type="button"
-            />
-          ))}
+      <div className="mt-6 flex items-center gap-6">
+        <div aria-hidden className="relative h-1 flex-1 overflow-hidden rounded-full bg-white/15">
+          <span
+            className="absolute inset-y-0 rounded-full bg-gold transition-[left] duration-150 ease-out"
+            style={{ left: `${thumb.start * 100}%`, width: `${thumb.size * 100}%` }}
+          />
         </div>
-
         <div className="flex items-center gap-2.5">
           <button
             aria-label="Previous testimonial"
-            className="grid h-11 w-11 place-items-center rounded-full border border-white/20 text-white transition duration-300 hover:border-white/45 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/20"
-            onClick={() => goTo(active - 1)}
+            className="grid h-12 w-12 place-items-center rounded-full border border-white/25 text-white transition duration-300 hover:border-white/50 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/25"
+            onClick={() => step(-1)}
             type="button"
           >
-            <ChevronLeft aria-hidden className="h-5 w-5" />
+            <ArrowLeft aria-hidden className="h-5 w-5" />
           </button>
           <button
             aria-label="Next testimonial"
-            className="grid h-11 w-11 place-items-center rounded-full border border-white/20 text-white transition duration-300 hover:border-white/45 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/20"
-            onClick={() => goTo(active + 1)}
+            className="grid h-12 w-12 place-items-center rounded-full bg-gold text-ink transition duration-300 hover:bg-[#d9b981] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-gold/40"
+            onClick={() => step(1)}
             type="button"
           >
-            <ChevronRight aria-hidden className="h-5 w-5" />
+            <ArrowRight aria-hidden className="h-5 w-5" />
           </button>
         </div>
       </div>
