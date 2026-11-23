@@ -80,6 +80,13 @@ const careComparison = [
   }
 ];
 
+/** The three "how it works" cards: each a colour block, each set a little higher than the last. */
+const stepStyles = [
+  { card: "bg-[#f5e9cd]", numeral: "text-gold/40", badge: "bg-gold text-ink", rise: "md:pt-16" },
+  { card: "bg-[#f6e1dc]", numeral: "text-rose/40", badge: "bg-rose text-ink", rise: "md:pt-8" },
+  { card: "bg-[#e6f1eb]", numeral: "text-accent/25", badge: "bg-accent text-white", rise: "" }
+] as const;
+
 const testimonials = [
   {
     quote: "I needed language for what was happening, not a speech.",
@@ -363,7 +370,7 @@ export default async function Home() {
         </Container>
       </section>
 
-      <section className="relative overflow-hidden bg-sage py-28 text-white sm:py-32 lg:py-36">
+      <section className="relative overflow-hidden bg-sage py-28 text-white sm:py-32 lg:py-36" id="how-it-works">
         {/* A single broad sweep on each edge, rising left to right at the top and
             falling at the bottom, so this band tilts rather than ripples. */}
         <svg
@@ -399,56 +406,49 @@ export default async function Home() {
                 to trust.
               </p>
             </div>
-            <div className="grid gap-5 md:grid-cols-3 lg:col-span-8">
+            {/* Three colour-blocked steps that climb left to right: struggling, matched, supported. */}
+            <ol className="grid gap-5 md:grid-cols-3 md:items-start lg:col-span-8">
               {howItWorks.map((step, index) => {
                 const StepIcon = step.icon;
+                const style = stepStyles[index % stepStyles.length]!;
                 return (
-                  <article
-                    className="group relative overflow-hidden rounded-xl border border-white/12 bg-white/[0.06] p-6 transition duration-500 hover:-translate-y-1 hover:border-white/25 hover:bg-white/[0.1]"
-                    data-reveal
-                    key={step.title}
-                  >
-                    {/* Edge SVGs: corner glow + bleeding outline icon */}
-                    <div
-                      aria-hidden
-                      className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-[radial-gradient(circle,rgba(200,164,107,0.22),transparent_70%)] transition duration-700 group-hover:scale-125"
-                    />
-                    <StepIcon
-                      aria-hidden
-                      className="pointer-events-none absolute -right-3 -top-3 h-24 w-24 text-gold/20 transition duration-700 ease-out group-hover:rotate-6 group-hover:scale-110 group-hover:text-gold/30"
-                      strokeWidth={1}
-                    />
-
-                    <span className="relative font-serif text-5xl leading-none text-gold">
-                      0{index + 1}
-                    </span>
-                    <h3 className="relative mt-8 font-serif text-3xl leading-tight tracking-normal">
-                      {step.title}
-                    </h3>
-                    <p className="relative mt-4 text-sm leading-6 text-white/68">
-                      {step.body}
-                    </p>
-
-                    {/* Bottom-edge drawn line motif */}
-                    <svg
-                      aria-hidden
-                      className="pointer-events-none absolute inset-x-5 bottom-3 h-3 w-[calc(100%-2.5rem)] text-gold/35"
-                      fill="none"
-                      preserveAspectRatio="none"
-                      viewBox="0 0 200 12"
+                  <li className={`h-full ${style.rise}`} data-reveal key={step.title}>
+                    <article
+                      className={`group relative flex h-full min-h-[19rem] flex-col overflow-hidden rounded-[2rem] p-7 text-sage ${style.card}`}
                     >
-                      <path
-                        d="M0 9 C40 9 40 3 80 3 C120 3 120 9 160 9 C180 9 190 6 200 6"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeWidth="1.5"
-                      />
-                      <circle cx="200" cy="6" fill="currentColor" r="2" />
-                    </svg>
-                  </article>
+                      <span
+                        aria-hidden
+                        className={`pointer-events-none absolute right-5 -top-4 select-none font-serif text-[7.5rem] leading-none transition duration-500 group-hover:-translate-y-1 ${style.numeral}`}
+                      >
+                        0{index + 1}
+                      </span>
+                      <p className="relative self-start rounded-full bg-white/80 px-3.5 py-1.5 text-[13px] font-semibold">
+                        Step {index + 1}
+                      </p>
+                      <h3 className="relative mt-10 text-pretty font-serif text-[1.7rem] leading-tight tracking-normal">
+                        {step.title}
+                      </h3>
+                      <p className="relative mt-4 flex-1 pb-12 text-sm leading-6 text-ink/75">
+                        {step.body}
+                      </p>
+                      {/* Step icon in a notch cut from the corner; the two spans draw its inward curves. */}
+                      <span
+                        aria-hidden
+                        className="absolute bottom-0 right-0 rounded-tl-[1.75rem] bg-sage pl-3 pt-3"
+                      >
+                        <span className="absolute -top-6 right-0 h-6 w-6 rounded-br-[1.5rem] shadow-[8px_8px_0_8px_#264236]" />
+                        <span className="absolute -left-6 bottom-0 h-6 w-6 rounded-br-[1.5rem] shadow-[8px_8px_0_8px_#264236]" />
+                        <span
+                          className={`relative z-10 grid h-14 w-14 place-items-center rounded-full transition duration-500 group-hover:rotate-6 ${style.badge}`}
+                        >
+                          <StepIcon className="h-6 w-6" strokeWidth={1.6} />
+                        </span>
+                      </span>
+                    </article>
+                  </li>
                 );
               })}
-            </div>
+            </ol>
           </div>
         </Container>
       </section>
