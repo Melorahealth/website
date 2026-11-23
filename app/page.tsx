@@ -681,7 +681,6 @@ export default async function Home() {
             <div className="flex justify-center" data-reveal>
               <SectionHeader
                 align="center"
-                body="Straight answers to what people ask before they trust someone with how they feel."
                 title="Frequently asked questions."
               />
             </div>
