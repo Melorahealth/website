@@ -699,7 +699,7 @@ export default function Home() {
                 {featuredBlogPosts.slice(1, 3).map((post, index) => (
                   <a
                     className={`group relative flex flex-col overflow-hidden rounded-[2rem] p-7 transition duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent/30 sm:p-8 ${
-                      index === 0 ? "bg-[#ecd5a4]" : "bg-[#ecc8c1]"
+                      index === 0 ? "bg-[#f5e9cd]" : "bg-[#f6e1dc]"
                     }`}
                     data-reveal
                     href={post.href}
@@ -708,7 +708,7 @@ export default function Home() {
                     <span
                       aria-hidden
                       className={`pointer-events-none absolute right-5 -top-4 select-none font-serif text-[7.5rem] leading-none ${
-                        index === 0 ? "text-[#b78d45]/35" : "text-[#b8726b]/35"
+                        index === 0 ? "text-gold/40" : "text-rose/40"
                       }`}
                     >
                       0{index + 2}
