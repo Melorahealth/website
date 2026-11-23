@@ -23,7 +23,7 @@ import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { MELORA_APP_URL, MELORA_BLOG_URL, MELORA_GIFT_URL } from "@/lib/app-links";
-import { featuredBlogPosts } from "@/lib/blog-posts";
+import { featuredBlogImage, featuredBlogPosts } from "@/lib/blog-posts";
 import { createPageMetadata } from "@/lib/seo";
 import { createHomeJsonLd } from "@/lib/structured-data";
 
@@ -659,32 +659,89 @@ export default function Home() {
                 Read all articles
               </ButtonLink>
             </div>
-            <div className="grid gap-5 md:grid-cols-3">
-              {featuredBlogPosts.map((post) => (
+            {/* Bento: one photo-led lead story, two colour-blocked stories beside it. */}
+            <div className="grid gap-5 lg:grid-cols-12">
+              {featuredBlogPosts.slice(0, 1).map((post) => (
                 <a
-                  className="group flex h-full flex-col rounded-[1.5rem] border border-sage/10 bg-white p-7 transition duration-300 hover:-translate-y-1 hover:border-accent/50 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent/25 sm:p-8"
+                  className="group relative isolate flex min-h-[27rem] flex-col justify-between overflow-hidden rounded-[2rem] p-7 text-white focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent/40 sm:p-9 lg:col-span-7 lg:min-h-[35rem]"
                   data-reveal
                   href={post.href}
                   key={post.href}
                 >
-                  <p className="self-start rounded-full bg-accent-soft px-3.5 py-1.5 text-[13px] font-semibold text-accent-deep">
-                    {post.topic}
-                  </p>
-                  <h3 className="mt-6 text-pretty font-serif text-2xl leading-snug tracking-normal text-sage">
-                    {post.title}
-                  </h3>
-                  <p className="mt-4 flex-1 text-sm leading-6 text-ink/65">{post.excerpt}</p>
-                  <p className="mt-8 flex items-center justify-between">
-                    <span className="text-[13px] font-medium text-ink/50">{post.readTime}</span>
-                    <span className="flex items-center gap-3 text-sm font-semibold text-accent-deep">
-                      Read article
-                      <span className="grid h-9 w-9 place-items-center rounded-full bg-accent text-white transition duration-300 group-hover:translate-x-1 group-hover:bg-accent-deep">
-                        <ArrowRight aria-hidden className="h-4 w-4" />
-                      </span>
+                  <Image
+                    alt=""
+                    className="-z-20 object-cover transition duration-700 ease-out group-hover:scale-[1.04]"
+                    fill
+                    sizes="(min-width: 1024px) 58vw, 100vw"
+                    src={featuredBlogImage.src}
+                    style={{ objectPosition: featuredBlogImage.position }}
+                  />
+                  <span
+                    aria-hidden
+                    className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(16,34,27,0.34)_0%,rgba(16,34,27,0.12)_26%,rgba(16,34,27,0.62)_58%,rgba(16,34,27,0.95)_100%)]"
+                  />
+                  <p className="flex items-center justify-between">
+                    <span className="rounded-full bg-white/15 px-3.5 py-1.5 text-[13px] font-semibold backdrop-blur-md">
+                      {post.topic}
+                    </span>
+                    <span aria-hidden className="font-serif text-2xl text-white/80">
+                      01
                     </span>
                   </p>
+                  <div>
+                    <h3 className="max-w-2xl text-pretty font-serif text-3xl leading-[1.15] tracking-normal sm:text-4xl lg:text-[2.6rem]">
+                      {post.title}
+                    </h3>
+                    <p className="mt-4 max-w-xl text-base leading-7 text-white/75">{post.excerpt}</p>
+                    <p className="mt-7 flex items-center justify-between">
+                      <span className="text-[13px] font-medium text-white/65">{post.readTime}</span>
+                      <span className="flex items-center gap-3 text-sm font-semibold">
+                        Read article
+                        <span className="grid h-11 w-11 place-items-center rounded-full bg-white text-sage transition duration-300 group-hover:translate-x-1">
+                          <ArrowRight aria-hidden className="h-4 w-4" />
+                        </span>
+                      </span>
+                    </p>
+                  </div>
                 </a>
               ))}
+              <div className="grid gap-5 sm:grid-cols-2 lg:col-span-5 lg:grid-cols-1">
+                {featuredBlogPosts.slice(1, 3).map((post, index) => (
+                  <a
+                    className={`group relative flex flex-col overflow-hidden rounded-[2rem] p-7 transition duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent/30 sm:p-8 ${
+                      index === 0 ? "bg-accent-soft" : "bg-[#f6ecd4]"
+                    }`}
+                    data-reveal
+                    href={post.href}
+                    key={post.href}
+                  >
+                    <span
+                      aria-hidden
+                      className={`pointer-events-none absolute right-5 -top-4 select-none font-serif text-[7.5rem] leading-none ${
+                        index === 0 ? "text-accent/15" : "text-gold/30"
+                      }`}
+                    >
+                      0{index + 2}
+                    </span>
+                    <p className="relative self-start rounded-full bg-white/75 px-3.5 py-1.5 text-[13px] font-semibold text-accent-deep">
+                      {post.topic}
+                    </p>
+                    <h3 className="relative mt-10 flex-1 text-pretty font-serif text-2xl leading-snug tracking-normal text-sage sm:text-[1.7rem]">
+                      {post.title}
+                    </h3>
+                    <p className="relative mt-3 text-sm leading-6 text-ink/65">{post.excerpt}</p>
+                    <p className="relative mt-7 flex items-center justify-between">
+                      <span className="text-[13px] font-medium text-ink/50">{post.readTime}</span>
+                      <span className="flex items-center gap-3 text-sm font-semibold text-sage">
+                        Read article
+                        <span className="grid h-10 w-10 place-items-center rounded-full bg-sage text-white transition duration-300 group-hover:translate-x-1 group-hover:bg-accent">
+                          <ArrowRight aria-hidden className="h-4 w-4" />
+                        </span>
+                      </span>
+                    </p>
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </Container>
