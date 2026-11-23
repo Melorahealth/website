@@ -398,8 +398,8 @@ export default async function Home() {
         </svg>
         <Container className="relative">
           <div className="section-grid">
-            <div className="lg:col-span-4" data-reveal>
-              <h2 className="font-serif text-4xl leading-tight tracking-normal sm:text-5xl">
+            <div className="lg:col-span-4 lg:self-center" data-reveal>
+              <h2 className="text-balance font-serif text-4xl leading-tight tracking-normal sm:text-5xl">
                 From struggling to supported, in three steps.
               </h2>
             </div>
