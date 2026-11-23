@@ -84,6 +84,8 @@ export function BlogHighlights({ posts }: { posts: BlogPost[] }) {
                 fill
                 sizes="(min-width: 1024px) 46vw, 86vw"
                 src={lead.cover}
+                // Covers on the blog are served straight to the browser, already at card size.
+                unoptimized={lead.cover.startsWith("http")}
               />
             ) : (
               <span className="flex h-full items-center p-6 font-serif text-2xl leading-tight sm:p-9 sm:text-4xl">
@@ -111,7 +113,8 @@ export function BlogHighlights({ posts }: { posts: BlogPost[] }) {
               className={`group relative flex flex-col overflow-hidden rounded-[2rem] p-7 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent/30 sm:p-8 ${style.card}`}
               data-reveal
               href={post.href}
-              key={post.href}
+              // Keyed by position so the card stays in place when live posts replace the first list.
+              key={index}
             >
               <span
                 aria-hidden

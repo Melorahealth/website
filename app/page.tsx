@@ -24,7 +24,7 @@ import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { MELORA_APP_URL, MELORA_BLOG_URL, MELORA_GIFT_URL } from "@/lib/app-links";
-import { BlogHighlights } from "@/components/sections/BlogHighlights";
+import { BlogHighlightsLive } from "@/components/sections/BlogHighlightsLive";
 import { FaqList } from "@/components/sections/FaqList";
 import { getLatestBlogPosts } from "@/lib/blog-posts";
 import { createPageMetadata } from "@/lib/seo";
@@ -654,7 +654,7 @@ export default async function Home() {
                 Read all articles
               </ButtonLink>
             </div>
-            <BlogHighlights posts={blogPosts} />
+            <BlogHighlightsLive initial={blogPosts} />
           </div>
         </Container>
       </section>
