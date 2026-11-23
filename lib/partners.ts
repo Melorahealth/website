@@ -4,7 +4,12 @@ export type PartnerLogo = {
   src: string;
   width: number;
   height: number;
-  className?: string;
+  /**
+   * Rendered height in px on desktop. Logos have different shapes, so each one
+   * gets its own height to look the same visual size as its neighbours: wide
+   * wordmarks sit shorter, stacked marks sit taller.
+   */
+  displayHeight: number;
 };
 
 export const partnerLogos: PartnerLogo[] = [
@@ -13,35 +18,40 @@ export const partnerLogos: PartnerLogo[] = [
   //   href: "https://tacafrica.org/",
   //   src: "/assets/partners/tac-africa.png",
   //   width: 72,
-  //   height: 72
+  //   height: 72,
+  //   displayHeight: 44
   // },
   // {
   //   name: "Platview Technologies",
   //   href: "https://platview.com/",
   //   src: "/assets/partners/platview-provided.svg",
   //   width: 149,
-  //   height: 45
+  //   height: 45,
+  //   displayHeight: 34
   // },
   // {
   //   name: "BlazeTech",
   //   href: "https://blazetch.com/",
   //   src: "/assets/partners/blazetech.png",
   //   width: 72,
-  //   height: 72
+  //   height: 72,
+  //   displayHeight: 44
   // },
   {
     name: "NEM Health",
     href: "https://nemhealth.com/",
     src: "/assets/partners/nem-health.png",
     width: 599,
-    height: 135
+    height: 135,
+    displayHeight: 32
   },
   {
     name: "Redcare HMO",
     href: "https://redcarehmo.com/",
     src: "/assets/partners/redcare-hmo.png",
     width: 125,
-    height: 50
+    height: 50,
+    displayHeight: 44
   },
   {
     name: "Lagoon Hospitals",
@@ -49,7 +59,7 @@ export const partnerLogos: PartnerLogo[] = [
     src: "/assets/partners/lagoon-hospitals.png",
     width: 251,
     height: 107,
-    className: "h-9 sm:h-10"
+    displayHeight: 46
   },
   {
     name: "Pan-Atlantic University",
@@ -57,7 +67,7 @@ export const partnerLogos: PartnerLogo[] = [
     src: "/assets/partners/pan-atlantic-university-logo.png",
     width: 213,
     height: 88,
-    className: "h-9 sm:h-10"
+    displayHeight: 46
   },
   {
     name: "NVIDIA Inception Program member",
@@ -65,6 +75,6 @@ export const partnerLogos: PartnerLogo[] = [
     src: "/assets/partners/nvidia-inception.svg",
     width: 500,
     height: 216,
-    className: "h-10 sm:h-12"
+    displayHeight: 54
   }
 ];

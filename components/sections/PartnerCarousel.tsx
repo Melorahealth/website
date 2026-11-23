@@ -3,14 +3,8 @@
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 
-type PartnerLogo = {
-  name: string;
-  href: string;
-  src: string;
-  width: number;
-  height: number;
-  className?: string;
-};
+import type { PartnerLogo } from "@/lib/partners";
+
 
 export function PartnerCarousel({ logos }: { logos: PartnerLogo[] }) {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -44,7 +38,7 @@ export function PartnerCarousel({ logos }: { logos: PartnerLogo[] }) {
     <div className="relative">
       <div
         aria-label="MeloraHealth partners"
-        className="flex items-center justify-center gap-12 overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="flex items-center gap-10 overflow-x-auto px-4 [--logo-scale:0.8] [scrollbar-width:none] sm:gap-14 sm:[--logo-scale:1] [&::-webkit-scrollbar]:hidden"
         onMouseEnter={() => {
           pausedRef.current = true;
         }}
@@ -55,7 +49,7 @@ export function PartnerCarousel({ logos }: { logos: PartnerLogo[] }) {
       >
         {logos.map((logo) => (
           <a
-            className="block shrink-0 opacity-65 transition hover:opacity-100"
+            className="block shrink-0 opacity-65 transition first:ml-auto last:mr-auto hover:opacity-100"
             href={logo.href}
             key={logo.name}
             rel="noopener noreferrer"
@@ -63,9 +57,12 @@ export function PartnerCarousel({ logos }: { logos: PartnerLogo[] }) {
           >
             <Image
               alt={logo.name}
-              className={`w-auto object-contain ${logo.className ?? "h-7 sm:h-8"}`}
+              className="w-auto max-w-none object-contain"
               height={logo.height}
               src={logo.src}
+              style={{
+                height: `calc(${logo.displayHeight}px * var(--logo-scale))`
+              }}
               width={logo.width}
             />
           </a>
