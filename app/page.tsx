@@ -23,7 +23,8 @@ import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { MELORA_APP_URL, MELORA_BLOG_URL, MELORA_GIFT_URL } from "@/lib/app-links";
-import { featuredBlogPosts } from "@/lib/blog-posts";
+import { BlogHighlights } from "@/components/sections/BlogHighlights";
+import { getLatestBlogPosts } from "@/lib/blog-posts";
 import { createPageMetadata } from "@/lib/seo";
 import { createHomeJsonLd } from "@/lib/structured-data";
 
@@ -155,7 +156,9 @@ const faqs = [
   }
 ];
 
-export default function Home() {
+export default async function Home() {
+  const blogPosts = await getLatestBlogPosts();
+
   return (
     <main>
       <JsonLd data={createHomeJsonLd()} id="melorahealth-home-jsonld" />
@@ -652,87 +655,14 @@ export default function Home() {
               data-reveal
             >
               <SectionHeader
-                body="Plain answers on cost, finding the right therapist, and getting care in Nigeria."
+                body="The latest from the Melora blog: plain answers on therapy and mental health in Nigeria."
                 title="From the blog."
               />
               <ButtonLink className="shrink-0 self-start sm:self-auto" href={MELORA_BLOG_URL} variant="secondary">
                 Read all articles
               </ButtonLink>
             </div>
-            {/* Bento: one photo-led lead story, two colour-blocked stories beside it. */}
-            <div className="grid gap-5 lg:grid-cols-12">
-              {featuredBlogPosts.slice(0, 1).map((post) => (
-                <a
-                  className="group relative flex flex-col overflow-hidden rounded-[2rem] bg-sage p-3 text-white transition duration-300 hover:-translate-y-1 sm:p-4 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent/40 lg:col-span-7"
-                  data-reveal
-                  href={post.href}
-                  key={post.href}
-                >
-                  {/* The article's own cover from the blog. It carries the title, so the heading is for screen readers. */}
-                  <span className="relative block aspect-[1200/630] overflow-hidden rounded-[1.4rem]">
-                    <Image
-                      alt=""
-                      className="object-cover transition duration-700 ease-out group-hover:scale-[1.03]"
-                      fill
-                      sizes="(min-width: 1024px) 58vw, 100vw"
-                      src={post.cover}
-                    />
-                  </span>
-                  <h3 className="sr-only">{post.title}</h3>
-                  <div className="flex flex-1 flex-col justify-between gap-7 px-4 pb-4 pt-7 sm:px-5 sm:pb-5 sm:pt-8">
-                    <p className="max-w-xl text-base leading-7 text-white/90 sm:text-lg sm:leading-8">
-                      {post.excerpt}
-                    </p>
-                    <p className="flex items-center justify-between">
-                      <span className="text-[13px] font-medium text-white/80">{post.readTime}</span>
-                      <span className="flex items-center gap-3 text-sm font-semibold">
-                        Read article
-                        <span className="grid h-11 w-11 place-items-center rounded-full bg-gold text-ink transition duration-300 group-hover:translate-x-1">
-                          <ArrowRight aria-hidden className="h-4 w-4" />
-                        </span>
-                      </span>
-                    </p>
-                  </div>
-                </a>
-              ))}
-              <div className="grid gap-5 sm:grid-cols-2 lg:col-span-5 lg:grid-cols-1">
-                {featuredBlogPosts.slice(1, 3).map((post, index) => (
-                  <a
-                    className={`group relative flex flex-col overflow-hidden rounded-[2rem] p-7 transition duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent/30 sm:p-8 ${
-                      index === 0 ? "bg-[#f5e9cd]" : "bg-[#f6e1dc]"
-                    }`}
-                    data-reveal
-                    href={post.href}
-                    key={post.href}
-                  >
-                    <span
-                      aria-hidden
-                      className={`pointer-events-none absolute right-5 -top-4 select-none font-serif text-[7.5rem] leading-none ${
-                        index === 0 ? "text-gold/40" : "text-rose/40"
-                      }`}
-                    >
-                      0{index + 2}
-                    </span>
-                    <p className="relative self-start rounded-full bg-white/80 px-3.5 py-1.5 text-[13px] font-semibold text-sage">
-                      {post.topic}
-                    </p>
-                    <h3 className="relative mt-10 flex-1 text-pretty font-serif text-2xl leading-snug tracking-normal text-sage sm:text-[1.7rem]">
-                      {post.title}
-                    </h3>
-                    <p className="relative mt-3 text-sm leading-6 text-ink/75">{post.excerpt}</p>
-                    <p className="relative mt-7 flex items-center justify-between">
-                      <span className="text-[13px] font-medium text-ink/65">{post.readTime}</span>
-                      <span className="flex items-center gap-3 text-sm font-semibold text-sage">
-                        Read article
-                        <span className="grid h-10 w-10 place-items-center rounded-full bg-sage text-white transition duration-300 group-hover:translate-x-1 group-hover:bg-ink">
-                          <ArrowRight aria-hidden className="h-4 w-4" />
-                        </span>
-                      </span>
-                    </p>
-                  </a>
-                ))}
-              </div>
-            </div>
+            <BlogHighlights posts={blogPosts} />
           </div>
         </Container>
       </section>
