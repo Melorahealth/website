@@ -27,17 +27,6 @@ function speakerIcon(context: string): LucideIcon {
 }
 
 /**
- * The brand's three accents, rotated across the cards so the row reads as a set
- * without every card looking the same. Each is used small: the quote mark and
- * the speaker's icon chip.
- */
-const accents = [
-  { mark: "text-gold", chip: "bg-gold/20 text-[#8a6a2f]" },
-  { mark: "text-rose", chip: "bg-rose/20 text-[#9c574f]" },
-  { mark: "text-sage-soft", chip: "bg-sage-soft/20 text-sage" }
-] as const;
-
-/**
  * Modern testimonial slider for the sage "Built from real conversations" band.
  *
  * Native scroll-snap powers touch swipe + smooth scrolling; prev/next buttons and
@@ -120,7 +109,6 @@ export function TestimonialSlider({ items }: { items: Testimonial[] }) {
       >
         {items.map((item, i) => {
           const Icon = speakerIcon(item.context);
-          const accent = accents[i % accents.length]!;
           return (
             <li
               className="w-[86%] shrink-0 snap-start sm:w-[58%] md:w-[46%] lg:w-[calc((100%-2.5rem)/3)]"
@@ -129,32 +117,21 @@ export function TestimonialSlider({ items }: { items: Testimonial[] }) {
                 slideRefs.current[i] = el;
               }}
             >
-              {/* Flat cream card on the sage band: quote first, one accent, nothing else. */}
-              <figure className="flex h-full flex-col rounded-[1.5rem] bg-[#fbf8f3] p-8 transition duration-500 hover:-translate-y-1 sm:p-9">
-                <span
-                  aria-hidden
-                  className={`block h-9 select-none font-serif text-[4.5rem] leading-none ${accent.mark}`}
-                >
-                  &ldquo;
-                </span>
-                <blockquote className="mt-6 flex-1 text-pretty font-serif text-[1.4rem] leading-[1.4] tracking-normal text-sage sm:text-[1.5rem]">
-                  {item.quote}
-                </blockquote>
-                <figcaption className="mt-10 flex items-center gap-3.5">
-                  <span
-                    className={`grid h-11 w-11 shrink-0 place-items-center rounded-full ${accent.chip}`}
-                  >
-                    <Icon aria-hidden className="h-5 w-5" strokeWidth={1.6} />
+              {/* Who is speaking, what they said, where it came from: in that order. */}
+              <figure className="flex h-full flex-col rounded-[1.5rem] bg-[#fefcf9] p-7 transition duration-500 hover:-translate-y-1 sm:p-8">
+                <figcaption className="inline-flex items-center gap-2 self-start rounded-full bg-accent-soft py-1.5 pl-2 pr-3.5 text-[13px] font-semibold text-accent-deep">
+                  <span className="grid h-6 w-6 place-items-center rounded-full bg-accent text-white">
+                    <Icon aria-hidden className="h-3.5 w-3.5" strokeWidth={2} />
                   </span>
-                  <span className="min-w-0">
-                    <strong className="block text-[15px] font-semibold leading-tight text-ink">
-                      {item.context}
-                    </strong>
-                    <span className="mt-1 block text-[13px] leading-tight text-ink/55">
-                      {item.source}
-                    </span>
-                  </span>
+                  {item.context}
                 </figcaption>
+                <blockquote className="mt-7 flex-1 text-pretty font-serif text-[1.4rem] leading-[1.4] tracking-normal text-sage sm:text-[1.5rem]">
+                  &ldquo;{item.quote}&rdquo;
+                </blockquote>
+                <p className="mt-9 flex items-center gap-3 text-[13px] font-medium text-ink/55">
+                  <span aria-hidden className="h-0.5 w-7 rounded-full bg-gold" />
+                  {item.source}
+                </p>
               </figure>
             </li>
           );

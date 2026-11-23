@@ -14,6 +14,13 @@ const config: Config = {
           DEFAULT: "#264236",
           soft: "#7A8F7F"
         },
+        // The product dashboard's accent (app.melorahealth.io): its primary sage
+        // and the mint tint it uses for chips and soft fills.
+        accent: {
+          DEFAULT: "#4C7A6E",
+          deep: "#3D6258",
+          soft: "#E6F1EB"
+        },
         rose: "#C98F8A",
         gold: "#C8A46B"
       },
