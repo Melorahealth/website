@@ -92,10 +92,10 @@ export default function AboutPage() {
           />
           <ul className="mt-9 divide-y divide-sage/10 border-y border-sage/10">
             {entryPoints.map((item, index) => (
-              <li className="group flex items-start gap-4 py-4" key={item.title}>
-                <span className="relative mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-sage/10 bg-gradient-to-br from-white/90 to-cream/45 text-sage shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] transition duration-300 group-hover:border-gold/40 group-hover:text-gold">
+              <li className="tone group flex items-start gap-4 py-4" key={item.title}>
+                <span className="relative mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[var(--tone-bg)] text-sage ring-1 ring-inset ring-sage/[0.06]">
                   <item.icon aria-hidden className="h-[1.1rem] w-[1.1rem]" strokeWidth={1.6} />
-                  <span className="absolute -right-1.5 -top-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-sage text-[0.62rem] font-bold text-white shadow-soft">
+                  <span className="absolute -right-1.5 -top-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-[var(--tone-accent)] text-[0.62rem] font-bold text-[color:var(--tone-on)]">
                     {index + 1}
                   </span>
                 </span>

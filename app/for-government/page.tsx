@@ -144,17 +144,13 @@ export default function GovernmentPage() {
           <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
             {flowSteps.map((step, index) => (
               <div
-                className="reveal group relative flex flex-col items-center text-center"
+                className="tone reveal group relative flex flex-col items-center text-center"
                 key={step.head}
               >
                 <div className="relative">
-                  <span
-                    aria-hidden
-                    className="animate-glow-pulse absolute inset-0 rounded-[22px] bg-gold/25 blur-xl"
-                  />
-                  <span className="relative flex h-20 w-20 items-center justify-center rounded-[22px] border border-sage/10 bg-gradient-to-br from-white/90 to-cream/45 text-sage shadow-soft backdrop-blur transition duration-500 group-hover:-translate-y-1.5 group-hover:border-gold/40">
+                  <span className="relative flex h-20 w-20 items-center justify-center rounded-full bg-[var(--tone-bg)] text-sage ring-1 ring-inset ring-sage/[0.06] transition duration-500 group-hover:-translate-y-1.5">
                     <step.icon aria-hidden className="h-7 w-7" strokeWidth={1.4} />
-                    <span className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-sage text-[0.7rem] font-bold text-white shadow-soft">
+                    <span className="absolute -right-1 -top-1 flex h-7 w-7 items-center justify-center rounded-full bg-[var(--tone-accent)] text-xs font-bold text-[color:var(--tone-on)]">
                       {index + 1}
                     </span>
                   </span>
@@ -223,15 +219,15 @@ export default function GovernmentPage() {
           <div className="reveal reveal-delay grid gap-4 sm:grid-cols-2">
             {protections.map((item) => (
               <div
-                className="group relative flex flex-col gap-4 overflow-hidden rounded-2xl border border-white/15 bg-white/[0.06] p-6 backdrop-blur transition duration-500 hover:-translate-y-1.5 hover:border-gold/40 hover:bg-white/[0.09]"
+                className="tone group relative flex flex-col gap-5 overflow-hidden rounded-[2rem] bg-[var(--tone-bg)] p-6 text-sage transition duration-500 hover:-translate-y-1"
                 key={item.title}
               >
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/15 bg-white/10 text-gold transition duration-500 group-hover:border-gold/40 group-hover:bg-gold/10">
-                  <item.icon aria-hidden className="h-[1.15rem] w-[1.15rem]" strokeWidth={1.6} />
+                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-[var(--tone-accent)] text-[color:var(--tone-on)]">
+                  <item.icon aria-hidden className="h-5 w-5" strokeWidth={1.7} />
                 </span>
                 <div>
                   <h3 className="font-serif text-xl leading-tight tracking-normal">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-white/70">{item.body}</p>
+                  <p className="mt-2 text-sm leading-6 text-ink/75">{item.body}</p>
                 </div>
               </div>
             ))}

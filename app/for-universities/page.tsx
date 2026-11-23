@@ -28,6 +28,7 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { createPageMetadata } from "@/lib/seo";
 import { createBreadcrumbJsonLd } from "@/lib/structured-data";
+import { FaqList } from "@/components/sections/FaqList";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Student & Staff Mental Health for Universities",
@@ -264,17 +265,13 @@ export default function UniversitiesPage() {
             <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
               {flowSteps.map((step, index) => (
                 <div
-                  className="reveal group relative flex flex-col items-center text-center"
+                  className="tone reveal group relative flex flex-col items-center text-center"
                   key={step.head}
                 >
                   <div className="relative">
-                    <span
-                      aria-hidden
-                      className="animate-glow-pulse absolute inset-0 rounded-[22px] bg-gold/25 blur-xl"
-                    />
-                    <span className="relative flex h-20 w-20 items-center justify-center rounded-[22px] border border-sage/10 bg-gradient-to-br from-white/90 to-cream/45 text-sage shadow-soft backdrop-blur transition duration-500 group-hover:-translate-y-1.5 group-hover:border-gold/40">
+                    <span className="relative flex h-20 w-20 items-center justify-center rounded-full bg-[var(--tone-bg)] text-sage ring-1 ring-inset ring-sage/[0.06] transition duration-500 group-hover:-translate-y-1.5">
                       <step.icon aria-hidden className="h-7 w-7" strokeWidth={1.4} />
-                      <span className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-sage text-[0.7rem] font-bold text-white shadow-soft">
+                      <span className="absolute -right-1 -top-1 flex h-7 w-7 items-center justify-center rounded-full bg-[var(--tone-accent)] text-xs font-bold text-[color:var(--tone-on)]">
                         {index + 1}
                       </span>
                     </span>
@@ -318,16 +315,16 @@ export default function UniversitiesPage() {
           <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             {protections.map((item) => (
               <div
-                className="reveal group relative overflow-hidden rounded-2xl border border-sage/12 bg-white/60 p-7 shadow-[0_18px_48px_rgba(38,66,54,0.06)] backdrop-blur-xl transition duration-500 hover:-translate-y-1.5 hover:border-gold/30 hover:bg-white/75"
+                className="tone reveal group relative flex flex-col overflow-hidden rounded-[2rem] bg-[var(--tone-bg)] p-7 ring-1 ring-inset ring-sage/[0.06] transition duration-500 hover:-translate-y-1"
                 key={item.title}
               >
-                <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-sage/10 bg-gradient-to-br from-white/85 to-cream/40 text-sage shadow-[inset_0_1px_0_rgba(255,255,255,0.65)] transition duration-500 group-hover:border-gold/40">
+                <span className="grid h-12 w-12 place-items-center rounded-full bg-[var(--tone-accent)] text-[color:var(--tone-on)]">
                   <item.icon aria-hidden className="h-[1.15rem] w-[1.15rem]" strokeWidth={1.5} />
                 </span>
                 <h3 className="mt-6 font-serif text-xl leading-tight tracking-normal text-sage">
                   {item.title}
                 </h3>
-                <p className="mt-3 text-sm leading-6 text-ink/[0.62]">{item.body}</p>
+                <p className="mt-3 text-sm leading-6 text-ink/75">{item.body}</p>
               </div>
             ))}
           </div>
@@ -341,21 +338,8 @@ export default function UniversitiesPage() {
           body="The questions student affairs and welfare teams ask us most often."
           title="Good questions, answered plainly."
         />
-        <div className="mx-auto mt-12 max-w-3xl divide-y divide-sage/10 border-y border-sage/10">
-          {faqs.map((item) => (
-            <details className="group py-5" key={item.q}>
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-serif text-xl leading-snug tracking-normal text-sage">
-                {item.q}
-                <span
-                  aria-hidden
-                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-sage/15 text-gold transition duration-300 group-open:rotate-45"
-                >
-                  <span className="text-lg leading-none">+</span>
-                </span>
-              </summary>
-              <p className="mt-4 max-w-2xl text-sm leading-7 text-ink/[0.66]">{item.a}</p>
-            </details>
-          ))}
+        <div className="mt-12">
+          <FaqList items={faqs.map((item) => ({ question: item.q, answer: item.a }))} />
         </div>
       </DecorSection>
 

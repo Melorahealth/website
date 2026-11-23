@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { ArrowUpRight, CircleArrowRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { ButtonLink } from "@/components/ui/ButtonLink";
-import { MELORA_APP_URL } from "@/lib/app-links";
+import { MELORA_APP_URL, MELORA_BLOG_URL } from "@/lib/app-links";
 import { serviceLandingPages } from "@/lib/service-landing-pages";
 
 type NavLink = { href: string; label: string };
@@ -76,6 +76,7 @@ const navItems: NavItem[] = [
     ]
   },
   { href: "/gift-care", label: "Gift Care" },
+  { href: MELORA_BLOG_URL, label: "Blog" },
   { href: "/about", label: "About" }
 ];
 

@@ -3,7 +3,7 @@ import { ArrowUpRight, CircleArrowRight, Gift } from "lucide-react";
 import { AppStoreBadges } from "@/components/ui/AppStoreBadges";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
-import { MELORA_APP_URL, MELORA_GIFT_URL } from "@/lib/app-links";
+import { MELORA_APP_URL, MELORA_BLOG_URL, MELORA_GIFT_URL } from "@/lib/app-links";
 import { socialLinks } from "@/lib/seo";
 
 const linkGroups = [
@@ -13,7 +13,8 @@ const linkGroups = [
       { href: "/for-you", label: "Find Support" },
       { href: "/services", label: "Services" },
       { href: MELORA_GIFT_URL, label: "Gift Session" },
-      { href: "/resources", label: "Resources" }
+      { href: "/resources", label: "Resources" },
+      { href: MELORA_BLOG_URL, label: "Blog" }
     ]
   },
   {

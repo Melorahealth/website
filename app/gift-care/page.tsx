@@ -84,11 +84,17 @@ export default function GiftCarePage() {
         <div className="rounded-2xl border border-sage/10 bg-white/55 p-6 shadow-[0_22px_70px_rgba(38,66,54,0.07)] backdrop-blur-xl sm:p-8">
           <div className="grid gap-4 sm:grid-cols-3">
             {["Choose the support", "Fund care credits", "Keep care private"].map((step, index) => (
-              <div className="border-l border-gold/50 pl-4" key={step}>
-                <p className="text-xs font-semibold uppercase tracking-normal text-gold">
+              <div className="tone relative overflow-hidden rounded-[1.5rem] bg-[var(--tone-bg)] p-5" key={step}>
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute -top-3 right-3 select-none font-serif text-7xl leading-none text-[color:var(--tone-mark)]"
+                >
+                  0{index + 1}
+                </span>
+                <p className="relative inline-block rounded-full bg-white/80 px-3 py-1 text-xs font-semibold text-sage">
                   Step {index + 1}
                 </p>
-                <p className="mt-2 font-serif text-2xl leading-tight tracking-normal text-sage">
+                <p className="relative mt-8 font-serif text-2xl leading-tight tracking-normal text-sage">
                   {step}
                 </p>
               </div>

@@ -9,6 +9,7 @@ import {
   Gift,
   MessageCircle,
   Minus,
+  Plus,
   Sparkles,
   Star,
   Stethoscope,
@@ -22,7 +23,10 @@ import { AppStoreBadges } from "@/components/ui/AppStoreBadges";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { MELORA_APP_URL, MELORA_GIFT_URL } from "@/lib/app-links";
+import { MELORA_APP_URL, MELORA_BLOG_URL, MELORA_GIFT_URL } from "@/lib/app-links";
+import { BlogHighlights } from "@/components/sections/BlogHighlights";
+import { FaqList } from "@/components/sections/FaqList";
+import { getLatestBlogPosts } from "@/lib/blog-posts";
 import { createPageMetadata } from "@/lib/seo";
 import { createHomeJsonLd } from "@/lib/structured-data";
 
@@ -77,6 +81,13 @@ const careComparison = [
     offline: "Continuity depends mostly on one office, one schedule, and one provider."
   }
 ];
+
+/** The three "how it works" cards: each a colour block, each set a little higher than the last. */
+const stepStyles = [
+  { card: "bg-[#f5e9cd]", numeral: "text-gold/40", badge: "bg-gold text-ink", rise: "md:pt-16" },
+  { card: "bg-[#f6e1dc]", numeral: "text-rose/40", badge: "bg-rose text-ink", rise: "md:pt-8" },
+  { card: "bg-[#e6f1eb]", numeral: "text-accent/25", badge: "bg-accent text-white", rise: "" }
+] as const;
 
 const testimonials = [
   {
@@ -154,7 +165,9 @@ const faqs = [
   }
 ];
 
-export default function Home() {
+export default async function Home() {
+  const blogPosts = await getLatestBlogPosts();
+
   return (
     <main>
       <JsonLd data={createHomeJsonLd()} id="melorahealth-home-jsonld" />
@@ -359,7 +372,7 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="relative overflow-hidden bg-sage py-28 text-white sm:py-32 lg:py-36">
+      <section className="relative overflow-hidden bg-sage py-28 text-white sm:py-32 lg:py-36" id="how-it-works">
         {/* A single broad sweep on each edge, rising left to right at the top and
             falling at the bottom, so this band tilts rather than ripples. */}
         <svg
@@ -385,66 +398,54 @@ export default function Home() {
         </svg>
         <Container className="relative">
           <div className="section-grid">
-            <div className="lg:col-span-4" data-reveal>
-              <h2 className="font-serif text-4xl leading-tight tracking-normal sm:text-5xl">
+            <div className="lg:col-span-4 lg:self-center" data-reveal>
+              <h2 className="text-balance font-serif text-4xl leading-tight tracking-normal sm:text-5xl">
                 From struggling to supported, in three steps.
               </h2>
-              <p className="mt-5 text-base leading-7 text-white/70">
-                Built for African realities, diaspora funding, and real
-                professional care standards, so help is easy to reach and easy
-                to trust.
-              </p>
             </div>
-            <div className="grid gap-5 md:grid-cols-3 lg:col-span-8">
+            {/* Three colour-blocked steps that climb left to right: struggling, matched, supported. */}
+            <ol className="grid gap-5 md:grid-cols-3 md:items-start lg:col-span-8">
               {howItWorks.map((step, index) => {
                 const StepIcon = step.icon;
+                const style = stepStyles[index % stepStyles.length]!;
                 return (
-                  <article
-                    className="group relative overflow-hidden rounded-xl border border-white/12 bg-white/[0.06] p-6 transition duration-500 hover:-translate-y-1 hover:border-white/25 hover:bg-white/[0.1]"
-                    data-reveal
-                    key={step.title}
-                  >
-                    {/* Edge SVGs: corner glow + bleeding outline icon */}
-                    <div
-                      aria-hidden
-                      className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-[radial-gradient(circle,rgba(200,164,107,0.22),transparent_70%)] transition duration-700 group-hover:scale-125"
-                    />
-                    <StepIcon
-                      aria-hidden
-                      className="pointer-events-none absolute -right-3 -top-3 h-24 w-24 text-gold/20 transition duration-700 ease-out group-hover:rotate-6 group-hover:scale-110 group-hover:text-gold/30"
-                      strokeWidth={1}
-                    />
-
-                    <span className="relative font-serif text-5xl leading-none text-gold">
-                      0{index + 1}
-                    </span>
-                    <h3 className="relative mt-8 font-serif text-3xl leading-tight tracking-normal">
-                      {step.title}
-                    </h3>
-                    <p className="relative mt-4 text-sm leading-6 text-white/68">
-                      {step.body}
-                    </p>
-
-                    {/* Bottom-edge drawn line motif */}
-                    <svg
-                      aria-hidden
-                      className="pointer-events-none absolute inset-x-5 bottom-3 h-3 w-[calc(100%-2.5rem)] text-gold/35"
-                      fill="none"
-                      preserveAspectRatio="none"
-                      viewBox="0 0 200 12"
+                  <li className={`h-full ${style.rise}`} data-reveal key={step.title}>
+                    <article
+                      className={`group relative flex h-full min-h-[19rem] flex-col overflow-hidden rounded-[2rem] p-7 text-sage ${style.card}`}
                     >
-                      <path
-                        d="M0 9 C40 9 40 3 80 3 C120 3 120 9 160 9 C180 9 190 6 200 6"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeWidth="1.5"
-                      />
-                      <circle cx="200" cy="6" fill="currentColor" r="2" />
-                    </svg>
-                  </article>
+                      <span
+                        aria-hidden
+                        className={`pointer-events-none absolute right-5 -top-4 select-none font-serif text-[7.5rem] leading-none transition duration-500 group-hover:-translate-y-1 ${style.numeral}`}
+                      >
+                        0{index + 1}
+                      </span>
+                      <p className="relative self-start rounded-full bg-white/80 px-3.5 py-1.5 text-[13px] font-semibold">
+                        Step {index + 1}
+                      </p>
+                      <h3 className="relative mt-10 text-pretty font-serif text-[1.7rem] leading-tight tracking-normal">
+                        {step.title}
+                      </h3>
+                      <p className="relative mt-4 flex-1 pb-12 text-sm leading-6 text-ink/75">
+                        {step.body}
+                      </p>
+                      {/* Step icon in a notch cut from the corner; the two spans draw its inward curves. */}
+                      <span
+                        aria-hidden
+                        className="absolute bottom-0 right-0 rounded-tl-[1.75rem] bg-sage pl-3 pt-3"
+                      >
+                        <span className="absolute -top-6 right-0 h-6 w-6 rounded-br-[1.5rem] shadow-[8px_8px_0_8px_#264236]" />
+                        <span className="absolute -left-6 bottom-0 h-6 w-6 rounded-br-[1.5rem] shadow-[8px_8px_0_8px_#264236]" />
+                        <span
+                          className={`relative z-10 grid h-14 w-14 place-items-center rounded-full transition duration-500 group-hover:rotate-6 ${style.badge}`}
+                        >
+                          <StepIcon className="h-6 w-6" strokeWidth={1.6} />
+                        </span>
+                      </span>
+                    </article>
+                  </li>
                 );
               })}
-            </div>
+            </ol>
           </div>
         </Container>
       </section>
@@ -597,7 +598,7 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="relative overflow-hidden bg-sage py-28 text-white sm:py-32 lg:py-36">
+      <section className="relative overflow-hidden bg-sage py-28 text-white sm:py-32 lg:py-36" id="stories">
         {/* Wavy edges in the page cream, so the band flows in and out of the page. */}
         <svg
           aria-hidden
@@ -631,10 +632,6 @@ export default function Home() {
               <h2 className="font-serif text-4xl leading-tight tracking-normal sm:text-5xl">
                 What people told us
               </h2>
-              <p className="mt-5 max-w-md text-base leading-7 text-white/65">
-                Every decision starts with the people we serve. Here is some of
-                what they have told us.
-              </p>
             </div>
             <div className="lg:col-span-8" data-reveal>
               <TestimonialSlider items={testimonials} />
@@ -643,39 +640,35 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="section-space bg-[#fbf8f3]">
+      <section className="section-space bg-[#fbf8f3] !pb-0" id="blog">
+        <Container>
+          <div className="flex flex-col gap-10">
+            <div
+              className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between"
+              data-reveal
+            >
+              <SectionHeader
+                title="From the blog."
+              />
+              <ButtonLink className="shrink-0 self-start sm:self-auto" href={MELORA_BLOG_URL} variant="secondary">
+                Read all articles
+              </ButtonLink>
+            </div>
+            <BlogHighlights posts={blogPosts} />
+          </div>
+        </Container>
+      </section>
+
+      <section className="section-space bg-[#fbf8f3]" id="faq">
         <Container>
           <div className="flex flex-col gap-10">
             <div className="flex justify-center" data-reveal>
               <SectionHeader
-                // body="Straight answers to the questions people ask before they trust someone with their mental health."
-                // eyebrow="FAQ"
+                align="center"
                 title="Frequently asked questions."
               />
             </div>
-            <div className="flex justify-center gap-3 max-w-3xl w-full mx-auto">
-              <div className="grid gap-3 col-span-8 w-full">
-                {faqs.map((faq) => (
-                  <details
-                    className="group rounded-xl border border-sage/10 bg-white/45 p-6 shadow-[0_14px_38px_rgba(38,66,54,0.04)] w-full"
-                    data-reveal
-                    key={faq.question}
-                  >
-                    <summary className="flex cursor-pointer list-none items-center justify-between gap-6 font-serif text-2xl leading-tight tracking-normal text-sage">
-                      {faq.question}
-                      <MessageCircle
-                        aria-hidden
-                        className="h-5 w-5 shrink-0 text-gold transition group-open:rotate-6"
-                        strokeWidth={1.6}
-                      />
-                    </summary>
-                    <p className="mt-4 max-w-3xl text-sm leading-6 text-ink/64">
-                      {faq.answer}
-                    </p>
-                  </details>
-                ))}
-              </div>
-            </div>
+            <FaqList items={faqs} />
 
           </div>
         </Container>
