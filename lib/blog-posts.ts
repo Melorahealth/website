@@ -56,32 +56,39 @@ type LatestPost = {
   readingMinutes: number;
 };
 
+export const LATEST_POSTS_URL = `${MELORA_BLOG_URL}/latest.json`;
+
+/** Turns the blog feed's JSON into cards, dropping anything that does not point at the blog. */
+export function toBlogPosts(body: unknown, count: number): BlogPost[] | null {
+  const items = (body as { posts?: LatestPost[] } | null)?.posts;
+  if (!Array.isArray(items)) return null;
+  const posts = items
+    .filter((item) => item?.title && item.url?.startsWith(MELORA_BLOG_URL))
+    .map((item) => ({
+      href: item.url,
+      topic: item.topic?.label ?? "Article",
+      title: item.title,
+      excerpt: item.excerpt ?? "",
+      readTime: `${Math.max(1, Math.round(item.readingMinutes || 1))} min read`,
+      cover: item.cover?.startsWith(MELORA_BLOG_URL) ? item.cover : null
+    }));
+  return posts.length >= count ? posts.slice(0, count) : null;
+}
+
 /**
- * The newest published posts, read from the blog's public feed
- * (blog.melorahealth.io/latest.json). The result is cached and refreshed every
- * ten minutes, so a newly published article appears on the home page without a
- * redeploy. If the blog is unreachable or returns too few posts, the
- * hand-picked fallback list is used instead.
+ * The newest published posts, read from the blog's public feed when the page
+ * is built. The blog sits behind bot protection that can turn a server away,
+ * so this may return the hand-picked fallback; the page then refreshes the
+ * list in the visitor's browser (see BlogHighlightsLive).
  */
 export async function getLatestBlogPosts(count = 3): Promise<BlogPost[]> {
   try {
-    const response = await fetch(`${MELORA_BLOG_URL}/latest.json?limit=${count}`, {
+    const response = await fetch(`${LATEST_POSTS_URL}?limit=${count}`, {
       next: { revalidate: 600 },
       signal: AbortSignal.timeout(5000)
     });
     if (!response.ok) return fallbackBlogPosts;
-    const body = (await response.json()) as { posts?: LatestPost[] };
-    const posts = (body.posts ?? [])
-      .filter((item) => item.title && item.url?.startsWith(MELORA_BLOG_URL))
-      .map((item) => ({
-        href: item.url,
-        topic: item.topic?.label ?? "Article",
-        title: item.title,
-        excerpt: item.excerpt,
-        readTime: `${Math.max(1, Math.round(item.readingMinutes || 1))} min read`,
-        cover: item.cover?.startsWith(MELORA_BLOG_URL) ? item.cover : null
-      }));
-    return posts.length >= count ? posts.slice(0, count) : fallbackBlogPosts;
+    return toBlogPosts(await response.json(), count) ?? fallbackBlogPosts;
   } catch {
     return fallbackBlogPosts;
   }
