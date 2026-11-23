@@ -23,7 +23,7 @@ import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { MELORA_APP_URL, MELORA_BLOG_URL, MELORA_GIFT_URL } from "@/lib/app-links";
-import { featuredBlogImage, featuredBlogPosts } from "@/lib/blog-posts";
+import { featuredBlogPosts } from "@/lib/blog-posts";
 import { createPageMetadata } from "@/lib/seo";
 import { createHomeJsonLd } from "@/lib/structured-data";
 
@@ -663,38 +663,32 @@ export default function Home() {
             <div className="grid gap-5 lg:grid-cols-12">
               {featuredBlogPosts.slice(0, 1).map((post) => (
                 <a
-                  className="group relative isolate flex min-h-[27rem] flex-col justify-between overflow-hidden rounded-[2rem] p-7 text-white focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent/40 sm:p-9 lg:col-span-7 lg:min-h-[35rem]"
+                  className="group relative flex flex-col overflow-hidden rounded-[2rem] bg-[#0f1b17] text-white transition duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent/40 lg:col-span-7"
                   data-reveal
                   href={post.href}
                   key={post.href}
                 >
-                  <Image
-                    alt=""
-                    className="-z-20 object-cover transition duration-700 ease-out group-hover:scale-[1.04]"
-                    fill
-                    sizes="(min-width: 1024px) 58vw, 100vw"
-                    src={featuredBlogImage.src}
-                    style={{ objectPosition: featuredBlogImage.position }}
-                  />
-                  <span
-                    aria-hidden
-                    className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(16,34,27,0.34)_0%,rgba(16,34,27,0.12)_26%,rgba(16,34,27,0.62)_58%,rgba(16,34,27,0.95)_100%)]"
-                  />
-                  <p className="flex items-center justify-between">
-                    <span className="rounded-full bg-white/15 px-3.5 py-1.5 text-[13px] font-semibold backdrop-blur-md">
-                      {post.topic}
-                    </span>
-                    <span aria-hidden className="font-serif text-2xl text-white/80">
-                      01
-                    </span>
-                  </p>
-                  <div>
-                    <h3 className="max-w-2xl text-pretty font-serif text-3xl leading-[1.15] tracking-normal sm:text-4xl lg:text-[2.6rem]">
-                      {post.title}
-                    </h3>
-                    <p className="mt-4 max-w-xl text-base leading-7 text-white/75">{post.excerpt}</p>
-                    <p className="mt-7 flex items-center justify-between">
-                      <span className="text-[13px] font-medium text-white/65">{post.readTime}</span>
+                  {/* The article's own cover from the blog. It carries the title, so the heading is for screen readers. */}
+                  <span className="relative block aspect-[1200/630] overflow-hidden">
+                    <Image
+                      alt=""
+                      className="object-cover transition duration-700 ease-out group-hover:scale-[1.03]"
+                      fill
+                      sizes="(min-width: 1024px) 58vw, 100vw"
+                      src={post.cover}
+                    />
+                    <span
+                      aria-hidden
+                      className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#0f1b17] to-transparent"
+                    />
+                  </span>
+                  <h3 className="sr-only">{post.title}</h3>
+                  <div className="flex flex-1 flex-col justify-between gap-7 p-7 sm:p-9">
+                    <p className="max-w-xl text-base leading-7 text-white/75 sm:text-lg sm:leading-8">
+                      {post.excerpt}
+                    </p>
+                    <p className="flex items-center justify-between">
+                      <span className="text-[13px] font-medium text-white/60">{post.readTime}</span>
                       <span className="flex items-center gap-3 text-sm font-semibold">
                         Read article
                         <span className="grid h-11 w-11 place-items-center rounded-full bg-white text-sage transition duration-300 group-hover:translate-x-1">
