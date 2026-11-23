@@ -1,13 +1,30 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import {
+  Baby,
+  Building2,
+  ChevronLeft,
+  ChevronRight,
+  HeartHandshake,
+  UserRound
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 export type Testimonial = {
   quote: string;
   source: string;
   context: string;
 };
+
+/** A small glyph for who is speaking, picked from the speaker's description. */
+function speakerIcon(context: string): LucideIcon {
+  const who = context.toLowerCase();
+  if (/(employer|hr|partner|team|lead)/.test(who)) return Building2;
+  if (/(sponsor|recipient|credit)/.test(who)) return HeartHandshake;
+  if (/(maternal|mother|postpartum)/.test(who)) return Baby;
+  return UserRound;
+}
 
 /**
  * Modern testimonial slider for the sage "Built from real conversations" band.
@@ -87,34 +104,54 @@ export function TestimonialSlider({ items }: { items: Testimonial[] }) {
       onTouchStart={() => setPaused(true)}
     >
       <ul
-        className="-mx-2 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth px-2 pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="-mx-6 -mb-6 flex snap-x snap-mandatory scroll-px-6 gap-5 overflow-x-auto scroll-smooth px-6 pb-14 pt-3 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         ref={trackRef}
       >
-        {items.map((item, i) => (
-          <li
-            className="w-[85%] shrink-0 snap-start sm:w-[55%] md:w-[42%] lg:w-[calc((100%-3.75rem)/4)]"
-            key={item.quote}
-            ref={(el) => {
-              slideRefs.current[i] = el;
-            }}
-          >
-            <figure className="flex h-full flex-col rounded-2xl border border-white/15 bg-white/[0.06] p-7 backdrop-blur-sm transition duration-500 hover:border-white/25 hover:bg-white/[0.1] sm:p-8">
-              <Quote aria-hidden className="h-8 w-8 text-gold" strokeWidth={1.5} />
-              <blockquote className="mt-5 flex-1 font-serif text-xl leading-snug tracking-normal text-white sm:text-2xl lg:text-xl">
-                &ldquo;{item.quote}&rdquo;
-              </blockquote>
-              <figcaption className="mt-7 border-t border-white/10 pt-5">
-                <strong className="block text-base font-semibold text-white">
-                  {item.source}
-                </strong>
-                <span className="text-sm text-white/55">{item.context}</span>
-              </figcaption>
-            </figure>
-          </li>
-        ))}
+        {items.map((item, i) => {
+          const Icon = speakerIcon(item.context);
+          return (
+            <li
+              className="w-[86%] shrink-0 snap-start sm:w-[58%] md:w-[46%] lg:w-[calc((100%-2.5rem)/3)]"
+              key={item.quote}
+              ref={(el) => {
+                slideRefs.current[i] = el;
+              }}
+            >
+              {/* Cream card on the sage band: the quote is the loudest thing on it. */}
+              <figure className="group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] bg-[#fbf8f3] p-8 shadow-[0_18px_36px_-8px_rgba(8,22,17,0.34)] transition duration-500 hover:-translate-y-1 sm:p-9">
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute -right-10 -top-12 h-40 w-40 rounded-full bg-[radial-gradient(circle,rgba(200,164,107,0.22),transparent_68%)]"
+                />
+                <span
+                  aria-hidden
+                  className="block h-11 select-none font-serif text-[5.25rem] leading-none text-gold"
+                >
+                  &ldquo;
+                </span>
+                <blockquote className="relative mt-5 flex-1 text-pretty font-serif text-[1.4rem] leading-[1.38] tracking-normal text-sage sm:text-[1.5rem]">
+                  {item.quote}
+                </blockquote>
+                <figcaption className="relative mt-9 flex items-center gap-3.5 border-t border-sage/10 pt-6">
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-sage text-cream">
+                    <Icon aria-hidden className="h-5 w-5" strokeWidth={1.6} />
+                  </span>
+                  <span className="min-w-0">
+                    <strong className="block text-[15px] font-semibold leading-tight text-ink">
+                      {item.context}
+                    </strong>
+                    <span className="mt-1 block text-[13px] leading-tight text-ink/55">
+                      {item.source}
+                    </span>
+                  </span>
+                </figcaption>
+              </figure>
+            </li>
+          );
+        })}
       </ul>
 
-      <div className="mt-7 flex items-center justify-between gap-4">
+      <div className="mt-2 flex items-center justify-between gap-4">
         <div className="flex items-center gap-2" role="tablist" aria-label="Testimonials">
           {items.map((item, i) => (
             <button

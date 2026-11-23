@@ -22,7 +22,8 @@ import { AppStoreBadges } from "@/components/ui/AppStoreBadges";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { MELORA_APP_URL, MELORA_GIFT_URL } from "@/lib/app-links";
+import { MELORA_APP_URL, MELORA_BLOG_URL, MELORA_GIFT_URL } from "@/lib/app-links";
+import { featuredBlogPosts } from "@/lib/blog-posts";
 import { createPageMetadata } from "@/lib/seo";
 import { createHomeJsonLd } from "@/lib/structured-data";
 
@@ -597,7 +598,7 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="relative overflow-hidden bg-sage py-28 text-white sm:py-32 lg:py-36">
+      <section className="relative overflow-hidden bg-sage py-28 text-white sm:py-32 lg:py-36" id="stories">
         {/* Wavy edges in the page cream, so the band flows in and out of the page. */}
         <svg
           aria-hidden
@@ -638,6 +639,53 @@ export default function Home() {
             </div>
             <div className="lg:col-span-8" data-reveal>
               <TestimonialSlider items={testimonials} />
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="section-space bg-[#fbf8f3] !pb-0" id="blog">
+        <Container>
+          <div className="flex flex-col gap-10">
+            <div
+              className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between"
+              data-reveal
+            >
+              <SectionHeader
+                body="Plain answers on cost, finding the right therapist, and getting care in Nigeria."
+                title="From the blog."
+              />
+              <ButtonLink className="shrink-0 self-start sm:self-auto" href={MELORA_BLOG_URL} variant="secondary">
+                Read all articles
+              </ButtonLink>
+            </div>
+            <div className="grid gap-5 md:grid-cols-3">
+              {featuredBlogPosts.map((post) => (
+                <a
+                  className="group flex h-full flex-col rounded-[1.5rem] border border-sage/10 bg-white/60 p-7 shadow-[0_14px_38px_rgba(38,66,54,0.05)] transition duration-300 hover:-translate-y-1 hover:border-sage/25 hover:bg-white focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-sage/20 sm:p-8"
+                  data-reveal
+                  href={post.href}
+                  key={post.href}
+                >
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gold">
+                    {post.topic}
+                  </p>
+                  <h3 className="mt-4 text-pretty font-serif text-2xl leading-snug tracking-normal text-sage">
+                    {post.title}
+                  </h3>
+                  <p className="mt-4 flex-1 text-sm leading-6 text-ink/65">{post.excerpt}</p>
+                  <p className="mt-7 flex items-center justify-between border-t border-sage/10 pt-5 text-sm font-semibold text-sage">
+                    <span className="flex items-center gap-2">
+                      Read article
+                      <ArrowRight
+                        aria-hidden
+                        className="h-4 w-4 transition duration-300 group-hover:translate-x-1"
+                      />
+                    </span>
+                    <span className="text-xs font-medium text-ink/45">{post.readTime}</span>
+                  </p>
+                </a>
+              ))}
             </div>
           </div>
         </Container>
