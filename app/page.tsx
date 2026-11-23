@@ -18,6 +18,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { CTASection } from "@/components/sections/CTASection";
 import { PartnersSection } from "@/components/sections/PartnersSection";
 import { TestimonialSlider } from "@/components/sections/TestimonialSlider";
+import { AppStoreBadges } from "@/components/ui/AppStoreBadges";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -250,6 +251,12 @@ export default function Home() {
               {/* <ButtonLink href={MELORA_GIFT_URL} icon={Gift} variant="secondary">
                 Gift a Session
               </ButtonLink> */}
+            </div>
+            <p className="mt-3 text-xs font-medium text-white/75" data-hero-item>
+              No download needed. Start in your browser.
+            </p>
+            <div className="mt-5" data-hero-item>
+              <AppStoreBadges />
             </div>
             <div
               className="mt-6 flex items-center gap-2.5"

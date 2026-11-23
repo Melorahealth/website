@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight, CircleArrowRight, Gift } from "lucide-react";
+import { AppStoreBadges } from "@/components/ui/AppStoreBadges";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
 import { MELORA_APP_URL, MELORA_GIFT_URL } from "@/lib/app-links";
@@ -137,6 +138,10 @@ export function Footer() {
                 </li>
               ))}
             </ul>
+            <p className="mb-3 mt-8 text-[11px] font-semibold uppercase tracking-[0.18em] text-gold">
+              Get the app
+            </p>
+            <AppStoreBadges className="!justify-start" />
           </div>
 
           <nav
