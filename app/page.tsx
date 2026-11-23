@@ -408,11 +408,6 @@ export default async function Home() {
               <h2 className="font-serif text-4xl leading-tight tracking-normal sm:text-5xl">
                 From struggling to supported, in three steps.
               </h2>
-              <p className="mt-5 text-base leading-7 text-white/70">
-                Built for African realities, diaspora funding, and real
-                professional care standards, so help is easy to reach and easy
-                to trust.
-              </p>
             </div>
             {/* Three colour-blocked steps that climb left to right: struggling, matched, supported. */}
             <ol className="grid gap-5 md:grid-cols-3 md:items-start lg:col-span-8">
